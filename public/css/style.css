@@ -1,0 +1,52 @@
+h1.admin {
+	margin-top: 2rem;
+	font-family: 'Lobster';
+	font-size: 4em;
+}
+.table-action-success i.fas:hover{
+	color: #2dce89;
+}
+.table-action-primary i.fas:hover{
+	color: #5e72e4;
+}
+.modal-content-detail{
+	width: 120%;
+}
+@media (min-width: 576px){
+	.modal-dialog-detail {
+	    max-width: 50% !important;
+	    margin: 1.75rem auto;
+	}
+	.modal-width {
+	    max-width: 500px !important;
+	    margin: 1.75rem auto;
+	}
+}
+
+table.dataTable tbody>tr.selected, 
+table.dataTable tbody>tr>.selected{
+	background-color: #fff !important;
+	color: #333 !important;
+}
+table.dataTable tbody>tr.selected{
+	background-color: #ff !important;
+	color: #333 !important;
+}
+.card-detail{
+	margin:10px auto;
+	width: 50%;
+	box-shadow: 5px 0 1rem 0 rgba(0,0,0,0.1);
+}
+.z-99{
+	z-index: 99 !important;
+}
+.bel span{
+	font-size:10px;
+	position: absolute;
+	top: 0;
+	color: #fff;
+	font-weight: 700;
+}
+@media (min-width: 576px){
+
+}
