@@ -75,11 +75,11 @@ $(function(){
 	$('.editBarang').on('click', function(){
 		$('#judul').html('Ubah Data Barang');
 		$('.modal-footer button[type=submit').html('Ubah Barang');
-		$('.modal-body form').attr('action','http://localhost/Inventaris_skensa/public/proses/Ubarang');
+		$('.modal-body form').attr('action','http://localhost/Inventaris_skensa/proses/Ubarang');
 		const id = $(this).data('id');
 
 		$.ajax({
-			url : 'http://localhost/Inventaris_skensa/public/proses/getubah',
+			url : 'http://localhost/Inventaris_skensa/proses/getubah',
 			data: {id : id},
 			method:'post',
 			dataType: 'json',
@@ -98,13 +98,12 @@ $(function(){
 		});
 	})
 
-
 	$('.hapus').on('click', function(){
 		const id = $(this).data('id');
 		const ct = $(this).data('ct')
 		
 		$.ajax({
-			url: 'http://localhost/Inventaris_skensa/public/proses/'+ ct,
+			url: 'http://localhost/Inventaris_skensa/proses/'+ ct,
 			data: {id : id},
 			method:'post',
 			dataType: 'json',
@@ -117,7 +116,7 @@ $(function(){
 		const id = $(this).data('id');
 
 		$.ajax({
-			url : 'http://localhost/Inventaris_skensa/public/proses/getdetail',
+			url : 'http://localhost/Inventaris_skensa/proses/getdetail',
 			data: {id : id},
 			method:'post',
 			dataType: 'json',
@@ -135,10 +134,9 @@ $(function(){
 				}else{
 					$('#kondisi_barang').html("<span class='text-success font-weight-bold'>Baik</span>");
 				}
-				
 				$('#petugas').html(data.nama);
 				$('#keterangan_barang').html(data.deskripsi);
-				$('#gambar_detail').attr('src','http://localhost/Inventaris_skensa/public/img/daftar-barang/'+ data.gambar);
+				$('#gambar_detail').attr('src','http://localhost/Inventaris_skensa/public/img/daftar-barang/' + data.gambar);
 				
 			}
 		}).done(function(sd) {
@@ -149,7 +147,7 @@ $(function(){
 	$('.jenisBarang').on('click', function(){
 		$('#judul').html('Tambah Jenis Barang');
 		$('.modal-footer button[type=submit').html('Tambah Jenis Barang <i class="fas fa-plus"></i>');
-		$('.modal-body form').attr('action','http://localhost/Inventaris_skensa/public/proses/Tjenis');
+		$('.modal-body form').attr('action','http://localhost/Inventaris_skensa/proses/Tjenis');
 		$('#id').val();
 		$('#nama_brng').val();
 		$('#kode').val();
@@ -159,12 +157,12 @@ $(function(){
 	$('.edit_jenis').on('click', function(){
 		$('#judul').html('Ubah Jenis Barang');
 		$('.modal-footer button[type=submit').html('Ubah Jenis Barang <i class="fas fa-edit"></i>');
-		$('.modal-body form').attr('action','http://localhost/Inventaris_skensa/public/proses/Ujenis');
+		$('.modal-body form').attr('action','http://localhost/Inventaris_skensa/proses/Ujenis');
 
 		const id = $(this).data('id');
 
 		$.ajax({
-			url: 'http://localhost/Inventaris_skensa/public/proses/getubahjenis',
+			url: 'http://localhost/Inventaris_skensa/proses/getubahjenis',
 			type: 'POST',
 			dataType: 'json',
 			data: {id : id},
@@ -181,7 +179,7 @@ $(function(){
 	$('.Truang').on('click', function(){
 		$('#judul').html('Tambah Ruang');
 		$('.modal-footer button[type=submit').html('Tambah Ruang <i class="fas fa-plus"></i>');
-		$('.modal-body form').attr('action','http://localhost/Inventaris_skensa/public/proses/Truang');
+		$('.modal-body form').attr('action','http://localhost/Inventaris_skensa/proses/Truang');
 		$('#id').val();
 		$('#nama_brng').val();
 		$('#kode_ruang').val();
@@ -192,12 +190,12 @@ $(function(){
 	$('.edit_ruang').on('click', function(){
 		$('#judul').html('Ubah Ruang');
 		$('.modal-footer button[type=submit').html('Ubah Ruang <i class="fas fa-edit"></i>');
-		$('.modal-body form').attr('action','http://localhost/Inventaris_skensa/public/proses/Uruang');
+		$('.modal-body form').attr('action','http://localhost/Inventaris_skensa/proses/Uruang');
 
 		const id = $(this).data('id');
 
 		$.ajax({
-			url: 'http://localhost/Inventaris_skensa/public/proses/getubahruang',
+			url: 'http://localhost/Inventaris_skensa/proses/getubahruang',
 			type: 'POST',
 			dataType: 'json',
 			data: {id : id},
@@ -216,12 +214,12 @@ $(function(){
 		$('.modal-footer button[type=submit').html('Ubah User <i class="fas fa-edit"></i>');
 		$('.form-group .password').html('Password Lama');
 		$('.form-group .password_baru').html('Password Baru');
-		$('.modal-body form').attr('action','http://localhost/Inventaris_skensa/public/proses/Uuser');
+		$('.modal-body form').attr('action','http://localhost/Inventaris_skensa/proses/Uuser');
 
 		const id = $(this).data('id');
 
 		$.ajax({
-			url: 'http://localhost/Inventaris_skensa/public/proses/getubahuser',
+			url: 'http://localhost/Inventaris_skensa/proses/getubahuser',
 			type: 'POST',
 			dataType: 'json',
 			data: {id : id},
@@ -238,7 +236,7 @@ $(function(){
 	$('.Tpinjam').on('click', function(){
 		$('#judul').html('Tambah Pinjam');
 		$('.modal-footer button[type=submit').html('Tambah Pinjam <i class="fas fa-plus"></i>');
-		$('.modal-body form').attr('action','http://localhost/Inventaris_skensa/public/proses/Tpinjam');
+		$('.modal-body form').attr('action','http://localhost/Inventaris_skensa/proses/Tpinjam');
 		$('#id').val();
 		$('#nama_brng').val();
 		$('#kode_ruang').val();
@@ -248,19 +246,63 @@ $(function(){
 	$('.edit_pinjam').on('click', function(){
 		$('#judul').html('Ubah Data Pinjam');
 		$('.modal-footer button[type=submit').html('Ubah Pinjam');
-		$('.modal-body form').attr('action','http://localhost/Inventaris_skensa/public/proses/Upinjam');
+		$('.modal-body form').attr('action','http://localhost/Inventaris_skensa/proses/Upinjam');
 		const id = $(this).data('id');
 
 		$.ajax({
-			url : 'http://localhost/Inventaris_skensa/public/proses/getpinjam',
+			url : 'http://localhost/Inventaris_skensa/proses/getpinjam',
 			data: {id : id},
 			method:'post',
 			dataType: 'json',
 			success: function(data){
+				console.log(data);
 				$('#id').val(data.id_peminjam);
 				$('#peminjam').val(data.id_auth);
 				$('#barang').val(data.id_barang);
 				$('#jumlah').val(data.jumlah_pinjam);
+				$('#nama_pinjam').html(data.nama);
+				$('#nis_pinjam').html(data.no_induk);
+				$('#nama_barang').html(data.tanggal_pinjam);
+				$('#tanggal_pinjam').html(data.tanggal_kembali);
+				$('#tanggal_kembali').html(data.nama);
+				$('#jumlah_pinjam').html(data.jumlah_pinjam);
+				$('#keterangan_barang').html(data.deskripsi);
+				if (data.kondisi >= '2'){
+					$('#kondisi_barang').html("<span class='text-danger font-weight-bold'>Rusak</span>");
+				}else{
+					$('#kondisi_barang').html("<span class='text-success font-weight-bold'>Baik</span>");
+				}
+
+				$('#gambar_detail').attr('src','http://localhost/Inventaris_skensa/public/img/daftar-barang/' + data.gambar);
+			}
+		}).done(function(sd) {
+			
+		});
+	})
+
+	$('.detail_kembali').on('click', function(){
+		const id = $(this).data('id');
+		$.ajax({
+			url : 'http://localhost/Inventaris_skensa/proses/getkembali',
+			data: {id : id},
+			method:'post',
+			dataType: 'json',
+			success: function(data){
+				$('#nama_pinjam').html(data.nama);
+				$('#nis_pinjam').html(data.no_induk);
+				$('#nama_barang').html(data.nama_brng);
+				$('#tanggal_pinjam').html(data.tanggal_pinjam);
+				$('#tanggal_kembali').html(data.jatuh_tempo);
+				$('#denda').html(data.denda);
+				$('#jumlah_pinjam').html(data.jumlah_pinjam);
+				$('#keterangan_barang').html(data.deskripsi);
+				if (data.kondisi >= '2'){
+					$('#kondisi_barang').html("<span class='text-danger font-weight-bold'>Rusak</span>");
+				}else{
+					$('#kondisi_barang').html("<span class='text-success font-weight-bold'>Baik</span>");
+				}
+
+				$('#gambar_detail').attr('src','http://localhost/Inventaris_skensa/public/img/daftar-barang/' + data.gambar);
 			}
 		}).done(function(sd) {
 			

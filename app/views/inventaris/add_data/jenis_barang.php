@@ -35,7 +35,7 @@
 									<a href="" class="table-action table-action-primary edit_jenis" data-toggle="modal" data-target="#jenis" data-id="<?= $jenis['id_jenis'] ?>" data-toggle="tooltip" data-original-title="Edit Barang">
 										<i class="fas fa-user-edit"></i>
 									</a>
-									<a  href="" class="table-action table-action-delete hapus  tombol-hapus" data-toggle="sweet-alert" data-sweet-alert="confirm" data-id="<?= $jenis['id_jenis'] ?>" data-ct="hapus_jenis" data-href="<?= BASEURL ?>/jenis/" data-toggle="tooltip" data-original-title="Hapus Barang">
+									<a  href="" class="table-action table-action-delete hapus  tombol-hapus" data-toggle="sweet-alert" data-sweet-alert="confirm" data-id="<?= $jenis['id_jenis'] ?>" data-ct="hapus_jenis" data-href="<?= BASE_URL ?>/jenis/" data-toggle="tooltip" data-original-title="Hapus Barang">
 										<i class="fas fa-trash"></i>
 									</a>
 								</td>

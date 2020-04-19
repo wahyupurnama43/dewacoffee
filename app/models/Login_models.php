@@ -1,29 +1,23 @@
-<?php 
+<?php
 
-
-
-
-class Login_models
-{
+class Login_models {
 
 	private $tb = "auth",
-	$db;
+		$db;
 
-	public function __construct()
-	{
+	public function __construct() {
 		$this->db = new Database();
 	}
 
-	public function getAkun($bind, $value)
-	{
-		$query  = "SELECT * FROM $this->tb WHERE $bind = :$bind";
+	public function getAkun($bind, $value) {
+		$query = "SELECT * FROM $this->tb WHERE $bind = :$bind";
 
 		$this->db->query($query);
 		$this->db->bind($bind, $value);
 		return $this->db->single();
 	}
 
-	public function login($data){
+	public function login($data) {
 
 		$user = $_POST['username'];
 		$pass = $_POST['password'];
@@ -39,7 +33,7 @@ class Login_models
 					$role = $data_username['id_level'];
 					$username = $data_username['username'];
 					$id_auth = $data_username['id_auth'];
-					// cek password 
+					// cek password
 					if (isset($pass) && $pass !== '') {
 						// verify password hash
 						if (password_verify($pass, $password)) {
@@ -50,41 +44,41 @@ class Login_models
 								$_SESSION['role'] = "1";
 								$_SESSION['auth'] = $id_auth;
 
-								 Flasher::setFlash('Selamat Datang ', $username,'success');
-                                header('Location: '.BASEURL.'/');
-							}elseif ($role === '2' || $role === 2) {
+								Flasher::setFlash('Selamat Datang ', $username, 'success');
+								header('Location: ' . BASE_URL . '/');
+							} elseif ($role === '2' || $role === 2) {
 								session_start();
 								$_SESSION['username'] = $username;
 								$_SESSION['status'] = "login";
 								$_SESSION['role'] = "2";
 								$_SESSION['auth'] = $id_auth;
-								 Flasher::setFlash('Selamat Datang ', $username,'success');
-                                header('Location: '.BASEURL.'/');
-							}elseif ($role === '3' || $role === 3) {
+								Flasher::setFlash('Selamat Datang ', $username, 'success');
+								header('Location: ' . BASE_URL . '/');
+							} elseif ($role === '3' || $role === 3) {
 								session_start();
 								$_SESSION['username'] = $username;
 								$_SESSION['status'] = "login";
 								$_SESSION['role'] = "3";
 								$_SESSION['auth'] = $id_auth;
-								 Flasher::setFlash('Selamat Datang ', $username,'success');
-                                header('Location: '.BASEURL.'/home_user');
+								Flasher::setFlash('Selamat Datang ', $username, 'success');
+								header('Location: ' . BASE_URL . '/home_user');
 							}
-						}else{
+						} else {
 							// jika tidak arahain ke login
-							Flasher::setFlash("Password ","Anda Salah","error");
-							header('Location: '.BASEURL.'/login/login');	
+							Flasher::setFlash("Password ", "Anda Salah", "error");
+							header('Location: ' . BASE_URL . '/login/login');
 						}
-					}else{
+					} else {
 						// jika tidak arahain ke login
-						Flasher::setFlash("Password ","Tidak boleh Kosong","error");
-						header('Location: '.BASEURL.'/login/login');	
+						Flasher::setFlash("Password ", "Tidak boleh Kosong", "error");
+						header('Location: ' . BASE_URL . '/login/login');
 					}
-				}else {
+				} else {
 					// jika tidak ada username maka tampilkan pesan error
-					Flasher::setFlash("Username or Nis ","Tidak Terdaftar","error");
-					header('Location: '.BASEURL.'/login/login');	
+					Flasher::setFlash("Username or Nis ", "Tidak Terdaftar", "error");
+					header('Location: ' . BASE_URL . '/login/login');
 				}
-			}elseif (strlen($user) < 7 && is_numeric($user)) {
+			} elseif (strlen($user) < 7 && is_numeric($user)) {
 				// ambil data dari database dngan no induk
 				$data_nis = $this->getAkun('no_induk', $user);
 				if ($data_nis > 0) {
@@ -103,49 +97,49 @@ class Login_models
 								$_SESSION['status'] = "login";
 								$_SESSION['role'] = "1";
 								$_SESSION['auth'] = $id_auth;
-								 Flasher::setFlash('Selamat Datang ', $username,'success');
-                                header('Location: '.BASEURL.'/');
-							}elseif ($role === '2' || $role === 2) {
+								Flasher::setFlash('Selamat Datang ', $username, 'success');
+								header('Location: ' . BASE_URL . '/');
+							} elseif ($role === '2' || $role === 2) {
 								session_start();
 								$_SESSION['username'] = $username;
 								$_SESSION['status'] = "login";
 								$_SESSION['role'] = "2";
 								$_SESSION['auth'] = $id_auth;
-								 Flasher::setFlash('Selamat Datang ', $username,'success');
-                                header('Location: '.BASEURL.'/');
-							}elseif ($role === '3' || $role === 3) {
+								Flasher::setFlash('Selamat Datang ', $username, 'success');
+								header('Location: ' . BASE_URL . '/');
+							} elseif ($role === '3' || $role === 3) {
 								session_start();
 								$_SESSION['username'] = $username;
 								$_SESSION['status'] = "login";
 								$_SESSION['role'] = "3";
 								$_SESSION['auth'] = $id_auth;
-								 Flasher::setFlash('Selamat Datang ', $username,'success');
-                                header('Location: '.BASEURL.'/');
+								Flasher::setFlash('Selamat Datang ', $username, 'success');
+								header('Location: ' . BASE_URL . '/');
 							}
-						}else{
+						} else {
 							// jika tidak arahain ke login
-							Flasher::setFlash("Password ","Anda Salah","error");
-							header('Location: '.BASEURL.'/login/login');	
+							Flasher::setFlash("Password ", "Anda Salah", "error");
+							header('Location: ' . BASE_URL . '/login/login');
 						}
-					}else{
+					} else {
 						// jika tidak arahain ke login
-						Flasher::setFlash("Password ","Tidak boleh Kosong","error");
-					header('Location: '.BASEURL.'/login/login');	
+						Flasher::setFlash("Password ", "Tidak boleh Kosong", "error");
+						header('Location: ' . BASE_URL . '/login/login');
 					}
 
-				}else {
+				} else {
 					// jika tidak ada username maka tampilkan pesan error
-					Flasher::setFlash("Username or Nis ","Tidak Terdaftar","error");
-					header('Location: '.BASEURL.'/login/login');
+					Flasher::setFlash("Username or Nis ", "Tidak Terdaftar", "error");
+					header('Location: ' . BASE_URL . '/login/login');
 				}
-			}elseif (strlen($user) < 7) {
-				Flasher::setFlash("Username or Nis ","Tidak Terdaftar","error");
-				header('Location: '.BASEURL.'/login/login');
+			} elseif (strlen($user) < 7) {
+				Flasher::setFlash("Username or Nis ", "Tidak Terdaftar", "error");
+				header('Location: ' . BASE_URL . '/login/login');
 			}
-		}else{
+		} else {
 			// jika tidak ada dimasukkan username maka tampilkan pesan error
-			Flasher::setFlash("Username or Nis ","Harus Di isi","error");
-			header('Location: '.BASEURL.'/login/login');
+			Flasher::setFlash("Username or Nis ", "Harus Di isi", "error");
+			header('Location: ' . BASE_URL . '/login/login');
 		}
 	}
 

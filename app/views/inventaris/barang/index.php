@@ -36,14 +36,14 @@
                 <td  ><?= $brg['kondisi'] == '1' ? "<p class='text-success font-weight-bold'>Baik</p>" : "<p class='text-danger font-weight-bold'>Rusak</p>" ?></td>
                 <td width="15%"><?= date('d F Y h:i A',strtotime($brg['tanggal_masuk'])) ?></td>
                 <td class="table-actions">
-                  <a href="" class="table-action table-action-primary editBarang" data-toggle="modal" data-target="#barang"  data-id="<?= $brg['id_barang'] ?>" data-toggle="tooltip" data-original-title="Edit Barang">
+                  <a href="" class="table-action table-action-primary editBarang" data-toggle="modal" data-target="#barang"  data-id="<?= $brg['id_barang'] ?>">
                     <i class="fas fa-user-edit"></i>
                   </a>
-                  <a  href="" class="table-action table-action-delete hapus  tombol-hapus" data-toggle="sweet-alert" data-sweet-alert="confirm" data-id="<?= $brg['id_barang'] ?>" data-ct="hapus_barang" data-href="<?= BASEURL ?>/barang/"data-toggle="tooltip" data-original-title="Hapus Barang">
+                  <a  href="" class="table-action table-action-delete hapus tombol-hapus" data-toggle="sweet-alert" data-sweet-alert="confirm" data-id="<?= $brg['id_barang'] ?>" data-ct="hapus_barang" data-href="<?= BASE_URL ?>/barang/" data-toggle="tooltip" data-original-title="Hapus Barang">
                     <i class="fas fa-trash"></i>
                   </a>
                   <a href="" class="table-action table-action-success detail_barang" data-id="<?= $brg['id_barang'] ?>"  data-toggle="modal" data-target="#detail-modal" data-toggle="tooltip" data-original-title="Detail Barang" >
-                    <i class="fas fa-list"></i>
+                    <i class="fas fa-eye"></i>
                   </a>
                 </td>
               </tr>
@@ -66,7 +66,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="<?= BASEURL ?>/proses/Tbarang" method="POST" enctype="multipart/form-data">
+        <form action="<?= BASE_URL ?>/proses/Tbarang" method="POST" enctype="multipart/form-data">
           <input type="hidden" id="id" name="id">
           <div class="form-group">
             <label for="nama_brng">Nama Barang</label>
@@ -130,10 +130,6 @@
 </div>
 </div>
 </div>
-
-
-
-
 
 <div class="row">
   <div class="col-md-4">

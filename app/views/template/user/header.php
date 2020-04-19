@@ -117,7 +117,7 @@ if  ($_SESSION['role'] !== '3' || $_SESSION['status'] !== 'login') {
                 <span>Support</span>
               </a>
               <div class="dropdown-divider"></div>
-              <a href="<?= BASEURL ?>/login/logout" class="dropdown-item">
+              <a href="<?= BASE_URL ?>/login/logout" class="dropdown-item">
                 <i class="ni ni-user-run"></i>
                 <span>Logout</span>
               </a>

@@ -5,8 +5,6 @@
 
 class Proses extends Controller
 {
-	
-	
     
 	/*------------------------------------------Tambah Barang-------------------------------------------*/
 	public function Tbarang()
@@ -14,11 +12,11 @@ class Proses extends Controller
 		$add = $this->model('Proses_models')->Tbarang($_POST);
 		if ($add['status']) {
 			Flasher::setFlash("Berhasil ","Di Tambahkan","success");
-			header('Location: '.BASEURL.'/barang');
+			header('Location: '.BASE_URL.'/barang');
 			exit();
 		}else {
 			Flasher::setFlash("Gagal ","Di Tambahkan","error");
-			header('Location: '.BASEURL.'/barang');
+			header('Location: '.BASE_URL.'/barang');
 			exit();
 		}
 	}
@@ -28,11 +26,11 @@ class Proses extends Controller
 		$add = $this->model('Proses_models')->Tjenis($_POST);
 		if ($add['status']) {
 			Flasher::setFlash("Berhasil ","Di Tambahkan","success");
-			header('Location: '.BASEURL.'/jenis');
+			header('Location: '.BASE_URL.'/jenis');
 			exit();
 		}else {
 			Flasher::setFlash("Gagal ","Di Tambahkan","error");
-			header('Location: '.BASEURL.'/jenis');
+			header('Location: '.BASE_URL.'/jenis');
 			exit();
 		}
 	}
@@ -42,11 +40,11 @@ class Proses extends Controller
 		$add = $this->model('Proses_models')->Truang($_POST);
 		if ($add['status']) {
 			Flasher::setFlash("Berhasil ","Di Tambahkan","success");
-			header('Location: '.BASEURL.'/ruang');
+			header('Location: '.BASE_URL.'/ruang');
 			exit();
 		}else {
 			Flasher::setFlash("Gagal ","Di Tambahkan","error");
-			header('Location: '.BASEURL.'/ruang');
+			header('Location: '.BASE_URL.'/ruang');
 			exit();
 		}
 	}
@@ -56,11 +54,11 @@ class Proses extends Controller
 		$add = $this->model('Proses_models')->Tuser($_POST);
 		if ($add['status']) {
 			Flasher::setFlash("Berhasil ","Di Tambahkan","success");
-			header('Location: '.BASEURL.'/user');
+			header('Location: '.BASE_URL.'/user');
 			exit();
 		}else {
 			Flasher::setFlash("Gagal ","Di Tambahkan","error");
-			header('Location: '.BASEURL.'/user');
+			header('Location: '.BASE_URL.'/user');
 			exit();
 		}
 	}
@@ -70,11 +68,11 @@ class Proses extends Controller
 		$add = $this->model('Proses_models')->Tpinjam($_POST);
 		if ($add['status']) {
 			Flasher::setFlash("Berhasil ","Di Pinjam","success");
-			header('Location: '.BASEURL.'/peminjaman');
+			header('Location: '.BASE_URL.'/peminjaman');
 			exit();
 		}else {
 			Flasher::setFlash("Gagal ","Di Pinjam","error");
-			header('Location: '.BASEURL.'/peminjaman');
+			header('Location: '.BASE_URL.'/peminjaman');
 			exit();
 		}
 	}
@@ -88,11 +86,11 @@ class Proses extends Controller
 		$add = $this->model('Proses_models')->hapus($id);
 		if ($add['status']) {
 			Flasher::setFlash("Barang Berhasil ","Di Hapus","success");
-			header('Location: '.BASEURL.'/barang');
+			header('Location: '.BASE_URL.'/barang');
 			exit();
 		}else{
 			Flasher::setFlash("Barang Gagal ","Di Hapus","error");
-			header('Location: '.BASEURL.'/barang');
+			header('Location: '.BASE_URL.'/barang');
 			exit();
 		}
 	}
@@ -100,13 +98,12 @@ class Proses extends Controller
 	{
 		$add = $this->model('Proses_models')->hapus_barang($_POST['id']);
 		if ($add['status']) {
-			echo json_encode($add);
 			Flasher::setFlash("Barang Berhasil ","Di Hapus","success");
-			header('Location: '.BASEURL.'/barang');
+			header('Location: '.BASE_URL.'/barang');
 			exit();
 		}else{
 			Flasher::setFlash("Barang Gagal ","Di Hapus","error");
-			header('Location: '.BASEURL.'/barang');
+			header('Location: '.BASE_URL.'/barang');
 			exit();
 		}
 	}
@@ -117,11 +114,11 @@ class Proses extends Controller
 		if ($add['status']) {
 			echo json_encode($add);
 			Flasher::setFlash("Barang Berhasil ","Di Hapus","success");
-			header('Location: '.BASEURL.'/barang');
+			header('Location: '.BASE_URL.'/barang');
 			exit();
 		}else{
 			Flasher::setFlash("Barang Gagal ","Di Hapus","error");
-			header('Location: '.BASEURL.'/barang');
+			header('Location: '.BASE_URL.'/barang');
 			exit();
 		}
 	}
@@ -132,11 +129,11 @@ class Proses extends Controller
 		if ($add['status']) {
 			echo json_encode($add);
 			Flasher::setFlash("Barang Berhasil ","Di Hapus","success");
-			header('Location: '.BASEURL.'/barang');
+			header('Location: '.BASE_URL.'/barang');
 			exit();
 		}else{
 			Flasher::setFlash("Barang Gagal ","Di Hapus","error");
-			header('Location: '.BASEURL.'/barang');
+			header('Location: '.BASE_URL.'/barang');
 			exit();
 		}
 	}
@@ -148,11 +145,11 @@ class Proses extends Controller
 		if ($add['status']) {
 			echo json_encode($add);
 			Flasher::setFlash("Barang Berhasil ","Di Hapus","success");
-			header('Location: '.BASEURL.'/user');
+			header('Location: '.BASE_URL.'/user');
 			exit();
 		}else{
 			Flasher::setFlash("Barang Gagal ","Di Hapus","error");
-			header('Location: '.BASEURL.'/user');
+			header('Location: '.BASE_URL.'/user');
 			exit();
 		}
 	}
@@ -164,11 +161,11 @@ class Proses extends Controller
 		if ($add['status']) {
 			echo json_encode($add);
 			Flasher::setFlash("Barang Berhasil ","Di Hapus","success");
-			header('Location: '.BASEURL.'/user');
+			header('Location: '.BASE_URL.'/peminjaman');
 			exit();
 		}else{
 			Flasher::setFlash("Barang Gagal ","Di Hapus","error");
-			header('Location: '.BASEURL.'/user');
+			header('Location: '.BASE_URL.'/peminjaman');
 			exit();
 		}
 	}
@@ -180,11 +177,11 @@ class Proses extends Controller
 		if ($add['status']) {
 			echo json_encode($add);
 			Flasher::setFlash("Barang Berhasil ","Di Hapus","success");
-			header('Location: '.BASEURL.'/user');
+			header('Location: '.BASE_URL.'/user');
 			exit();
 		}else{
 			Flasher::setFlash("Barang Gagal ","Di Hapus","error");
-			header('Location: '.BASEURL.'/user');
+			header('Location: '.BASE_URL.'/user');
 			exit();
 		}
 	}
@@ -197,11 +194,11 @@ class Proses extends Controller
 		$add = $this->model('Proses_models')->Ubarang($_POST);
 		if ($add['status']) {
 			Flasher::setFlash("Barang Berhasil ","Di Update","success");
-			header('Location: '.BASEURL.'/barang');
+			header('Location: '.BASE_URL.'/barang');
 			exit();
 		}else{
 			Flasher::setFlash("Barang Gagal ","Di Update","error");
-			header('Location: '.BASEURL.'/barang');
+			header('Location: '.BASE_URL.'/barang');
 			exit();
 		}
 	}
@@ -211,11 +208,11 @@ class Proses extends Controller
 		$add = $this->model('Proses_models')->Ujenis($_POST);
 		if ($add['status']) {
 			Flasher::setFlash("Barang Berhasil ","Di Update","success");
-			header('Location: '.BASEURL.'/jenis');
+			header('Location: '.BASE_URL.'/jenis');
 			exit();
 		}else{
 			Flasher::setFlash("Barang Gagal ","Di Update","error");
-			header('Location: '.BASEURL.'/jenis');
+			header('Location: '.BASE_URL.'/jenis');
 			exit();
 		}
 	}
@@ -225,11 +222,11 @@ class Proses extends Controller
 		$add = $this->model('Proses_models')->Uruang($_POST);
 		if ($add['status']) {
 			Flasher::setFlash("Ruang Berhasil ","Di Update","success");
-			header('Location: '.BASEURL.'/ruang');
+			header('Location: '.BASE_URL.'/ruang');
 			exit();
 		}else{
 			Flasher::setFlash("Ruang Gagal ","Di Update","error");
-			header('Location: '.BASEURL.'/ruang');
+			header('Location: '.BASE_URL.'/ruang');
 			exit();
 		}
 	}
@@ -239,11 +236,11 @@ class Proses extends Controller
 		$add = $this->model('Proses_models')->Uuser($_POST);
 		if ($add['status']) {
 			Flasher::setFlash("User Berhasil ","Di Update","success");
-			header('Location: '.BASEURL.'/user');
+			header('Location: '.BASE_URL.'/user');
 			exit();
 		}else{
 			Flasher::setFlash("User Gagal ","Di Update","error");
-			header('Location: '.BASEURL.'/user');
+			header('Location: '.BASE_URL.'/user');
 			exit();
 		}
 	}
@@ -253,11 +250,11 @@ class Proses extends Controller
 		$add = $this->model('Proses_models')->Upinjam($_POST);
 		if ($add['status']) {
 			Flasher::setFlash("User Berhasil ","Di Update","success");
-			header('Location: '.BASEURL.'/peminjaman/');
+			header('Location: '.BASE_URL.'/peminjaman/');
 			exit();
 		}else{
 			Flasher::setFlash("User Gagal ","Di Update","error");
-			header('Location: '.BASEURL.'/peminjaman/');
+			header('Location: '.BASE_URL.'/peminjaman/');
 			exit();
 		}
 	}
@@ -291,7 +288,12 @@ class Proses extends Controller
 
 	public function getpinjam()
 	{
-		echo json_encode($this->model('Get_models')->ambilDataBy('id_peminjam',$_POST['id'],'tb_pinjam'));
+		echo json_encode($this->model('Get_models')->ambilDatapinjamOne('detail_pinjam',$_POST['id'],'id_peminjam'));
+	}
+
+	public function getkembali()
+	{
+		echo json_encode($this->model('Get_models')->ambilKembaliBy('tb_kembali',$_POST['id']));
 	}
 
 	
@@ -302,11 +304,11 @@ class Proses extends Controller
 		$add = $this->model('Proses_models')->kembali($id);
 		if ($add['status']) {
 			Flasher::setFlash("Barang Berhasil ","Dikembalikan","success");
-			header('Location: '.BASEURL.'/pengembalian/');
+			header('Location: '.BASE_URL.'/pengembalian/');
 			exit();
 		}else{
 			Flasher::setFlash("Barang Gagal ","Dikembalikan","error");
-			header('Location: '.BASEURL.'/pengembalian/');
+			header('Location: '.BASE_URL.'/peminjaman/');
 			exit();
 		}
 	}
@@ -318,11 +320,11 @@ class Proses extends Controller
 		$add = $this->model('Proses_models')->proses_pinjam($_POST);
 		if ($add['status']) {
 			Flasher::setFlash("Barang Berhasil ","Di Pinjam","success");
-			header('Location: '.BASEURL.'/home_user');
+			header('Location: '.BASE_URL.'/home_user');
 			exit();
 		}else{
 			Flasher::setFlash("Barang Gagal ","Di Pinjam","error");
-			header('Location: '.BASEURL.'/home_user');
+			header('Location: '.BASE_URL.'/home_user');
 			exit();
 		}
 	}

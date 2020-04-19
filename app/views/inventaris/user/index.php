@@ -37,7 +37,7 @@
 									<a href="" class="table-action table-action-primary edit_user" data-toggle="modal" data-target="#ruang" data-id="<?= $user['id_auth'] ?>" data-toggle="tooltip" data-original-title="Edit Barang">
 										<i class="fas fa-user-edit"></i>
 									</a>
-									<a  href="" class="table-action table-action-delete hapus tombol-hapus" data-toggle="sweet-alert" data-sweet-alert="confirm" data-id="<?= $user['id_auth'] ?>" data-ct="hapus_user" data-href="<?= BASEURL ?>/user/" data-toggle="tooltip" data-original-title="Hapus Barang">
+									<a  href="" class="table-action table-action-delete hapus tombol-hapus" data-toggle="sweet-alert" data-sweet-alert="confirm" data-id="<?= $user['id_auth'] ?>" data-ct="hapus_user" data-href="<?= BASE_URL ?>/user/" data-toggle="tooltip" data-original-title="Hapus Barang">
 										<i class="fas fa-trash"></i>
 									</a>
 								</td>
@@ -61,7 +61,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form action="<?= BASEURL ?>/proses/Tuser" method="POST" >
+				<form action="<?= BASE_URL ?>/proses/Tuser" method="POST" >
 					<input type="hidden" id="id" name="id">
 					<div class="form-group">
 						<label for="nama">Nama</label>

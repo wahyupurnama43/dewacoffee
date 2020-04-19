@@ -35,7 +35,7 @@
 									<a href="" class="table-action table-action-primary edit_ruang" data-toggle="modal" data-target="#ruang" data-id="<?= $ruang['id_ruang'] ?>" data-toggle="tooltip" data-original-title="Edit Barang">
 										<i class="fas fa-user-edit"></i>
 									</a>
-									<a  href="" class="table-action table-action-delete hapus  tombol-hapus" data-toggle="sweet-alert" data-sweet-alert="confirm" data-id="<?= $ruang['id_ruang'] ?>" data-ct="hapus_ruang" data-href="<?= BASEURL ?>/ruang/" data-toggle="tooltip" data-original-title="Hapus Barang">
+									<a  href="" class="table-action table-action-delete hapus tombol-hapus" data-toggle="sweet-alert" data-sweet-alert="confirm" data-id="<?= $ruang['id_ruang'] ?>" data-ct="hapus_ruang" data-href="<?= BASE_URL ?>/ruang/" data-toggle="tooltip" data-original-title="Hapus Barang">
 										<i class="fas fa-trash"></i>
 									</a>
 								</td>

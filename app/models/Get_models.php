@@ -61,20 +61,41 @@ class Get_models
         return $this->db->resultSet();
     }
 
-    public function ambilDatapinjam($tb, $st){
-        $q = "SELECT * FROM $tb
-        INNER JOIN auth ON $tb.id_auth = auth.id_auth
-        INNER JOIN tb_barang ON $tb.id_barang = tb_barang.id_barang WHERE status = $st";
+    public function ambilDatapinjamBy(){
+        $q = "SELECT * FROM detail_pinjam
+        INNER JOIN tb_pinjam ON detail_pinjam.id_peminjam = tb_pinjam.id_peminjam
+        INNER JOIN tb_barang ON detail_pinjam.id_barang = tb_barang.id_barang
+        INNER JOIN auth ON tb_pinjam.id_auth = auth.id_auth WHERE tb_pinjam.status = '1'";
         $this->db->query($q);
         return $this->db->resultSet();
     }
-    
-    public function ambilDatakembali($tb){
+    public function ambilDatapinjamOne($tb, $id, $verificator){
         $q = "SELECT * FROM $tb
+        INNER JOIN tb_pinjam ON $tb.id_peminjam = tb_pinjam.id_peminjam
+        INNER JOIN tb_barang ON $tb.id_barang = tb_barang.id_barang
+        INNER JOIN auth ON tb_pinjam.id_auth = auth.id_auth WHERE $tb.$verificator = :$verificator";
+        $this->db->query($q);
+        $this->db->bind($verificator, $id);
+        return $this->db->single();
+    }
+
+    public function ambilkembali($tb){
+        $q = "SELECT * FROM $tb
+        INNER JOIN detail_pinjam ON $tb.id_detail_pinjam = detail_pinjam.id_detail_pinjam
         INNER JOIN auth ON $tb.id_auth = auth.id_auth";
         $this->db->query($q);
         return $this->db->resultSet();
     }
+
+    public function ambilKembaliBy($tb, $id){
+        $q = "SELECT * FROM $tb
+        INNER JOIN detail_pinjam ON $tb.id_detail_pinjam = detail_pinjam.id_detail_pinjam
+        INNER JOIN auth ON $tb.id_auth = auth.id_auth
+        INNER JOIN tb_barang ON detail_pinjam.id_barang = tb_barang.id_barang WHERE detail_pinjam.id_peminjam = '$id'";
+        $this->db->query($q);
+        return $this->db->single();
+    }
+   
 
     /*---------------------------> ambil data barang <-----------------------------------*/
     public function ambilBarang()
@@ -95,27 +116,7 @@ class Get_models
         return $this->db->single();
     }
 
-    public function ambildetailPinjam($id)
-    {
-        $query = "SELECT * FROM tb_pinjam
-                  INNER JOIN auth ON tb_pinjam.id_auth = auth.id_auth
-                  INNER JOIN tb_barang ON tb_pinjam.id_barang = tb_barang.id_barang 
-                  INNER JOIN tb_jenis ON tb_barang.id_jenis = tb_jenis.id_jenis
-                  INNER JOIN tb_ruang ON tb_barang.id_ruang = tb_ruang.id_ruang WHERE id_peminjam = '$id'";
-        $this->db->query($query);
-        return $this->db->single();
-    }
-
-    public function ambildetailkembali($id)
-    {
-        $query = "SELECT * FROM tb_kembali
-                  INNER JOIN auth ON tb_kembali.id_auth = auth.id_auth
-                  INNER JOIN tb_barang ON tb_kembali.id_barang = tb_barang.id_barang 
-                  INNER JOIN tb_jenis ON tb_barang.id_jenis = tb_jenis.id_jenis
-                  INNER JOIN tb_ruang ON tb_barang.id_ruang = tb_ruang.id_ruang WHERE id_kembali = '$id'";
-        $this->db->query($query);
-        return $this->db->single();
-    }
+   
 
     /*-------------------------------------> Count <---------------------------------------*/
     public function count($tb)

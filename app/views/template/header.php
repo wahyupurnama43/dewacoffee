@@ -1,13 +1,13 @@
 <?php 
 
 if  ($_SESSION['role'] !== '1' || $_SESSION['status'] !== 'login') {
-  header('Location: '.BASEURL.'/login/login');
+  header('Location: '.BASE_URL.'/login/login');
 }
-  $data['countPinjamt'] =  $this->model('Get_models')->countPinjam('tb_pinjam');
-  $data['proses_pinjam'] = $this->model('Get_models')->ambilDatapinjam('tb_pinjam','0');
-
+   // $data['countPinjamt'] =  $this->model('Get_models')->countPinjam('tb_pinjam');
+   // $data['proses_pinjam'] = $this->model('Get_models')->ambilDatapinjam('tb_pinjam','0');
+  
 ?>
-
+ 
 
 <!DOCTYPE html>
 <html>
@@ -32,7 +32,12 @@ if  ($_SESSION['role'] !== '1' || $_SESSION['status'] !== 'login') {
   <link rel="stylesheet" href="<?= BASEURL ?>/vendor/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css">
   <link rel="stylesheet" href="<?= BASEURL ?>/vendor/datatables.net-select-bs4/css/select.bootstrap4.min.css">
   <link rel="stylesheet" href="<?= BASEURL ?>/vendor/sweetalert2/dist/sweetalert2.min.css">
-
+  
+  <style>
+    body{
+      overflow-x: hidden;
+    }
+  </style>
 
 </head>
 <body class="g-sidenav-hidden">
@@ -64,7 +69,7 @@ if  ($_SESSION['role'] !== '1' || $_SESSION['status'] !== 'login') {
         <!-- Nav items -->
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" href="<?= BASEURL ?>/barang/">
+            <a class="nav-link active" href="<?= BASE_URL ?>/barang/">
               <i class="ni ni-archive-2 text-primary"></i>
               <span class="nav-link-text">Inventaris</span>
             </a>
@@ -77,28 +82,28 @@ if  ($_SESSION['role'] !== '1' || $_SESSION['status'] !== 'login') {
             <div class="collapse" id="navbar-tables">
              <ul class="nav nav-sm flex-column">
               <li class="nav-item">
-                <a href="<?= BASEURL ?>/jenis/" class="nav-link">Jenis Barang</a>
+                <a href="<?= BASE_URL ?>/jenis/" class="nav-link">Jenis Barang</a>
               </li>
               <li class="nav-item">
-                <a href="<?= BASEURL ?>/ruang/" class="nav-link">Ruangan </a>
+                <a href="<?= BASE_URL ?>/ruang/" class="nav-link">Ruangan </a>
               </li>
             </ul>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= BASEURL ?>/user/">
+          <a class="nav-link" href="<?= BASE_URL ?>/user/">
             <i class="fas fa-users text-red"></i>
             <span class="nav-link-text">Daftar User</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= BASEURL ?>/peminjaman/">
+          <a class="nav-link" href="<?= BASE_URL ?>/peminjaman/">
             <i class="ni ni-delivery-fast text-info"></i>
             <span class="nav-link-text">Peminjaman</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= BASEURL ?>/pengembalian/">
+          <a class="nav-link" href="<?= BASE_URL ?>/pengembalian/">
             <i class="ni ni-check-bold text-success"></i>
             <span class="nav-link-text">Pengembalian</span>
           </a>
@@ -233,7 +238,7 @@ if  ($_SESSION['role'] !== '1' || $_SESSION['status'] !== 'login') {
               <span>Support</span>
             </a>
             <div class="dropdown-divider"></div>
-            <a href="<?= BASEURL ?>/login/logout" class="dropdown-item">
+            <a href="<?= BASE_URL ?>/login/logout" class="dropdown-item">
               <i class="ni ni-user-run"></i>
               <span>Logout</span>
             </a>
@@ -244,3 +249,4 @@ if  ($_SESSION['role'] !== '1' || $_SESSION['status'] !== 'login') {
   </div>
 </nav>
     <!-- Header -->
+
