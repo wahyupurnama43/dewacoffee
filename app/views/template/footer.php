@@ -20,7 +20,8 @@
 <script src="<?= BASEURL ?>/vendor/chart.js/dist/Chart.extension.js"></script>
 <script src="<?= BASEURL ?>/vendor/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <script src="<?= BASEURL ?>/js/argon.min9f1e.js?v=1.1.0"></script>
-
+<script src="<?= BASEURL ?>/vendor/dropzone/dist/min/dropzone.min.js"></script>
+<script src="<?= BASEURL ?>/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
 <script src="<?= BASEURL ?>/js/script.js"></script>
 
 <script>
@@ -31,35 +32,36 @@
     ],
     pagingType: 'full_numbers'
   });
-    // Facebook Pixel Code Don't Delete
-    ! function(f, b, e, v, n, t, s) {
-      if (f.fbq) return;
-      n = f.fbq = function() {
-        n.callMethod ?
-        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-      };
-      if (!f._fbq) f._fbq = n;
-      n.push = n;
-      n.loaded = !0;
-      n.version = '2.0';
-      n.queue = [];
-      t = b.createElement(e);
-      t.async = !0;
-      t.src = v;
-      s = b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t, s)
-    }(window,
-      document, 'script', '../../../../connect.facebook.net/en_US/fbevents.js');
+setInterval(function(){
 
-    try {
-      fbq('init', '111649226022273');
-      fbq('track', "PageView");
+    $.ajax({
+      url : 'http://localhost/Inventaris_skensa/proses/notif',
+      data: {},
+      method:'post',
+      dataType: 'json',
+      success: function(data){
+        $('#con_pinjam').html(data);
+        $('#con_pinjam2').html(data);
+      }
+    });
 
-    } catch (err) {
-      console.log('Facebook Track Error:', err);
-    }
+},2000)
+function load_unseen_notification(view = ''){
+     $.ajax({
+      url : 'http://localhost/Inventaris_skensa/proses/get_notif',
+      method:"POST",
+      data:{view:view},
+      dataType: 'json',
+      success: function(data){
+        $('#notif').html(data.notification)
+      }
+    });
+}
+load_unseen_notification();
+setInterval(function(){ 
+    load_unseen_notification();; 
+  }, 5000);
 
-    
   </script>
 </body>
 

@@ -8,7 +8,7 @@ class Peminjaman extends Controller
 		$data['judul'] = 'Daftar Peminjaman';
 		$data['barang'] = $this->model('Get_models')->ambilDataAll('tb_barang');
 		$data['peminjam'] = $this->model('Get_models')->ambilDataAll('auth');
-		$data['pinjam'] = $this->model('Get_models')->ambilDatapinjamBy();
+		$data['pinjam'] = $this->model('Get_models')->ambilDatapinjamBy('1');
 		$this->view('template/header',$data);
 		$this->view('inventaris/peminjaman/index',$data);
 		$this->view('template/footer');	

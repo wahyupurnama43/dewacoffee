@@ -30,6 +30,7 @@ if  ($_SESSION['role'] !== '3' || $_SESSION['status'] !== 'login') {
   <link rel="stylesheet" href="<?= BASEURL ?>/vendor/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css">
   <link rel="stylesheet" href="<?= BASEURL ?>/vendor/datatables.net-select-bs4/css/select.bootstrap4.min.css">
   <link rel="stylesheet" href="<?= BASEURL ?>/vendor/sweetalert2/dist/sweetalert2.min.css">
+  <link rel="stylesheet" href="<?= BASEURL ?>/vendor/animate.css/animate.min.css">
   <link rel="stylesheet" href="<?= BASEURL ?>/css/style-card.css">
   
   <style>
@@ -86,43 +87,43 @@ if  ($_SESSION['role'] !== '3' || $_SESSION['status'] !== 'login') {
         </ul>
         <ul class="navbar-nav align-items-center ml-auto ml-md-0">
           <li class="nav-item dropdown">
-            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <div class="media align-items-center">
-                <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="<?= BASEURL ?>/img/theme/team-4.jpg">
-                </span>
-                <div class="media-body ml-2 d-none d-lg-block mr-2">
-                  <span class="mb-0 text-sm  font-weight-bold"><?= $_SESSION['username'] ?></span>
-                </div>
+          <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="media align-items-center">
+              <span class="avatar avatar-sm rounded-circle">
+                <img alt="Image placeholder" src="<?= BASEURL ?>/img/theme/team-4.jpg">
+              </span>
+              <div class="media-body ml-2 d-none d-lg-block mr-2">
+                <span class="mb-0 text-sm  font-weight-bold"><?= $_SESSION['username'] ?></span>
               </div>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right">
-              <div class="dropdown-header noti-title">
-                <h6 class="text-overflow m-0">Welcome!</h6>
-              </div>
-              <a href="#!" class="dropdown-item">
-                <i class="ni ni-single-02"></i>
-                <span>My profile</span>
-              </a>
-              <a href="#!" class="dropdown-item">
-                <i class="ni ni-settings-gear-65"></i>
-                <span>Settings</span>
-              </a>
-              <a href="#!" class="dropdown-item">
-                <i class="ni ni-calendar-grid-58"></i>
-                <span>Activity</span>
-              </a>
-              <a href="#!" class="dropdown-item">
-                <i class="ni ni-support-16"></i>
-                <span>Support</span>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a href="<?= BASE_URL ?>/login/logout" class="dropdown-item">
-                <i class="ni ni-user-run"></i>
-                <span>Logout</span>
-              </a>
             </div>
-          </li>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <div class="dropdown-header noti-title">
+              <h6 class="text-overflow m-0">Welcome!</h6>
+            </div>
+            <a href="#!" class="dropdown-item">
+              <i class="ni ni-single-02"></i>
+              <span>My profile</span>
+            </a>
+            <a href="#!" class="dropdown-item">
+              <i class="ni ni-settings-gear-65"></i>
+              <span>Settings</span>
+            </a>
+            <a href="#!" class="dropdown-item">
+              <i class="ni ni-calendar-grid-58"></i>
+              <span>Activity</span>
+            </a>
+            <a href="#!" class="dropdown-item">
+              <i class="ni ni-support-16"></i>
+              <span>Support</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="<?= BASE_URL ?>/login/logout" class="dropdown-item">
+              <i class="ni ni-user-run"></i>
+              <span>Logout</span>
+            </a>
+          </div>
+        </li>
         </ul>
       </div>
     </div>

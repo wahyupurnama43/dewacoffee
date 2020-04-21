@@ -2,8 +2,11 @@
 
 class Get_models
 {
-
-	private $db;
+  private $host = DB_HOST;
+  private $user = DB_USER;
+  private $pass = DB_PASS;
+  private $db_name = DB_NAME;
+  private $db;
 
 	public function __construct(){
 
@@ -61,14 +64,61 @@ class Get_models
         return $this->db->resultSet();
     }
 
-    public function ambilDatapinjamBy(){
+    public function ambilDatapinjamBy($st){
         $q = "SELECT * FROM detail_pinjam
         INNER JOIN tb_pinjam ON detail_pinjam.id_peminjam = tb_pinjam.id_peminjam
         INNER JOIN tb_barang ON detail_pinjam.id_barang = tb_barang.id_barang
-        INNER JOIN auth ON tb_pinjam.id_auth = auth.id_auth WHERE tb_pinjam.status = '1'";
+        INNER JOIN auth ON tb_pinjam.id_auth = auth.id_auth WHERE tb_pinjam.status = '$st'";
         $this->db->query($q);
         return $this->db->resultSet();
     }
+
+    public function notif(){
+        if (isset($_POST['view'])) {
+        $q = "SELECT * FROM notif
+        INNER JOIN detail_pinjam ON notif.id_detail_pinjam = detail_pinjam.id_detail_pinjam 
+        INNER JOIN tb_pinjam ON detail_pinjam.id_peminjam = tb_pinjam.id_peminjam
+        INNER JOIN tb_barang ON detail_pinjam.id_barang = tb_barang.id_barang
+        INNER JOIN auth ON tb_pinjam.id_auth = auth.id_auth ORDER BY notif.status DESC LIMIT 5";
+
+        $connect = mysqli_connect("localhost", "root", "", "db_inventaris");
+        $result = mysqli_query($connect, $q);
+        $output = '';
+        
+        if (mysqli_num_rows($result) > 0) {
+             while($row = mysqli_fetch_assoc($result)){
+                $output .= '
+                    <div class="list-group list-group-flush">
+                        <a href="#!" class="list-group-item list-group-item-action">
+                          <div class="row align-items-center">
+                            <div class="col-auto">
+                              <!-- Avatar -->
+                              <img alt="Image placeholder" src="http://localhost/Inventaris_skensa/public/img/daftar-barang/'.$row["gambar"].'" class="avatar rounded-circle">
+                            </div>
+                            <div class="col ml--2">
+                              <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                  <h4 class="mb-0 text-sm">'.$row["nama"].'</h4>
+                                </div>
+                                <div class="text-right text-muted">
+                                  <small></small>
+                                </div>
+                              </div>
+                              <p class="text-sm mb-0">Bapak / Ibu saya ingin meminjam barang <strong><em>'.$row["nama_brng"].'</em></strong></p>
+                              <button class="btn btn-success btn-sm mt-1">View <i class="far fa-eye"></i></button>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                ';
+        }
+    }
+        $json = array('notification' => $output);
+        return $json;
+        }
+
+    }
+
     public function ambilDatapinjamOne($tb, $id, $verificator){
         $q = "SELECT * FROM $tb
         INNER JOIN tb_pinjam ON $tb.id_peminjam = tb_pinjam.id_peminjam
@@ -132,5 +182,14 @@ class Get_models
         $this->db->query($query);
         return $this->db->resultarray();
     }
+
+    /*
+    |---------------------------------------------------------------------------------------------------------------------------------------|
+    |                                                            DATAAJAX                                                                   |
+    |---------------------------------------------------------------------------------------------------------------------------------------|
+    */
+
+    
+
 
 }

@@ -3,8 +3,8 @@
 if  ($_SESSION['role'] !== '1' || $_SESSION['status'] !== 'login') {
   header('Location: '.BASE_URL.'/login/login');
 }
-   // $data['countPinjamt'] =  $this->model('Get_models')->countPinjam('tb_pinjam');
-   // $data['proses_pinjam'] = $this->model('Get_models')->ambilDatapinjam('tb_pinjam','0');
+   $data['countPinjamt'] =  $this->model('Get_models')->countPinjam('tb_pinjam');
+   $data['proses_pinjam'] = $this->model('Get_models')->ambilDatapinjamBy('0');
   
 ?>
  
@@ -44,6 +44,7 @@ if  ($_SESSION['role'] !== '1' || $_SESSION['status'] !== 'login') {
  <div class="row">
   <div class="flash-data" data-flashdata="<?= Flasher::flash(true); ?>"></div>
 </div>
+
 <!-- Sidenav -->
 <nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
   <div class="scrollbar-inner">
@@ -168,39 +169,17 @@ if  ($_SESSION['role'] !== '1' || $_SESSION['status'] !== 'login') {
         <ul class="navbar-nav align-items-center ml-auto ml-md-0">
         <li class="nav-item dropdown">
               <a class="nav-link bel" href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="ni ni-bell-55"></i><span><?= $data['countPinjamt'] ?></span>
+                <i class="ni ni-bell-55"></i><span id="con_pinjam2"><?= $data['countPinjamt'] ?></span>
               </a>
               <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right py-0 overflow-hidden">
                 <!-- Dropdown header -->
                 <div class="px-3 py-3">
-                  <h6 class="text-sm text-muted m-0">You have <strong class="text-primary"><?= $data['countPinjamt'] ?></strong> notifications.</h6>
+                  <h6 class="text-sm text-muted m-0">You have <strong class="text-primary"  id="con_pinjam"><?= $data['countPinjamt'] ?></strong> notifications.</h6>
                 </div>
                 <!-- List group -->
-
-                <?php foreach ($data['proses_pinjam'] as $ps_pinjam): ?>
-                  <div class="list-group list-group-flush">
-                    <a href="#!" class="list-group-item list-group-item-action">
-                      <div class="row align-items-center">
-                        <div class="col-auto">
-                          <!-- Avatar -->
-                          <img alt="Image placeholder" src="<?= BASEURL ?>/img/daftar-barang/<?= $ps_pinjam['gambar'] ?>" class="avatar rounded-circle">
-                        </div>
-                        <div class="col ml--2">
-                          <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                              <h4 class="mb-0 text-sm"><?= $ps_pinjam['nama'] ?></h4>
-                            </div>
-                            <div class="text-right text-muted">
-                              <small><?= date("d F Y", strtotime($ps_pinjam['tanggal_pinjam'])) ?></small>
-                            </div>
-                          </div>
-                          <p class="text-sm mb-0">Bapak / Ibu saya ingin meminjam barang <strong><em><?= $ps_pinjam['nama_brng'] ?></em></strong></p>
-                          <button class="btn btn-success btn-sm mt-1">View <i class="far fa-eye"></i></button>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                <?php endforeach ?>
+                <div class="" id="notif">
+             
+                </div>
 
                 <!-- View all -->
                 <a href="#!" class="dropdown-item text-center text-primary font-weight-bold py-3">View all</a>
@@ -248,5 +227,5 @@ if  ($_SESSION['role'] !== '1' || $_SESSION['status'] !== 'login') {
     </div>
   </div>
 </nav>
-    <!-- Header -->
+<!-- Header -->
 

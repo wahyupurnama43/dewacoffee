@@ -23,11 +23,10 @@
 <script src="<?= BASEURL ?>/js/script-card.js"></script>
 <script src="<?= BASEURL ?>/js/push/push.js"></script>
 <script src="<?= BASEURL ?>/js/push/serviceWorker.min.js"></script>
+<script src="<?= BASEURL ?>/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
+<script src="<?= BASEURL ?>/js/script_user.js"></script>
 <script src="<?= BASEURL ?>/js/script.js"></script>
-<script>
-	function start(){
-		Push.create('Hello World!')
-	}
-</script>
+
+
 </body>
 </html>

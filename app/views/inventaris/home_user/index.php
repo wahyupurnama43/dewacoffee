@@ -159,7 +159,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="<?= BASEURL ?>/proses/barang" method="POST">
+                <form action="<?= BASE_URL ?>/proses/barang" method="POST">
                     <div class="form-group">
                         <label for="nama_brng">Nama Barang</label>
                         <input type="hidden" id="id_barang" name="id_barang">
@@ -170,10 +170,7 @@
                       <input type="hidden" name="id_auth" value="<?= $_SESSION['auth'] ?>">
                         <input type="text" class="form-control" name="peminjam" disabled="" value="<?= $_SESSION['username'] ?>">
                     </div>
-                    <div class="form-group">
-                        <label for="jumlah">Jumlah Barang</label>
-                        <input type="number" class="form-control" id="jumlah" name="jumlah_barang">
-                    </div>
+                    
                     <div class="form-group">
                       <label for="#pinjam">Lama Pinjam</label>
                       <select name="pinjam" id="pinjam" class="form-control">
@@ -209,9 +206,13 @@
                         <option value="30">30 Hari</option>
                       </select>
                     </div>
+                    <div class="form-group">
+                        <label for="jumlah">Jumlah Barang</label>
+                        <input type="number" class="form-control" id="jumlah" name="jumlah_barang">
+                    </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" name="submit" class="btn btn-primary w-100">Pinjam Barang &nbsp;<i class="fas fa-plus"></i></button>
+                <button type="submit" name="submit" id="btn-submit" class="btn btn-primary w-100" disabled="disabled">Pinjam Barang &nbsp;<i class="fas fa-plus"></i></button>
             </div>
             </form>
         </div>
