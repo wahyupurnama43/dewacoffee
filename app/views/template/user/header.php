@@ -4,7 +4,6 @@ if  ($_SESSION['role'] !== '3' || $_SESSION['status'] !== 'login') {
   header('Location: '.BASEURL.'/login/login');
 }
 
-
 ?>
 
 <!DOCTYPE html>

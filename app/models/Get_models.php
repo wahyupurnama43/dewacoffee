@@ -30,6 +30,17 @@ class Get_models
         $q = "SELECT * FROM $tb";
         $this->db->query($q);
         return $this->db->resultSet();
+    }  
+
+     public function ambilDataBy2($verificator, $value,$verificator2, $value2, $tb)
+    {
+        if (isset($verificator) && isset($value)) {
+            $q = "SELECT * FROM $tb WHERE $verificator = :$verificator AND $verificator2 = :$verificator2";
+            $this->db->query($q);
+            $this->db->bind($verificator, $value);
+            $this->db->bind($verificator2, $value2);
+            return $this->db->single();
+        }
     }
 
     public function ambilDataInBy($verificator, $value, $tb)
@@ -51,7 +62,8 @@ class Get_models
             $q = "SELECT * FROM $tb 
             INNER JOIN tb_jenis ON tb_barang.id_jenis = tb_jenis.id_jenis
             INNER JOIN tb_ruang ON tb_barang.id_ruang = tb_ruang.id_ruang
-            INNER JOIN auth ON tb_barang.id_auth = auth.id_auth";
+            INNER JOIN auth ON tb_barang.id_auth = auth.id_auth
+            ";
             $this->db->query($q);
             return $this->db->resultSet();
     }
@@ -64,24 +76,31 @@ class Get_models
         return $this->db->resultSet();
     }
 
-    public function ambilDatapinjamBy($st){
+    public function ambilDatapinjamBy(){
         $q = "SELECT * FROM detail_pinjam
         INNER JOIN tb_pinjam ON detail_pinjam.id_peminjam = tb_pinjam.id_peminjam
         INNER JOIN tb_barang ON detail_pinjam.id_barang = tb_barang.id_barang
-        INNER JOIN auth ON tb_pinjam.id_auth = auth.id_auth WHERE tb_pinjam.status = '$st'";
+        INNER JOIN auth ON tb_pinjam.id_auth = auth.id_auth WHERE status = '1' ";
+        $this->db->query($q);
+        return $this->db->resultSet();
+    }
+    public function ambilProsesPinjam(){
+       $q = "SELECT * FROM detail_pinjam
+        INNER JOIN tb_pinjam ON detail_pinjam.id_peminjam = tb_pinjam.id_peminjam
+        INNER JOIN tb_barang ON detail_pinjam.id_barang = tb_barang.id_barang
+        INNER JOIN auth ON tb_pinjam.id_auth = auth.id_auth WHERE status = '0'";
         $this->db->query($q);
         return $this->db->resultSet();
     }
 
     public function notif(){
         if (isset($_POST['view'])) {
-        $q = "SELECT * FROM notif
-        INNER JOIN detail_pinjam ON notif.id_detail_pinjam = detail_pinjam.id_detail_pinjam 
+        $q = "SELECT * FROM detail_pinjam
         INNER JOIN tb_pinjam ON detail_pinjam.id_peminjam = tb_pinjam.id_peminjam
         INNER JOIN tb_barang ON detail_pinjam.id_barang = tb_barang.id_barang
-        INNER JOIN auth ON tb_pinjam.id_auth = auth.id_auth ORDER BY notif.status DESC LIMIT 5";
+        INNER JOIN auth ON tb_pinjam.id_auth = auth.id_auth WHERE status = '0' LIMIT 3 ";
 
-        $connect = mysqli_connect("localhost", "root", "", "db_inventaris");
+        $connect = mysqli_connect($this->host, $this->user, $this->pass , $this->db_name);
         $result = mysqli_query($connect, $q);
         $output = '';
         
@@ -104,8 +123,7 @@ class Get_models
                                   <small></small>
                                 </div>
                               </div>
-                              <p class="text-sm mb-0">Bapak / Ibu saya ingin meminjam barang <strong><em>'.$row["nama_brng"].'</em></strong></p>
-                              <button class="btn btn-success btn-sm mt-1">View <i class="far fa-eye"></i></button>
+                              <p class="text-sm mb-0">Bapak / Ibu saya ingin meminjam <strong><em>'.$row["nama_brng"].'</em></strong></p>
                             </div>
                           </div>
                         </a>
@@ -166,9 +184,11 @@ class Get_models
         return $this->db->single();
     }
 
-   
-
-    /*-------------------------------------> Count <---------------------------------------*/
+    /*
+    |---------------------------------------------------------------------------------------------------------------------------------------|
+    |                                                            COUNT                                                                      |
+    |---------------------------------------------------------------------------------------------------------------------------------------|
+    */
     public function count($tb)
     {
         $query = "SELECT COUNT(*) FROM $tb";
@@ -185,11 +205,35 @@ class Get_models
 
     /*
     |---------------------------------------------------------------------------------------------------------------------------------------|
-    |                                                            DATAAJAX                                                                   |
+    |                                                           DROPDOWN PROV                                                               |
     |---------------------------------------------------------------------------------------------------------------------------------------|
     */
 
-    
+    public function kabupaten($id)
+    {
+        $kabupaten ="<option value=''> Pilih Kabupaten </option>";
+        $q = "SELECT * FROM regencies WHERE province_id = :province_id";
+            $this->db->query($q);
+            $this->db->bind("province_id", $id);
+            $kab = $this->db->resultSet();
+        foreach ($kab as $kab) {
+            $kabupaten .= '<option value="'.$kab['id'].'">'.$kab['name'].'</option>';
+        }
+        return $kabupaten;
+    }
+
+    public function kota($id)
+    {
+        $kota ="<option value=''> Pilih Kota </option>";
+        $q = "SELECT * FROM districts WHERE regency_id = :regency_id";
+        $this->db->query($q);
+        $this->db->bind("regency_id", $id);
+        $kota = $this->db->resultSet();
+        foreach ($kota as $kot) {
+            $kota .= '<option value="'.$kot['id'].'">'.$kot['name'].'</option>';
+        }
+        return $kota;
+    }
 
 
 }

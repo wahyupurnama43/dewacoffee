@@ -148,7 +148,6 @@ class Proses extends Controller
 
 	public function hapus_user()
 	{
-
 		$add = $this->model('Proses_models')->hapus_user($_POST['id']);
 		if ($add['status']) {
 			echo json_encode($add);
@@ -174,6 +173,22 @@ class Proses extends Controller
 		}else{
 			Flasher::setFlash("Barang Gagal ","Di Hapus","error");
 			header('Location: '.BASE_URL.'/peminjaman');
+			exit();
+		}
+	}
+
+	public function hapus_proses_pinjam()
+	{
+
+		$add = $this->model('Proses_models')->hapus_pinjam($_POST['id']);
+		if ($add['status']) {
+			echo json_encode($add);
+			Flasher::setFlash("Barang Berhasil ","Di Hapus","success");
+			header('Location: '.BASE_URL.'/proses_pinjam');
+			exit();
+		}else{
+			Flasher::setFlash("Barang Gagal ","Di Hapus","error");
+			header('Location: '.BASE_URL.'/proses_pinjam');
 			exit();
 		}
 	}
@@ -271,6 +286,12 @@ class Proses extends Controller
 		}
 	}
 
+	public function Ulike()
+	{
+		$add = $this->model('Proses_models')->Ulike($_POST['id']);
+		echo $add->like_count;
+	}
+
 /*
 |---------------------------------------------------------------------------------------------------------------------------------------|
 |                                                            DATA AJAX                                                                  |
@@ -320,6 +341,11 @@ class Proses extends Controller
 	{
 		echo json_encode($this->model('Get_models')->notif());
 	}
+	public function like()
+	{
+		echo json_encode($this->model('Get_models')->ambilDataAll('tb_like'));
+	}
+	
 
 	
 
@@ -358,11 +384,27 @@ class Proses extends Controller
 			header('Location: '.BASE_URL.'/home_user');
 			exit();
 		}else{
-			Flasher::setFlash("Barang Gagal ","Di Pinjam","error");
+			Flasher::setFlash("Anda Masih Meminjam Barang ","Mohon Di Kembalikan Dan Anda Dapat Meminjam Lagi","error");
 			header('Location: '.BASE_URL.'/home_user');
 			exit();
 		}
 	}
+
+	public function confirm($id)
+	{
+		$add = $this->model('Proses_models')->confirm($id);
+		if ($add['status']) {
+			Flasher::setFlash("Confirmasi Peminjaman Berhasil "," ","success");
+			header('Location: '.BASE_URL.'/proses_pinjam');
+			exit();
+		}else{
+			Flasher::setFlash("Akun anda masih Meminjam Buku "," Harap Kembalikan Terlebih Dahulu","error");
+			header('Location: '.BASE_URL.'/proses_pinjam');
+			exit();
+		}
+	}
+
+
 
 
 }

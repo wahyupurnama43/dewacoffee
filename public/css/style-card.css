@@ -215,3 +215,10 @@ h1 {
     max-width: 800px;
     margin: 1.75rem auto;
 }
+.info-share i{
+  padding-right: 10px;
+  font-size: 1.3em;
+}
+.info-share  i.like{
+  color: #5e72e4;
+}

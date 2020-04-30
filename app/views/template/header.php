@@ -3,8 +3,6 @@
 if  ($_SESSION['role'] !== '1' || $_SESSION['status'] !== 'login') {
   header('Location: '.BASE_URL.'/login/login');
 }
-   $data['countPinjamt'] =  $this->model('Get_models')->countPinjam('tb_pinjam');
-   $data['proses_pinjam'] = $this->model('Get_models')->ambilDatapinjamBy('0');
   
 ?>
  
@@ -50,8 +48,8 @@ if  ($_SESSION['role'] !== '1' || $_SESSION['status'] !== 'login') {
   <div class="scrollbar-inner">
     <!-- Brand -->
     <div class="sidenav-header d-flex align-items-center">
-      <a class="navbar-brand" href="dashboard.html">
-        <img src="<?= BASEURL ?>/img/brand/blue.png" class="navbar-brand-img" alt="..." >
+      <a class="navbar-brand" href="<?= BASE_URL ?>/dashboard">
+        <img src="<?= BASEURL ?>/img/brand/blue.png" class="navbar-brand-img" alt="logo inventaris" >
       </a>
       <div class="ml-auto">
         <!-- Sidenav toggler -->
@@ -117,7 +115,7 @@ if  ($_SESSION['role'] !== '1' || $_SESSION['status'] !== 'login') {
       <!-- Navigation -->
       <ul class="navbar-nav mb-md-3">
         <li class="nav-item">
-          <a class="nav-link" href="../../docs/getting-started/overview.html" target="_blank">
+          <a class="nav-link" href="#" target="_blank">
             <i class="ni ni-spaceship"></i>
             <span class="nav-link-text">Getting started</span>
           </a>
@@ -160,29 +158,22 @@ if  ($_SESSION['role'] !== '1' || $_SESSION['status'] !== 'login') {
               </div>
             </div>
           </li>
-          <li class="nav-item d-sm-none">
-            <a class="nav-link" href="#" data-action="search-show" data-target="#navbar-search-main">
-              <i class="ni ni-zoom-split-in"></i>
-            </a>
-          </li>
         </ul>
         <ul class="navbar-nav align-items-center ml-auto ml-md-0">
         <li class="nav-item dropdown">
               <a class="nav-link bel" href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="ni ni-bell-55"></i><span id="con_pinjam2"><?= $data['countPinjamt'] ?></span>
+                <i class="ni ni-bell-55"></i><span id="con_pinjam2"></span>
               </a>
               <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right py-0 overflow-hidden">
                 <!-- Dropdown header -->
                 <div class="px-3 py-3">
-                  <h6 class="text-sm text-muted m-0">You have <strong class="text-primary"  id="con_pinjam"><?= $data['countPinjamt'] ?></strong> notifications.</h6>
+                  <h6 class="text-sm text-muted m-0">You have <strong class="text-primary"  id="con_pinjam"></strong> notifications.</h6>
                 </div>
                 <!-- List group -->
                 <div class="" id="notif">
-             
                 </div>
-
                 <!-- View all -->
-                <a href="#!" class="dropdown-item text-center text-primary font-weight-bold py-3">View all</a>
+                <a href="<?= BASE_URL ?>/proses_pinjam" class="dropdown-item text-center text-primary font-weight-bold py-3">View all</a>
               </div>
             </li>
         <li class="nav-item dropdown">
@@ -200,7 +191,9 @@ if  ($_SESSION['role'] !== '1' || $_SESSION['status'] !== 'login') {
             <div class="dropdown-header noti-title">
               <h6 class="text-overflow m-0">Welcome!</h6>
             </div>
-            <a href="#!" class="dropdown-item">
+            <?php $id_auth = Encripsi::encode('encrypt',$_SESSION['auth']); ?>
+
+            <a href="<?= BASE_URL ?>/profile/<?= $id_auth ?>" class="dropdown-item">
               <i class="ni ni-single-02"></i>
               <span>My profile</span>
             </a>

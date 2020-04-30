@@ -20,7 +20,8 @@ $(function(){
 
 		e.preventDefault();
 		const href = $(this).data('href');
-
+		const id = $(this).data('id');
+		const ct = $(this).data('ct');
 		const swalWithBootstrapButtons = Swal.mixin({
 			customClass: {
 				confirmButton: 'btn btn-success',
@@ -39,11 +40,15 @@ $(function(){
 			reverseButtons: true
 		}).then((result) => {
 			if (result.value) {
-				swalWithBootstrapButtons.fire(
-					'Inventaris',
-					'Data Berhasil Dihapus ',
-					'success'
-					);
+				
+				$.ajax({
+					url: 'http://localhost/Inventaris_skensa/proses/'+ ct,
+					data: {id : id},
+					method:'post',
+					dataType: 'json',
+					success: function(data){
+					}
+				})
 				document.location.href = href;
 			} else if (
 				result.dismiss === Swal.DismissReason.cancel
@@ -98,19 +103,34 @@ $(function(){
 		});
 	})
 
-	$('.hapus').on('click', function(){
+	// $('.hapus').on('click', function(){
+	// 	const id = $(this).data('id');
+	// 	const ct = $(this).data('ct')
+		
+	// 	$.ajax({
+	// 		url: 'http://localhost/Inventaris_skensa/proses/'+ ct,
+	// 		data: {id : id},
+	// 		method:'post',
+	// 		dataType: 'json',
+	// 		success: function(data){
+	// 		}
+	// 	})
+	// })
+
+	$('.likes').on('click', function(){
 		const id = $(this).data('id');
-		const ct = $(this).data('ct')
 		
 		$.ajax({
-			url: 'http://localhost/Inventaris_skensa/proses/'+ ct,
+			url: 'http://localhost/Inventaris_skensa/proses/Ulike',
 			data: {id : id},
 			method:'post',
 			dataType: 'json',
 			success: function(data){
+				
 			}
 		})
 	})
+
 
 	$('.detail_barang').on('click', function(){
 		const id = $(this).data('id');
@@ -121,7 +141,6 @@ $(function(){
 			method:'post',
 			dataType: 'json',
 			success: function(data){
-				console.log(data);
 				$('#nama_barang').html(data.nama_brng);
 				$('#pinjam_barang').val(data.nama_brng);
 				$('#id_barang').val(data.id_barang);
@@ -262,9 +281,9 @@ $(function(){
 				$('#jumlah').val(data.jumlah_pinjam);
 				$('#nama_pinjam').html(data.nama);
 				$('#nis_pinjam').html(data.no_induk);
-				$('#nama_barang').html(data.tanggal_pinjam);
-				$('#tanggal_pinjam').html(data.tanggal_kembali);
-				$('#tanggal_kembali').html(data.nama);
+				$('#nama_barang').html(data.nama_brng);
+				$('#tanggal_pinjam').html(data.tanggal_pinjam);
+				$('#tanggal_kembali').html(data.tanggal_kembali);
 				$('#jumlah_pinjam').html(data.jumlah_pinjam);
 				$('#keterangan_barang').html(data.deskripsi);
 				if (data.kondisi >= '2'){

@@ -1,4 +1,4 @@
-
+ 
 <div class="container-fluid mt-5">
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
@@ -27,7 +27,6 @@
           <tbody class="text-center">
             <?php $i=1; ?>
             <?php foreach ($data['pinjam'] as $pinjam): ?>
-              "<?= var_dump($pinjam['id_peminjam'])?>
               <tr>
                 <td><?= $i++ ?></td>
                 <td><?= $pinjam['nama'] ?></td>
@@ -37,7 +36,7 @@
                   <a href="" class="table-action table-action-primary edit_pinjam" data-toggle="modal" data-target="#pinjam" data-id="<?= $pinjam['id_peminjam'] ?>">
                     <i class="fas fa-user-edit"></i>
                   </a>
-                  <a  href="" class="table-action table-action-delete hapus tombol-hapus" data-toggle="sweet-alert" data-sweet-alert="confirm" data-id="<?= $pinjam['id_peminjam'] ?>" data-ct="hapus_pinjam" data-href="<?= BASE_URL ?>/peminjaman/" data-toggle="tooltip" data-original-title="Hapus Barang">
+                  <a  href="" class="table-action table-action-delete tombol-hapus" data-toggle="sweet-alert" data-sweet-alert="confirm" data-id="<?= $pinjam['id_peminjam'] ?>" data-ct="hapus_pinjam" data-href="<?= BASE_URL ?>/peminjaman/" data-toggle="tooltip" data-original-title="Hapus Barang">
                     <i class="fas fa-trash"></i>
                   </a>
                   <a href="" class="table-action table-action-success edit_pinjam" data-id="<?= $pinjam['id_peminjam'] ?>"  data-toggle="modal" data-target="#detail-modal" data-toggle="tooltip" data-original-title="Detail Barang" >

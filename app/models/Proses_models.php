@@ -1,5 +1,4 @@
 <?php  
-
 class Proses_models extends Controller
 {	
 	private $db;
@@ -14,9 +13,8 @@ class Proses_models extends Controller
 |----------------------------------------------------------------------------------------------------------------------------------------
 */
 
-
-    public function Tjenis($data)
-    {
+public function Tjenis($data)
+{
              /*
              |--------------------------------------------------------------------------
              | Tambah Jenis 
@@ -49,10 +47,10 @@ class Proses_models extends Controller
             } catch (Exception $e) {
                 return['status' => false, 'msg' => $e->getMessage()];
             }
-    }
+        }
 
-    public function Tpinjam($data)
-    {   
+        public function Tpinjam($data)
+        {   
         /*
         |--------------------------------------------------------------------------
         | Tambah Pinjam 
@@ -71,7 +69,7 @@ class Proses_models extends Controller
         $waktu = $pinjam;
         $sampai = mktime(0,0,0,date("n"),date("j")+$waktu, date("Y"));
         $kembali = date("Y-m-d", $sampai);
-        $query = "INSERT INTO tb_pinjam VALUES ('', :tanggal_pinjam, :tanggal_kembali, :status, :id_auth)";
+        $query = "INSERT INTO tb_pinjam VALUES ('', :tanggal_pinjam, :tanggal_kembali, :status, :lama_pinjam, :id_auth)";
         try {
             /*
             |--------------------------------------------------------------------------
@@ -86,7 +84,8 @@ class Proses_models extends Controller
             $this->db->bind('tanggal_pinjam',$date);
             $this->db->bind('tanggal_kembali', $kembali);
             $this->db->bind('id_auth',$data['peminjam']);
-            $this->db->bind('status', 1);
+            $this->db->bind('lama_pinjam', $data['pinjam']);
+            $this->db->bind('status','1');
             $this->db->execute();
 
             /*
@@ -115,6 +114,7 @@ class Proses_models extends Controller
             $this->db->bind('id_peminjam',$pinjam['id_peminjam']);
             $this->db->bind('jumlah_pinjam',$jumlah);
             $this->db->execute();
+
             return ['status' => true];
         } catch (Exception $e) {
             return['status' => false, 'msg' => $e->getMessage()];
@@ -215,10 +215,10 @@ class Proses_models extends Controller
         |--------------------------------------------------------------------------
         */
         if ($password !== $con_password) {
-         Flasher::setFlash('Password Anda ','Harus Sama','error');
-         header('Location: '. BASE_URL . '/user/');
-         exit();
-     }
+           Flasher::setFlash('Password Anda ','Harus Sama','error');
+           header('Location: '. BASE_URL . '/user/');
+           exit();
+       }
 
      /*
      |--------------------------------------------------------------------------
@@ -253,10 +253,10 @@ class Proses_models extends Controller
     } catch (Exception $e) {
         return ['status' => false, 'msg' => $e->getMessage()];
     }
-    }
+}
 
-    public function Tbarang($data)
-    {
+public function Tbarang($data)
+{
         /*
         |--------------------------------------------------------------------------
         | TAMBAH BARANG 
@@ -348,33 +348,33 @@ class Proses_models extends Controller
                                         }
                                     }
                                 }else{
-                                 Flasher::setFlash('Gambar Terlalu Besar', ' !!','error');
-                                 header('Location: '.BASE_URL.'/barang');
-                                 exit();
-                             }
-                         }else{
-                          Flasher::setFlash('Extensi Gambar jpeg, jpg, png, gif', ' !!','error');
+                                   Flasher::setFlash('Gambar Terlalu Besar', ' !!','error');
+                                   header('Location: '.BASE_URL.'/barang');
+                                   exit();
+                               }
+                           }else{
+                              Flasher::setFlash('Extensi Gambar jpeg, jpg, png, gif', ' !!','error');
+                              header('Location: '.BASE_URL.'/barang');
+                              exit();
+                          }
+                      }else {
+                          Flasher::setFlash('Barang Harus Memiliki Gambar', ' !!','error');
                           header('Location: '.BASE_URL.'/barang');
                           exit();
                       }
                   }else {
-                      Flasher::setFlash('Barang Harus Memiliki Gambar', ' !!','error');
+                      Flasher::setFlash('Nama Barang Harus Memiliki Awalan Kapital', ' !!','error');
                       header('Location: '.BASE_URL.'/barang');
                       exit();
                   }
-              }else {
-                  Flasher::setFlash('Nama Barang Harus Memiliki Awalan Kapital', ' !!','error');
+
+              }else{
+                  Flasher::setFlash('Nama Barang Terlalu', ' Panjang !!','error');
                   header('Location: '.BASE_URL.'/barang');
                   exit();
               }
 
-          }else{
-              Flasher::setFlash('Nama Barang Terlalu', ' Panjang !!','error');
-              header('Location: '.BASE_URL.'/barang');
-              exit();
           }
-
-      }
 
 
 
@@ -387,100 +387,100 @@ class Proses_models extends Controller
 
 
 
-      public function hapus($id, $tb,$pk_baru)
-      {
-
-       $query = "DELETE FROM $tb WHERE $pk_baru = $id";
-       try {
-          $this->db->query($query);
-          $this->db->execute();
-          return ['status' => true];
-      } catch (Exception $e) {
-          return ['status' => false, 'msg' => $e->getMessage()];
-      }
-    }
-
-    public function hapus_barang($id)
+    public function hapus($id, $tb,$pk_baru)
     {
-        $data = $this->model('Get_models')->ambilDataBy('id_barang',$id,'tb_barang');
-        try {
-            $destination = "C:/xampp/htdocs/Inventaris_skensa/public/img/daftar-barang/";
-            unlink($destination.$data['gambar']);
 
-            $query = "DELETE FROM tb_barang WHERE id_barang = $id";
-            $this->db->query($query);
-            $this->db->execute();
-            return ['status' => true];
-        } catch (Exception $e) {
-            return ['status' => false, 'msg' => $e->getMessage()];
-        }
+     $query = "DELETE FROM $tb WHERE $pk_baru = $id";
+     try {
+      $this->db->query($query);
+      $this->db->execute();
+      return ['status' => true];
+  } catch (Exception $e) {
+      return ['status' => false, 'msg' => $e->getMessage()];
+  }
+}
+
+public function hapus_barang($id)
+{
+    $data = $this->model('Get_models')->ambilDataBy('id_barang',$id,'tb_barang');
+    try {
+        $destination = "C:/xampp/htdocs/Inventaris_skensa/public/img/daftar-barang/";
+        unlink($destination.$data['gambar']);
+
+        $query = "DELETE FROM tb_barang WHERE id_barang = $id";
+        $this->db->query($query);
+        $this->db->execute();
+        return ['status' => true];
+    } catch (Exception $e) {
+        return ['status' => false, 'msg' => $e->getMessage()];
     }
+}
 
-    public function hapus_ruang($id)
-    {
-        $query = "DELETE FROM tb_ruang WHERE id_ruang = $id";
-        try {
-            $this->db->query($query);
-            $this->db->execute();
-            return ['status' => true];
-        } catch (Exception $e) {
-            return ['status' => false, 'msg' => $e->getMessage()];
-        }
+public function hapus_ruang($id)
+{
+    $query = "DELETE FROM tb_ruang WHERE id_ruang = $id";
+    try {
+        $this->db->query($query);
+        $this->db->execute();
+        return ['status' => true];
+    } catch (Exception $e) {
+        return ['status' => false, 'msg' => $e->getMessage()];
     }
+}
 
-    public function hapus_jenis($id)
-    {
-        $query = "DELETE FROM tb_jenis WHERE id_jenis = $id";
-        try{
-            $this->db->query($query);
-            $this->db->execute();
-            return ['status' => true];
-        } catch (Exception $e) {
-            return ['status' => false, 'msg' => $e->getMessage()];
-        }
+public function hapus_jenis($id)
+{
+    $query = "DELETE FROM tb_jenis WHERE id_jenis = $id";
+    try{
+        $this->db->query($query);
+        $this->db->execute();
+        return ['status' => true];
+    } catch (Exception $e) {
+        return ['status' => false, 'msg' => $e->getMessage()];
     }
+}
 
-    public function hapus_user($id)
-    {
-        $query = "DELETE FROM auth WHERE id_auth = $id";
-        try{
-            $this->db->query($query);
-            $this->db->execute();
-            return ['status' => true];
-        } catch (Exception $e) {
-            return ['status' => false, 'msg' => $e->getMessage()];
-        }
+public function hapus_user($id)
+{
+    $query = "DELETE FROM auth WHERE id_auth = $id";
+    try{
+        $this->db->query($query);
+        $this->db->execute();
+        return ['status' => true];
+    } catch (Exception $e) {
+        return ['status' => false, 'msg' => $e->getMessage()];
     }
+}
 
-    public function hapus_pinjam($id)
-    {
-        $query = "DELETE FROM tb_pinjam WHERE id_peminjam = $id";
-        try{
-            $this->db->query($query);
-            $this->db->execute();
+public function hapus_pinjam($id)
+{
+    $query = "DELETE FROM tb_pinjam WHERE id_peminjam = $id";
+    try{
+        $this->db->query($query);
+        $this->db->execute();
 
-            $query = "DELETE FROM detail_pinjam WHERE id_peminjam = $id";
-            $this->db->query($query);
-            $this->db->execute();
+        $query = "DELETE FROM detail_pinjam WHERE id_peminjam = $id";
+        $this->db->query($query);
+        $this->db->execute();
 
-            return ['status' => true];
-        } catch (Exception $e) {
-            return ['status' => false, 'msg' => $e->getMessage()];
-        }
+        return ['status' => true];
+    } catch (Exception $e) {
+        return ['status' => false, 'msg' => $e->getMessage()];
     }
+}
 
-    public function hapus_kembali($id)
-    {
-        $query = "DELETE FROM tb_kembali WHERE id_kembali = $id";
-        try{
-            $this->db->query($query);
-            $this->db->execute();
-            return ['status' => true];
-        } catch (Exception $e) {
-            return ['status' => false, 'msg' => $e->getMessage()];
-        }
+public function hapus_kembali($id)
+{
+    $query = "DELETE FROM tb_kembali WHERE id_kembali = $id";
+    try{
+        $this->db->query($query);
+        $this->db->execute();
+        return ['status' => true];
+    } catch (Exception $e) {
+        return ['status' => false, 'msg' => $e->getMessage()];
     }
-      
+}
+
 
 
     /*
@@ -558,11 +558,11 @@ class Proses_models extends Controller
 
                         if (in_array($file_extension, $ok_ext)) {
 
-                           if( $file_weight <= $file_max_weight ){
+                         if( $file_weight <= $file_max_weight ){
 
-                               $fileNewName =  $file_name_no_ext[0].microtime().'.'.$file_extension ;
+                             $fileNewName =  $file_name_no_ext[0].microtime().'.'.$file_extension ;
                                                 // pindahin ke folder baru
-                               if( move_uploaded_file($file['tmp_name'], $destination.$fileNewName) ){
+                             if( move_uploaded_file($file['tmp_name'], $destination.$fileNewName) ){
                                                 // masukkan data ke database 
                                 $query = "UPDATE tb_barang SET nama_brng =:nama_brng, jumlah =:jumlah, kondisi =:kondisi, gambar =:gambar , deskripsi = :deskripsi, id_jenis = :id_jenis, id_ruang = :id_ruang WHERE id_barang =:id_barang";
                                 try{
@@ -627,10 +627,10 @@ class Proses_models extends Controller
               return ['status' => false, 'msg' => $e->getMessage()];
           }
       }
-    }
+  }
 
-    public function Ujenis($data)
-    {
+  public function Ujenis($data)
+  {
         /*
         |--------------------------------------------------------------------------
         | UPDATE JENIS 
@@ -658,12 +658,12 @@ class Proses_models extends Controller
             $this->db->execute();
             return ['status' => true];
         } catch (Exception $e) {
-           return ['status' => false, 'msg' =>$e->getMessage()];
-       }
-    }
+         return ['status' => false, 'msg' =>$e->getMessage()];
+     }
+ }
 
-    public function Uruang($data)
-    {
+ public function Uruang($data)
+ {
         /*
         |--------------------------------------------------------------------------
         | UPDATE RUANG 
@@ -695,11 +695,11 @@ class Proses_models extends Controller
             $this->db->execute();
             return ['status' => true];
         } catch (Exception $e) {
-         return ['status' => false, 'msg' =>$e->getMessage()];
-     }
-    }
+           return ['status' => false, 'msg' =>$e->getMessage()];
+       }
+   }
 
-    public function Uuser($data){
+   public function Uuser($data){
         /*
         |--------------------------------------------------------------------------
         | Update User 
@@ -740,9 +740,9 @@ class Proses_models extends Controller
                 $this->db->execute();
                 return ['status' => true];
             } catch (Exception $e) {
-               return ['status' => false, 'msg' =>$e->getMessage()];
-           }
-       }else {
+             return ['status' => false, 'msg' =>$e->getMessage()];
+         }
+     }else {
             /*
             |--------------------------------------------------------------------------
             | Update user 
@@ -766,19 +766,19 @@ class Proses_models extends Controller
                     $this->db->execute();
                     return ['status' => true];
                 } catch (Exception $e) {
-                   return ['status' => false, 'msg' =>$e->getMessage()];
-               }
-           }else{
-                Flasher::setFlash('Password Lama Anda ','Salah !!','error');
-                header('Location: '. BASE_URL . '/user/');
-                exit();
-            }
+                 return ['status' => false, 'msg' =>$e->getMessage()];
+             }
+         }else{
+            Flasher::setFlash('Password Lama Anda ','Salah !!','error');
+            header('Location: '. BASE_URL . '/user/');
+            exit();
         }
     }
+}
 
 
-    public function Upinjam($data)
-    {
+public function Upinjam($data)
+{
         /*
         |--------------------------------------------------------------------------
         | Update Pinjam 
@@ -838,6 +838,45 @@ class Proses_models extends Controller
         }
     }
 
+    public function Ulike($id)
+    {
+        $id_decode = Encripsi::encode('decrypt', $id);
+        $id_auth = $_SESSION['auth'];
+        $cek = $this->model('Get_models')->ambilDataBy2('id_barang', $id_decode, 'id_auth' ,$id_auth,'tb_like');
+        $barang = $this->model('Get_models')->ambilDataBy('id_barang', $id_decode, 'tb_barang');
+
+        if ($cek > 0) {
+            $query = "DELETE FROM tb_like WHERE id_auth = $id_auth AND id_barang = $id_decode";
+            $this->db->query($query);
+            $this->db->execute();
+            $query = "UPDATE tb_barang SET like_count = :like_count WHERE id_barang = $id_decode";
+            $this->db->query($query);
+            $this->db->bind('like_count', $barang['like_count']-'1');
+            $this->db->execute();
+
+            $query ="SELECT like_count FROM tb_barang GROUP BY id_barang";
+            $this->db->query($query);
+            return $this->db->resultSet();
+                   
+        }else{
+            $query = "INSERT INTO tb_like VALUES ('', :id_barang, :id_auth)";
+            $this->db->query($query);
+            $this->db->bind('id_barang', $id_decode);
+            $this->db->bind('id_auth', $id_auth);
+            $this->db->execute();
+            $query = "UPDATE tb_barang SET like_count = :like_count WHERE id_barang = $id_decode";
+
+            $this->db->query($query);
+            $this->db->bind('like_count', $barang['like_count']+'1');
+            $this->db->execute();
+
+            $query ="SELECT like_count FROM tb_barang GROUP BY id_barang";
+            $this->db->query($query);
+            return $this->db->resultSet();
+        }
+
+
+    }
 
     /*
     |----------------------------------------------------------------------------------------------------------------------------------------
@@ -897,11 +936,8 @@ class Proses_models extends Controller
     public function proses_pinjam($data){
         date_default_timezone_set('Asia/Kuala_Lumpur');
         $date = date('Y-m-d');
-        $waktu = $data['pinjam'];
-        $sampai = mktime(0,0,0,date("n"),date("j")+$waktu, date("Y"));
-        $kembali = date("Y-m-d", $sampai);
 
-        $query = "INSERT INTO tb_pinjam VALUES ('', :tanggal_pinjam, :tanggal_kembali, :status, :id_auth)";
+        $query = "INSERT INTO tb_pinjam VALUES ('', :tanggal_pinjam, :tanggal_kembali, :status, :lama_pinjam, :id_auth)";
         try {
             /*
             |--------------------------------------------------------------------------
@@ -914,9 +950,10 @@ class Proses_models extends Controller
             */
             $this->db->query($query);
             $this->db->bind('tanggal_pinjam',$date);
-            $this->db->bind('tanggal_kembali', $kembali);
+            $this->db->bind('tanggal_kembali', '0000-00-00');
             $this->db->bind('id_auth',$data['id_auth']);
-            $this->db->bind('status', 0);
+            $this->db->bind('lama_pinjam', $data['pinjam']);
+            $this->db->bind('status', '0');
             $this->db->execute();
 
             /*
@@ -939,6 +976,7 @@ class Proses_models extends Controller
             | 
             |--------------------------------------------------------------------------
             */
+
             $query1 = "INSERT INTO detail_pinjam VALUES ('', :id_barang, :id_peminjam, :jumlah_pinjam)";
             $this->db->query($query1);
             $this->db->bind('id_barang', $data['id_barang']);
@@ -946,17 +984,62 @@ class Proses_models extends Controller
             $this->db->bind('jumlah_pinjam', $data['jumlah_barang']);
             $this->db->execute();
 
-            $detail_pinjam = $this->model('Get_models')->ambilDataBy('id_peminjam',$pinjam['id_peminjam'],'detail_pinjam');
+            return ['status' => true];
+        } catch (Exception $e) {
+            return['status' => false, 'msg' => $e->getMessage()];
+        }
+    }
 
-            $query2 = "INSERT INTO notif VALUES ('', :status, :id_detail_pinjam)";
-            $this->db->query($query2);
-            $this->db->bind('id_detail_pinjam', $detail_pinjam['id_detail_pinjam']);
-            $this->db->bind('status', '0');
+
+    public function confirm($id){
+        $id = Encripsi::encode('decrypt',$id);
+        /*
+        |--------------------------------------------------------------------------
+        | CONFIRM PEMINJAMAN OLEH ADMIN
+        |--------------------------------------------------------------------------
+        |
+        | MENGAMBIL DATA DI TB PINJAM DENGAN ID YANG DI PILIH
+        | 
+        |--------------------------------------------------------------------------
+        */
+
+        $pinjam = $this->model('Get_models')->ambilDataBy('id_peminjam',$id, 'tb_pinjam');
+        /*
+        |--------------------------------------------------------------------------
+        | CONFIRM PEMINJAMAN OLEH ADMIN
+        |--------------------------------------------------------------------------
+        |
+        | MENSETTING DATA TANGGAL PINJAM DAN TANGGAL KEMBALI AGAR PEMINJAMAN 
+        | TGL KEMBALI SESUAI DENGAN TANGGAL CONFIRM PADA ADMIN / PETUGAS
+        |
+        |--------------------------------------------------------------------------
+        */
+        date_default_timezone_set('Asia/Kuala_Lumpur');
+        $date = date('Y-m-d');
+        $waktu = $pinjam['lama_pinjam'];
+        $sampai = mktime(0,0,0,date("n"),date("j")+$waktu, date("Y"));
+        $kembali = date("Y-m-d", $sampai);
+
+        /*
+        |--------------------------------------------------------------------------
+        | CONFIRM PEMINJAMAN OLEH ADMIN 
+        |--------------------------------------------------------------------------
+        |
+        | MENGUPDATE DATA KE TB_PINJAM 
+        | 
+        |--------------------------------------------------------------------------
+        */
+        try {
+            $query = "UPDATE tb_pinjam SET tanggal_pinjam = :tanggal_pinjam, tanggal_kembali = :tanggal_kembali , status = :status WHERE id_peminjam = $id";
+            $this->db->query($query);
+            $this->db->bind('tanggal_pinjam', $date);
+            $this->db->bind('tanggal_kembali', $kembali);
+            $this->db->bind('status', '1');
             $this->db->execute();
 
             return ['status' => true];
         } catch (Exception $e) {
-            return['status' => false, 'msg' => $e->getMessage()];
+            return ['status' => false, 'msg' => $e->getMessage()];
         }
     }
 

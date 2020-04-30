@@ -3,18 +3,18 @@
 
 class Encripsi
 {
-
-	public function encode($input){
-		$default = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-		$custom  = "IYA";
-		$encoded = strtr(base64_encode($input), $default, $custom);
-		return $encoded;
-	}
-	public function decode($input){
-		$custom  = 'pQaZIivj4ndGAH021y+NO5RTS/xPgUz76FMhYq8b3mewKfkJLBocDCrs9VtWIXEu=';
-		$default = "inventaris_skensa";;
-		$decoded = base64_decode(strtr($input, $custom, $default));
-		return $decoded;
-	}
-
+    function encode($encrypt_decrypt,$string){
+        $password = 'INVENSKENSA';
+        $method = 'aes256';
+        $iv = substr(hash('sha256', $password), 0, 16);
+        $output='';
+        if($encrypt_decrypt=='encrypt'){
+            $output = openssl_encrypt($string, $method, $password, 0, $iv);
+            $output = base64_encode($output);
+       } else if($encrypt_decrypt=='decrypt'){
+            $output = base64_decode($string);
+            $output = openssl_decrypt($output, $method, $password, 0, $iv);
+       }
+       return $output;
+    }
 }

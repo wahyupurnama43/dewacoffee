@@ -53,7 +53,8 @@ function load_unseen_notification(view = ''){
       data:{view:view},
       dataType: 'json',
       success: function(data){
-        $('#notif').html(data.notification)
+        console.log(data);
+        $('#notif').html(data.notification);
       }
     });
 }
