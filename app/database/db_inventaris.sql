@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Apr 2020 pada 17.19
+-- Waktu pembuatan: 04 Bulan Mei 2020 pada 04.48
 -- Versi server: 10.3.16-MariaDB
 -- Versi PHP: 7.3.7
 
@@ -43,11 +43,11 @@ CREATE TABLE `auth` (
 --
 
 INSERT INTO `auth` (`id_auth`, `username`, `password`, `nama`, `no_induk`, `tgl_daftar`, `id_level`) VALUES
-(4, 'admin', '$2y$10$9.CbUnaIz5jLv3snrjnuIu0YGqcuDvQnMAGwMqB7E1ujz7odN8pCS', 'Admin', 0, '2020-03-29', 1),
-(5, 'Wahyupurnama43', '$2y$10$50EdOgPZL82pBkoKT4E0l.weH0K4tALdU74Qx.HxaUcZeTa8cI/ra', 'wahyu purnama', 27255, '2020-04-02', 3),
+(5, 'Wahyupurnama43', '$2y$10$50EdOgPZL82pBkoKT4E0l.weH0K4tALdU74Qx.HxaUcZeTa8cI/ra', 'Made Wahyu Purnama Putra', 27255, '2020-04-02', 3),
 (6, 'prihandana', '$2y$10$qDRMa.e08Qwwqt4.opCQCO5KsXFiAptvDH3L6TzL.WvY6Xcznihb2', 'I Gusti Putu Ngurah Prihandana', 12312, '2020-04-05', 3),
 (16, 'popipopi', '$2y$10$YP5qpIbO9FyUH.AD5ojTYuja6L7wcwsFcfqAdv2NXfLHNHroqYM2e', 'Laptop', 12312, '2020-04-25', 3),
-(17, 'trinity', '$2y$10$Kf0g5XRnjBN52Ha0uSPunuq8IxYxwJM8flcZRIKFkF4A.gdaa4F5u', 'Laptop', 423423, '2020-04-25', 3);
+(17, 'trinity', '$2y$10$Kf0g5XRnjBN52Ha0uSPunuq8IxYxwJM8flcZRIKFkF4A.gdaa4F5u', 'Nyoman Trinity Laksi Maharani', 423423, '2020-04-25', 3),
+(19, 'Admin', '$2y$10$0xnz8EMZRgx7.v38TbThiewsZw61UNsujqVL1tTxiqDXlX1PffBPq', 'admin', 0, '2020-05-03', 1);
 
 -- --------------------------------------------------------
 
@@ -7917,10 +7917,38 @@ CREATE TABLE `tb_barang` (
 --
 
 INSERT INTO `tb_barang` (`id_barang`, `nama_brng`, `jumlah`, `tanggal_masuk`, `kondisi`, `gambar`, `deskripsi`, `like_count`, `id_jenis`, `id_ruang`, `id_auth`) VALUES
-(43, 'Laptop', 1, '2020-04-18', 1, 'd0.55833700 1587200276.jpg', 'sada', 1, 37, 11, 4),
-(46, 'Admina', 1, '2020-04-24', 1, 'h0.45852700 1587658379.jpg', 'asdasdas', 2, 37, 11, 4),
-(47, 'Sapu', 12, '2020-04-25', 1, 't0.07692400 1587777400.jpg', 'wqeqweq', 2, 38, 12, 4),
-(48, 'YudhY', 1231, '2020-04-25', 1, 't0.50294500 1587802144.jpg', 'asdasdasdas', 2, 37, 11, 4);
+(43, 'Laptop', 1, '2020-04-18', 1, 'd0.55833700 1587200276.jpg', 'sada', 1, 37, 11, 19),
+(46, 'Admina', 1, '2020-04-24', 1, 'h0.45852700 1587658379.jpg', 'asdasdas', 2, 37, 11, 19),
+(47, 'Sapu', 12, '2020-04-25', 1, 't0.07692400 1587777400.jpg', 'wqeqweq', 2, 38, 12, 19),
+(48, 'YudhY', 1231, '2020-04-25', 1, 't0.50294500 1587802144.jpg', 'asdasdasdas', 2, 37, 11, 19);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_identitas`
+--
+
+CREATE TABLE `tb_identitas` (
+  `id_identitas` int(11) NOT NULL,
+  `id_auth` int(11) NOT NULL,
+  `alamat` text NOT NULL,
+  `provinsi` int(11) NOT NULL,
+  `kota` int(11) NOT NULL,
+  `kecamatan` int(11) NOT NULL,
+  `kelas` varchar(1) NOT NULL,
+  `jurusan` varchar(100) NOT NULL,
+  `index_kelas` tinyint(1) NOT NULL,
+  `foto` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tb_identitas`
+--
+
+INSERT INTO `tb_identitas` (`id_identitas`, `id_auth`, `alamat`, `provinsi`, `kota`, `kecamatan`, `kelas`, `jurusan`, `index_kelas`, `foto`) VALUES
+(35, 19, 'jalan kebo iwa', 13, 1303, 1303060, 'X', 'Audio Video', 2, 'h0.56689400 1588556377.jpg'),
+(36, 5, 'Jalan Kebo Iwa Gang gunung lempuyang no 5', 51, 5171, 5171030, 'X', 'Rekayasa Perangkat Lunak', 1, 'w0.78450900 1588555898.jpg'),
+(37, 17, 'Jalan.', 51, 5171, 5171020, 'X', 'Rekayasa Perangkat Lunak', 1, '');
 
 -- --------------------------------------------------------
 
@@ -8103,6 +8131,12 @@ ALTER TABLE `tb_barang`
   ADD KEY `id_ruang` (`id_ruang`);
 
 --
+-- Indeks untuk tabel `tb_identitas`
+--
+ALTER TABLE `tb_identitas`
+  ADD PRIMARY KEY (`id_identitas`);
+
+--
 -- Indeks untuk tabel `tb_jenis`
 --
 ALTER TABLE `tb_jenis`
@@ -8148,7 +8182,7 @@ ALTER TABLE `tb_ruang`
 -- AUTO_INCREMENT untuk tabel `auth`
 --
 ALTER TABLE `auth`
-  MODIFY `id_auth` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_auth` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT untuk tabel `detail_pinjam`
@@ -8161,6 +8195,12 @@ ALTER TABLE `detail_pinjam`
 --
 ALTER TABLE `tb_barang`
   MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+
+--
+-- AUTO_INCREMENT untuk tabel `tb_identitas`
+--
+ALTER TABLE `tb_identitas`
+  MODIFY `id_identitas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_jenis`
