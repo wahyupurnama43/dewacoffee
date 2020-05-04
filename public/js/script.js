@@ -274,7 +274,6 @@ $(function(){
 			method:'post',
 			dataType: 'json',
 			success: function(data){
-				console.log(data);
 				$('#id').val(data.id_peminjam);
 				$('#peminjam').val(data.id_auth);
 				$('#barang').val(data.id_barang);
@@ -386,6 +385,7 @@ $(function(){
 		clearTimeout(timeout);
 		timeout = setTimeout(() => validasiketerangan(keterangan3), 10);
 	});
+
 
 
 

@@ -3,7 +3,8 @@
 if  ($_SESSION['role'] !== '1' || $_SESSION['status'] !== 'login') {
   header('Location: '.BASE_URL.'/login/login');
 }
-  
+  $id_auth = $_SESSION['auth'];
+  $data['identitas'] = $this->model('Get_models')->ambilOneData('id_auth', $id_auth, 'tb_identitas');
 ?>
  
 
@@ -23,13 +24,15 @@ if  ($_SESSION['role'] !== '1' || $_SESSION['status'] !== 'login') {
   <link rel="stylesheet" href="<?= BASEURL ?>/vendor/nucleo/css/nucleo.css" type="text/css">
   <link rel="stylesheet" href="<?= BASEURL ?>/vendor/%40fortawesome/fontawesome-free/css/all.min.css" type="text/css">
   <!-- Argon CSS -->
+  <link rel="stylesheet" href="<?= BASEURL ?>/vendor/select2/dist/css/select2.min.css" type="text/css">
+  <link rel="stylesheet" href="<?= BASEURL ?>/vendor/sweetalert2/dist/sweetalert2.min.css">
   <link rel="stylesheet" href="<?= BASEURL ?>/css/argon.min9f1e.css?v=1.1.0" type="text/css">
   <link rel="stylesheet" href="<?= BASEURL ?>/css/style.css" type="text/css">
   <!-- Data Tables -->
   <link rel="stylesheet" href="<?= BASEURL ?>/vendor/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="<?= BASEURL ?>/vendor/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css">
   <link rel="stylesheet" href="<?= BASEURL ?>/vendor/datatables.net-select-bs4/css/select.bootstrap4.min.css">
-  <link rel="stylesheet" href="<?= BASEURL ?>/vendor/sweetalert2/dist/sweetalert2.min.css">
+<script src="<?= BASEURL ?>/vendor/jquery/dist/jquery.min.js"></script>
   
   <style>
     body{
@@ -160,65 +163,69 @@ if  ($_SESSION['role'] !== '1' || $_SESSION['status'] !== 'login') {
           </li>
         </ul>
         <ul class="navbar-nav align-items-center ml-auto ml-md-0">
-        <li class="nav-item dropdown">
-              <a class="nav-link bel" href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="ni ni-bell-55"></i><span id="con_pinjam2"></span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right py-0 overflow-hidden">
-                <!-- Dropdown header -->
-                <div class="px-3 py-3">
-                  <h6 class="text-sm text-muted m-0">You have <strong class="text-primary"  id="con_pinjam"></strong> notifications.</h6>
-                </div>
-                <!-- List group -->
-                <div class="" id="notif">
-                </div>
-                <!-- View all -->
-                <a href="<?= BASE_URL ?>/proses_pinjam" class="dropdown-item text-center text-primary font-weight-bold py-3">View all</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link bel" href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="ni ni-bell-55"></i><span id="con_pinjam2"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right py-0 overflow-hidden">
+              <!-- Dropdown header -->
+              <div class="px-3 py-3">
+                <h6 class="text-sm text-muted m-0">You have <strong class="text-primary"  id="con_pinjam"></strong> notifications.</h6>
               </div>
-            </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <div class="media align-items-center">
-              <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="<?= BASEURL ?>/img/theme/team-4.jpg">
-              </span>
-              <div class="media-body ml-2 d-none d-lg-block mr-2">
-                <span class="mb-0 text-sm  font-weight-bold"><?= $_SESSION['username'] ?></span>
+              <!-- List group -->
+              <div class="" id="notif">
               </div>
+              <!-- View all -->
+              <a href="<?= BASE_URL ?>/proses_pinjam" class="dropdown-item text-center text-primary font-weight-bold py-3">View all</a>
             </div>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right">
-            <div class="dropdown-header noti-title">
-              <h6 class="text-overflow m-0">Welcome!</h6>
-            </div>
-            <?php $id_auth = Encripsi::encode('encrypt',$_SESSION['auth']); ?>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <div class="media align-items-center">
+                <span class="avatar avatar-sm rounded-circle">
+                  <img alt="Image placeholder"  src="<?php if (!empty($data['identitas']['foto'])): ?>
+                                    <?= BASEURL.'/img/theme/'.$data['identitas']['foto']?>
+                                    <?php else :?>
+                                        <?= BASEURL.'/img/theme/team-4.jpg'?>
+                                <?php endif ?>">
+                </span>
+                <div class="media-body ml-2 d-none d-lg-block mr-2">
+                  <span class="mb-0 text-sm  font-weight-bold"><?= $_SESSION['username'] ?></span>
+                </div>
+              </div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <div class="dropdown-header noti-title">
+                <h6 class="text-overflow m-0">Welcome!</h6>
+              </div>
+              <?php $id_auth = Encripsi::encode('encrypt',$_SESSION['auth']); ?>
 
-            <a href="<?= BASE_URL ?>/profile/<?= $id_auth ?>" class="dropdown-item">
-              <i class="ni ni-single-02"></i>
-              <span>My profile</span>
-            </a>
-            <a href="#!" class="dropdown-item">
-              <i class="ni ni-settings-gear-65"></i>
-              <span>Settings</span>
-            </a>
-            <a href="#!" class="dropdown-item">
-              <i class="ni ni-calendar-grid-58"></i>
-              <span>Activity</span>
-            </a>
-            <a href="#!" class="dropdown-item">
-              <i class="ni ni-support-16"></i>
-              <span>Support</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="<?= BASE_URL ?>/login/logout" class="dropdown-item">
-              <i class="ni ni-user-run"></i>
-              <span>Logout</span>
-            </a>
-          </div>
-        </li>
-      </ul>
+              <a href="<?= BASE_URL ?>/profile/<?= $id_auth ?>" class="dropdown-item">
+                <i class="ni ni-single-02"></i>
+                <span>My profile</span>
+              </a>
+              <a href="#!" class="dropdown-item">
+                <i class="ni ni-settings-gear-65"></i>
+                <span>Settings</span>
+              </a>
+              <a href="#!" class="dropdown-item">
+                <i class="ni ni-calendar-grid-58"></i>
+                <span>Activity</span>
+              </a>
+              <a href="#!" class="dropdown-item">
+                <i class="ni ni-support-16"></i>
+                <span>Support</span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="<?= BASE_URL ?>/login/logout" class="dropdown-item">
+                <i class="ni ni-user-run"></i>
+                <span>Logout</span>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
-<!-- Header -->
+  </nav>
+  <!-- Header -->
 

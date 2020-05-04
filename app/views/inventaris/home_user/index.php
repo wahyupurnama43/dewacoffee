@@ -1,7 +1,6 @@
 <div class="pt-10"></div>
 <div class="row plr-4">
 
-
     <?php foreach ($data['barang'] as $barang): ?>
         <?php 
             $tgl = explode('-', $barang['tanggal_masuk']);

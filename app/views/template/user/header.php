@@ -31,8 +31,11 @@ if  ($_SESSION['role'] !== '3' || $_SESSION['status'] !== 'login') {
   <link rel="stylesheet" href="<?= BASEURL ?>/vendor/sweetalert2/dist/sweetalert2.min.css">
   <link rel="stylesheet" href="<?= BASEURL ?>/vendor/animate.css/animate.min.css">
   <link rel="stylesheet" href="<?= BASEURL ?>/css/style-card.css">
-  
-  <style>
+  <script
+  src="http://code.jquery.com/jquery-3.5.0.min.js"
+  integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+  crossorigin="anonymous"></script>
+    <style>
     .shadow{
       box-shadow: 0 0 2rem 0 rgba(0,0,0,.5) !important;
     }
@@ -86,10 +89,14 @@ if  ($_SESSION['role'] !== '3' || $_SESSION['status'] !== 'login') {
         </ul>
         <ul class="navbar-nav align-items-center ml-auto ml-md-0">
           <li class="nav-item dropdown">
-          <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link pr-0" href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="<?= BASEURL ?>/img/theme/team-4.jpg">
+                <img alt="Image placeholder" src="<?php if (!empty($data['identitas']['foto'])): ?>
+                                    <?= BASEURL.'/img/theme/'.$data['identitas']['foto']?>
+                                    <?php else :?>
+                                        <?= BASEURL.'/img/theme/team-4.jpg'?>
+                                <?php endif ?>">
               </span>
               <div class="media-body ml-2 d-none d-lg-block mr-2">
                 <span class="mb-0 text-sm  font-weight-bold"><?= $_SESSION['username'] ?></span>
@@ -100,11 +107,13 @@ if  ($_SESSION['role'] !== '3' || $_SESSION['status'] !== 'login') {
             <div class="dropdown-header noti-title">
               <h6 class="text-overflow m-0">Welcome!</h6>
             </div>
-            <a href="#!" class="dropdown-item">
+
+            <?php $id_auth = Encripsi::encode('encrypt',$_SESSION['auth']); ?>
+            <a href="<?= BASE_URL ?>/profile/<?= $id_auth ?>" class="dropdown-item">
               <i class="ni ni-single-02"></i>
               <span>My profile</span>
             </a>
-            <a href="#!" class="dropdown-item">
+            <a href="" class="dropdown-item">
               <i class="ni ni-settings-gear-65"></i>
               <span>Settings</span>
             </a>
@@ -128,3 +137,4 @@ if  ($_SESSION['role'] !== '3' || $_SESSION['status'] !== 'login') {
     </div>
   </nav>
     <!-- Header -->
+

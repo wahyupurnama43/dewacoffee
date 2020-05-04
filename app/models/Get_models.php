@@ -31,8 +31,13 @@ class Get_models
         $this->db->query($q);
         return $this->db->resultSet();
     }  
-
-     public function ambilDataBy2($verificator, $value,$verificator2, $value2, $tb)
+    public function ambilOneData($verificator, $value, $tb)
+    {
+        $query = "SELECT foto FROM $tb WHERE $verificator = $value";
+        $this->db->query($query);
+        return $this->db->single();
+    }
+    public function ambilDataBy2($verificator, $value,$verificator2, $value2, $tb)
     {
         if (isset($verificator) && isset($value)) {
             $q = "SELECT * FROM $tb WHERE $verificator = :$verificator AND $verificator2 = :$verificator2";

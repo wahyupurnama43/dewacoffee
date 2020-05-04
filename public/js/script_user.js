@@ -1,6 +1,6 @@
 $(function () {
-    const like = document.querySelector('#like');
-    const likes = document.querySelector('.likes'); 
+    // const like = document.querySelector('#like');
+    // const likes = document.querySelector('.likes'); 
      $('#jumlah').keyup(function(){
         if ($(this).val() == "") {
             $('#btn-submit').prop('disabled', true);
@@ -8,6 +8,4 @@ $(function () {
             $('#btn-submit').prop('disabled', false);
         }
     });
-
-
 });

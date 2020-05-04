@@ -3,7 +3,7 @@
 
 </div>
 <!-- Argon Scripts -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="<?= BASEURL ?>/vendor/jquery/jquery.min.js"></script>
 <script src="<?= BASEURL ?>/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="<?= BASEURL ?>/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="<?= BASEURL ?>/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>

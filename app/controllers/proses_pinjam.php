@@ -3,7 +3,6 @@
 
 class Proses_pinjam extends Controller
 {
-
     public function index(){
         $data['judul'] = "Proses Peminjaman";
         $data['pinjam'] =  $this->model('Get_models')->ambilProsesPinjam();
