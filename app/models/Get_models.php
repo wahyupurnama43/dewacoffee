@@ -17,6 +17,19 @@ class Get_models
 	
     public function ambilDataBy($verificator, $value, $tb)
     {
+        $value2 = Encripsi::encode('decrypt',$value);
+        if (isset($verificator) && isset($value)) {
+            $q = "SELECT * FROM $tb WHERE $verificator = :$verificator";
+            $this->db->query($q);
+            $this->db->bind($verificator, $value2);
+            return $this->db->single();
+        }
+    }
+
+    
+
+    public function ambilDataByNoEncryp($verificator, $value, $tb)
+    {
         if (isset($verificator) && isset($value)) {
             $q = "SELECT * FROM $tb WHERE $verificator = :$verificator";
             $this->db->query($q);
@@ -50,6 +63,7 @@ class Get_models
 
     public function ambilDataInBy($verificator, $value, $tb)
     {
+        $value2 = Encripsi::encode('decrypt',$value);
         if (isset($verificator) && isset($value)) {
             $q = "SELECT * FROM $tb 
             INNER JOIN tb_jenis ON tb_barang.id_jenis = tb_jenis.id_jenis
@@ -57,7 +71,7 @@ class Get_models
             INNER JOIN auth ON tb_barang.id_auth = auth.id_auth 
             WHERE $verificator = :$verificator";
             $this->db->query($q);
-            $this->db->bind($verificator, $value);
+            $this->db->bind($verificator, $value2);
             return $this->db->single();
         }
     }
@@ -103,7 +117,7 @@ class Get_models
         $q = "SELECT * FROM detail_pinjam
         INNER JOIN tb_pinjam ON detail_pinjam.id_peminjam = tb_pinjam.id_peminjam
         INNER JOIN tb_barang ON detail_pinjam.id_barang = tb_barang.id_barang
-        INNER JOIN auth ON tb_pinjam.id_auth = auth.id_auth WHERE status = '0' LIMIT 3 ";
+        INNER JOIN auth ON tb_pinjam.id_auth = auth.id_auth  WHERE status = '0' LIMIT 3 ";
 
         $connect = mysqli_connect($this->host, $this->user, $this->pass , $this->db_name);
         $result = mysqli_query($connect, $q);
@@ -143,12 +157,13 @@ class Get_models
     }
 
     public function ambilDatapinjamOne($tb, $id, $verificator){
+        $id_peminjam = Encripsi::encode('decrypt',$id);
         $q = "SELECT * FROM $tb
         INNER JOIN tb_pinjam ON $tb.id_peminjam = tb_pinjam.id_peminjam
         INNER JOIN tb_barang ON $tb.id_barang = tb_barang.id_barang
         INNER JOIN auth ON tb_pinjam.id_auth = auth.id_auth WHERE $tb.$verificator = :$verificator";
         $this->db->query($q);
-        $this->db->bind($verificator, $id);
+        $this->db->bind($verificator, $id_peminjam);
         return $this->db->single();
     }
 

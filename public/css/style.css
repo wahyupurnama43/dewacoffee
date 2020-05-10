@@ -92,3 +92,15 @@ table.dataTable tbody>tr.selected{
 	filter: brightness(0.6);
 	-webkit-filter: brightness(0.6);
 }
+.model-lg{
+	position: fixed;
+	z-index: 1050;
+	top: 0;
+	left: 50%;
+	display: none;
+	overflow: hidden;
+	width: 140%;
+	height: 100%;
+	outline: 0;
+	transform: translate(-50%, 10px);
+}

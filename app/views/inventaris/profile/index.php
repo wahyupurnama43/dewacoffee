@@ -358,7 +358,11 @@
                 <form id="form" action="<?= BASE_URL ?>/proses/Ufoto" method="POST" enctype="multipart/form-data">
                     <input type="hidden" value="<?= $_SESSION['auth'] ?>" name="id">
                     <div class="d-flex justify-content-center mb-4">
-                        <img id="preview" src="<?= BASEURL ?>/img/theme/team-4.jpg" alt="your image" width="50%" />
+                        <img id="preview" src="<?php if (!empty($data['identitas']['foto'])): ?>
+                                    <?= BASEURL.'/img/theme/'.$data['identitas']['foto']?>
+                                    <?php else :?>
+                                        <?= BASEURL.'/img/theme/team-4.jpg'?>
+                                <?php endif ?>"  alt="your image" width="50%" />
                     </div>
                     <div class="custom-file">
                         <input type="file" name="gambar">

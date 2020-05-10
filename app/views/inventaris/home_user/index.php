@@ -1,7 +1,8 @@
 <div class="pt-10"></div>
 <div class="row plr-4">
-
-    <?php foreach ($data['barang'] as $barang): ?>
+    <?php foreach ($data['barang'] as $barang):
+      
+    ?>
         <?php 
             $tgl = explode('-', $barang['tanggal_masuk']);
             if ($tgl[1] == '01') {
@@ -34,7 +35,7 @@
        ?>
        <div class="col-lg-4">
         <div class="example-1 card">
-            <div class="wrapper" style="background: url('http://inventaris.com/Inventaris_skensa/public/img/daftar-barang/<?= $barang['gambar'] ?>')">
+            <div class="wrapper" style="background: url('http://inventaris.com/Inventaris_skensa/public/img/daftar-barang/<?= $barang['gambar'] ?>'); background-position: center;" >
                 <div class="date">
                     <span class="day"><?= $tgl[2] ?></span>
                     <span class="month"><?=  $bulan?></span>
@@ -67,8 +68,8 @@
                         <div class="d-flex justify-content-between">
                             <div class=""></div>
                             <div class="">
-                                <a href="" class="btn btn-primary detail_barang" data-id="<?= $barang['id_barang'] ?>" data-toggle="modal" data-target="#detail">Detail <i class="far fa-eye mt-1 ml-1"></i></a>
-                                <a href="" class="btn btn-success detail_barang" data-id="<?= $barang['id_barang'] ?>" data-toggle="modal" data-target="#pinjam">Pinjam <i class="fas fa-check mt-1 ml-1"></i></a>
+                                <a href="" class="btn btn-primary detail_barang" data-id="<?= $id ?>" data-toggle="modal" data-target="#detail">Detail <i class="far fa-eye mt-1 ml-1"></i></a>
+                                <a href="" class="btn btn-success detail_barang" data-id="<?= $id ?>" data-toggle="modal" data-target="#pinjam">Pinjam <i class="fas fa-check mt-1 ml-1"></i></a>
                             </div>
                             <div class=""></div>
                         </div>

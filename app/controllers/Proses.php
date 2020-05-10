@@ -526,7 +526,7 @@ class Proses extends Controller
         }
         else
         {
-            Flasher::setFlash("Akun anda masih Meminjam Buku ", " Harap Kembalikan Terlebih Dahulu", "error");
+            Flasher::setFlash("Akun anda masih Meminjam Barang ", " Harap Kembalikan Terlebih Dahulu", "error");
             header('Location: ' . BASE_URL . '/proses_pinjam');
             exit();
         }

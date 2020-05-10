@@ -53,7 +53,7 @@ class Login_models {
 								$_SESSION['role'] = "2";
 								$_SESSION['auth'] = $id_auth;
 								Flasher::setFlash('Selamat Datang ', $username, 'success');
-								header('Location: ' . BASE_URL . '/');
+								header('Location: ' . BASE_URL . '/petugas');
 							} elseif ($role === '3' || $role === 3) {
 								session_start();
 								$_SESSION['username'] = $username;

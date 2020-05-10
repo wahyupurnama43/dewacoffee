@@ -170,12 +170,12 @@ if  ($_SESSION['role'] !== '1' || $_SESSION['status'] !== 'login') {
             <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right py-0 overflow-hidden">
               <!-- Dropdown header -->
               <div class="px-3 py-3">
-                <h6 class="text-sm text-muted m-0">You have <strong class="text-primary"  id="con_pinjam"></strong> notifications.</h6>
+                <h6 class="text-sm text-muted m-0">You have <strong class="text-primary" id="con_pinjam"></strong> notifications.</h6>
               </div>
               <!-- List group -->
               <div class="" id="notif">
               </div>
-              <!-- View all -->
+              <!-- View all --> 
               <a href="<?= BASE_URL ?>/proses_pinjam" class="dropdown-item text-center text-primary font-weight-bold py-3">View all</a>
             </div>
           </li>

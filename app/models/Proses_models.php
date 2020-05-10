@@ -64,6 +64,7 @@ class Proses_models extends Controller
 
     public function Tpinjam($data)
     {
+
         /*
         |--------------------------------------------------------------------------
         | Tambah Pinjam 
@@ -126,8 +127,7 @@ class Proses_models extends Controller
             |--------------------------------------------------------------------------
             */
             $pinjam = $this->model('Get_models')
-                ->ambilDataBy('id_auth', $peminjam, 'tb_pinjam');
-
+                ->ambilDataByNoEncryp('id_auth', $peminjam, 'tb_pinjam');
             /*
             |--------------------------------------------------------------------------
             | Tambah Pinjam 
@@ -244,7 +244,7 @@ class Proses_models extends Controller
         */
 
         $cek_username = $this->model('Get_models')
-            ->ambilDataBy('username', $username, 'auth');
+            ->ambilDataByNoEncryp('username', $username, 'auth');
 
         /*
         |--------------------------------------------------------------------------
@@ -377,6 +377,7 @@ class Proses_models extends Controller
                 $destination = "C:/xampp/htdocs/Inventaris_skensa/public/img/daftar-barang/"; // simpen dmana nantik
                 $file = $_FILES['gambar'];
 
+
                 $filename = explode(".", $file["name"]);
 
                 $file_name = $file['name']; // nama asli gambar
@@ -403,7 +404,7 @@ class Proses_models extends Controller
                             if (move_uploaded_file($file['tmp_name'], $destination . $fileNewName))
                             {
 
-                                $query = "INSERT INTO tb_barang VALUES ('',:nama_brng ,:jumlah ,:tanggal_masuk ,:kondisi ,:gambar ,:deskripsi ,:id_jenis ,:id_ruang, :id_auth)";
+                                $query = "INSERT INTO tb_barang VALUES ('',:nama_brng ,:jumlah ,:tanggal_masuk ,:kondisi ,:gambar ,:deskripsi, :like_count ,:id_jenis ,:id_ruang, :id_auth)";
                                 try
                                 {
                                     /*
@@ -445,6 +446,9 @@ class Proses_models extends Controller
                                     $this
                                         ->db
                                         ->bind('gambar', $fileNewName);
+                                    $this
+                                        ->db
+                                        ->bind('like_count', '0');
                                     $this
                                         ->db
                                         ->execute();
@@ -522,14 +526,15 @@ class Proses_models extends Controller
 
     public function hapus_barang($id)
     {
+        $id_barang = Encripsi::encode('decrypt', $id);
         $data = $this->model('Get_models')
-            ->ambilDataBy('id_barang', $id, 'tb_barang');
+            ->ambilDataBy('id_barang', $id_barang, 'tb_barang');
         try
         {
             $destination = "C:/xampp/htdocs/Inventaris_skensa/public/img/daftar-barang/";
             unlink($destination . $data['gambar']);
 
-            $query = "DELETE FROM tb_barang WHERE id_barang = $id";
+            $query = "DELETE FROM tb_barang WHERE id_barang = $id_barang";
             $this
                 ->db
                 ->query($query);
@@ -546,7 +551,8 @@ class Proses_models extends Controller
 
     public function hapus_ruang($id)
     {
-        $query = "DELETE FROM tb_ruang WHERE id_ruang = $id";
+        $id_ruang = Encripsi::encode('decrypt', $id);
+        $query = "DELETE FROM tb_ruang WHERE id_ruang = $id_ruang";
         try
         {
             $this
@@ -565,7 +571,8 @@ class Proses_models extends Controller
 
     public function hapus_jenis($id)
     {
-        $query = "DELETE FROM tb_jenis WHERE id_jenis = $id";
+        $id_jenis = Encripsi::encode('decrypt',$id);
+        $query = "DELETE FROM tb_jenis WHERE id_jenis = $id_jenis";
         try
         {
             $this
@@ -584,7 +591,8 @@ class Proses_models extends Controller
 
     public function hapus_user($id)
     {
-        $query = "DELETE FROM auth WHERE id_auth = $id";
+        $id_auth = Encripsi::encode('decrypt', $id);
+        $query = "DELETE FROM auth WHERE id_auth = $id_auth";
         try
         {
             $this
@@ -603,7 +611,8 @@ class Proses_models extends Controller
 
     public function hapus_pinjam($id)
     {
-        $query = "DELETE FROM tb_pinjam WHERE id_peminjam = $id";
+        $id_peminjam = Encripsi::encode('decrypt', $id);
+        $query = "DELETE FROM tb_pinjam WHERE id_peminjam = $id_peminjam";
         try
         {
             $this
@@ -613,7 +622,7 @@ class Proses_models extends Controller
                 ->db
                 ->execute();
 
-            $query = "DELETE FROM detail_pinjam WHERE id_peminjam = $id";
+            $query = "DELETE FROM detail_pinjam WHERE id_peminjam = $id_peminjam";
             $this
                 ->db
                 ->query($query);
@@ -975,7 +984,7 @@ class Proses_models extends Controller
         $id = htmlspecialchars($data['id'], ENT_QUOTES);
         $password_baru = htmlspecialchars($data['password']);
         $Upw = $this->model('Get_models')
-            ->ambilDataBy('id_auth', $data['id'], 'auth');
+            ->ambilDataByNoEncryp('id_auth', $data['id'], 'auth');
         $password_lama = $Upw['password'];
 
         /*
@@ -1095,7 +1104,7 @@ class Proses_models extends Controller
         $pilih_barang = htmlspecialchars($data['pilih_barang'], ENT_QUOTES);
 
         $ad = $this->model('Get_models')
-            ->ambilDataBy('id_peminjam', $id, 'tb_pinjam');
+            ->ambilDataByNoEncryp('id_peminjam', $id, 'tb_pinjam');
         $waktuLm = explode("-", $ad['tanggal_kembali']);
         $waktu = $pinjam;
         $sampai = mktime(0, 0, 0, $waktuLm[1], $waktuLm[2] + $waktu, $waktuLm[0]);
@@ -1169,7 +1178,7 @@ class Proses_models extends Controller
         $cek = $this->model('Get_models')
             ->ambilDataBy2('id_barang', $id_decode, 'id_auth', $id_auth, 'tb_like');
         $barang = $this->model('Get_models')
-            ->ambilDataBy('id_barang', $id_decode, 'tb_barang');
+            ->ambilDataBy('id_barang', $id, 'tb_barang');
 
         if ($cek > 0)
         {
@@ -1613,6 +1622,7 @@ class Proses_models extends Controller
 
     public function kembali($id)
     {
+        $id_peminjam = Encripsi::encode('decrypt',$id);
         /*
         |--------------------------------------------------------------------------
         | Pengembalian Barang 
@@ -1666,7 +1676,7 @@ class Proses_models extends Controller
                 ->db
                 ->execute();
 
-            $query1 = "DELETE FROM tb_pinjam WHERE id_peminjam = $id";
+            $query1 = "DELETE FROM tb_pinjam WHERE id_peminjam = $id_peminjam";
             $this
                 ->db
                 ->query($query1);
@@ -1734,7 +1744,7 @@ class Proses_models extends Controller
             |--------------------------------------------------------------------------
             */
             $pinjam = $this->model('Get_models')
-                ->ambilDataBy('id_auth', $data['id_auth'], 'tb_pinjam');
+                ->ambilDataByNoEncryp('id_auth', $data['id_auth'], 'tb_pinjam');
 
             /*
             |--------------------------------------------------------------------------

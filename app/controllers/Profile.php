@@ -6,11 +6,11 @@ class Profile extends Controller
     public function index($id)
     {
         $id_auth =  Encripsi::encode('decrypt',$id);
-        $data['profile'] = $this->model('Get_models')->ambilDataBy('id_auth',$id_auth, 'auth');
+        $data['profile'] = $this->model('Get_models')->ambilDataByNoEncryp('id_auth',$id_auth, 'auth');
         $data['provinsi'] = $this->model('Get_models')->ambilDataAll('provinces');
         $data['kota'] = $this->model('Get_models')->ambilDataAll('regencies');
         $data['kecamatan'] = $this->model('Get_models')->ambilDataAll('districts');
-        $data['identitas'] = $this->model('Get_models')->ambilOneData('id_auth', $id_auth, 'tb_identitas');
+        $data['identitas'] = $this->model('Get_models')->ambilDataByNoEncryp('id_auth', $id_auth, 'tb_identitas');
         if ($id_auth === $_SESSION['auth']) {
             $this->view('template/profile/header',$data);
             $this->view('inventaris/profile/index',$data);

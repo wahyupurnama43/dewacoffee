@@ -27,7 +27,9 @@
           </thead>
           <tbody class="text-center">
             <?php $i=1;  ?>
-            <?php foreach ($data['barang'] as $brg): ?>
+            <?php foreach ($data['barang'] as $brg):
+              $id_barang = Encripsi::encode('encrypt', $brg['id_barang']);
+             ?>
               <tr>
                 <td><?= $i++ ?></td>
                 <td  width="10%"><img src="<?= BASEURL  ?>/img/daftar-barang/<?= $brg['gambar']  ?>" alt="" width="100px"></td>
@@ -36,13 +38,13 @@
                 <td  ><?= $brg['kondisi'] == '1' ? "<p class='text-success font-weight-bold'>Baik</p>" : "<p class='text-danger font-weight-bold'>Rusak</p>" ?></td>
                 <td width="15%"><?= date('d F Y h:i A',strtotime($brg['tanggal_masuk'])) ?></td>
                 <td class="table-actions">
-                  <a href="" class="table-action table-action-primary editBarang" data-toggle="modal" data-target="#barang"  data-id="<?= $brg['id_barang'] ?>">
+                  <a href="" class="table-action table-action-primary editBarang" data-toggle="modal" data-target="#barang"  data-id="<?= $id_barang ?>">
                     <i class="fas fa-user-edit"></i>
                   </a>
-                  <a  href="" class="table-action table-action-delete hapus tombol-hapus" data-toggle="sweet-alert" data-sweet-alert="confirm" data-id="<?= $brg['id_barang'] ?>" data-ct="hapus_barang" data-href="<?= BASE_URL ?>/barang/" data-toggle="tooltip" data-original-title="Hapus Barang">
+                  <a  href="" class="table-action table-action-delete  tombol-hapus" data-toggle="sweet-alert" data-sweet-alert="confirm" data-id="<?= $id_barang ?>" data-ct="hapus_barang" data-href="<?= BASE_URL ?>/barang/" data-toggle="tooltip" data-original-title="Hapus Barang">
                     <i class="fas fa-trash"></i>
                   </a>
-                  <a href="" class="table-action table-action-success detail_barang" data-id="<?= $brg['id_barang'] ?>"  data-toggle="modal" data-target="#detail-modal" data-toggle="tooltip" data-original-title="Detail Barang" >
+                  <a href="" class="table-action table-action-success detail_barang" data-id="<?= $id_barang ?>"  data-toggle="modal" data-target="#detail-modal" data-toggle="tooltip" data-original-title="Detail Barang" >
                     <i class="fas fa-eye"></i>
                   </a>
                 </td>
@@ -116,11 +118,14 @@
        <p class="error-messageket"></p>
      </div>
 
-     <div class="custom-file">
-      <input type="file" class="custom-file-input"  name="gambar">
+    
+    <div class="d-flex justify-content-center mb-4">
+      <img id="preview" src="" alt="" width="150px" id="img" style="display:flex;margin: 1rem auto" />
+    </div>
+    <div class="custom-file">
+      <input type="file" class="custom-file-input" id="img" name="gambar">
       <label class="custom-file-label" for="gambar" name="gambar" id="gambar">Pilih</label>
     </div>
-    <img src="" alt="" width="150px" id="img" style="display:flex;margin: 1rem auto">
   </div>
   <div class="modal-footer">
     <button type="submit" name="submit" class="btn btn-primary w-100">Tambah Buku &nbsp;<i class="fas fa-plus"></i></button>
@@ -133,7 +138,7 @@
 
 <div class="row">
   <div class="col-md-4">
-    <div class="modal fade" id="detail-modal" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+    <div class="modal fade" id="detail-modal" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true" >
       <div class="modal-dialog modal-dialog-detail modal- modal-dialog-centered modal-" role="document">
         <div class="modal-content ">
 

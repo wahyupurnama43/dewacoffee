@@ -266,7 +266,8 @@ $(function(){
 		$('#judul').html('Ubah Data Pinjam');
 		$('.modal-footer button[type=submit').html('Ubah Pinjam');
 		$('.modal-body form').attr('action','http://localhost/Inventaris_skensa/proses/Upinjam');
-		const id = $(this).data('id');
+		const id = $(this).data('id');	
+		console.log(id);
 
 		$.ajax({
 			url : 'http://localhost/Inventaris_skensa/proses/getpinjam',

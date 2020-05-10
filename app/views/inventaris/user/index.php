@@ -26,7 +26,9 @@
 					</thead>
 					<tbody class="text-center">
 						<?php $i=1; ?>
-						<?php foreach ($data['user'] as $user): ?>
+						<?php foreach ($data['user'] as $user):
+							$id_auth = Encripsi::encode('encrypt', $user['id_auth']);
+						?>
 							<tr>
 								<td><?= $i++ ?></td>
 								<td><?= $user['nama'] ?></td>
@@ -34,10 +36,10 @@
 								<td><?= $user['nama_level'] ?></td>
 								<td><?= $user['tgl_daftar'] ?></td>
 								<td class="table-actions">
-									<a href="" class="table-action table-action-primary edit_user" data-toggle="modal" data-target="#ruang" data-id="<?= $user['id_auth'] ?>" data-toggle="tooltip" data-original-title="Edit Barang">
+									<a href="" class="table-action table-action-primary edit_user" data-toggle="modal" data-target="#ruang" data-id="<?= $id_auth ?>" data-toggle="tooltip" data-original-title="Edit Barang">
 										<i class="fas fa-user-edit"></i>
 									</a>
-									<a  href="" class="table-action table-action-delete hapus tombol-hapus" data-toggle="sweet-alert" data-sweet-alert="confirm" data-id="<?= $user['id_auth'] ?>" data-ct="hapus_user" data-href="<?= BASE_URL ?>/user/" data-toggle="tooltip" data-original-title="Hapus Barang">
+									<a  href="" class="table-action table-action-delete tombol-hapus" data-toggle="sweet-alert" data-sweet-alert="confirm" data-id="<?= $id_auth ?>" data-ct="hapus_user" data-href="<?= BASE_URL ?>/user/" data-toggle="tooltip" data-original-title="Hapus Barang">
 										<i class="fas fa-trash"></i>
 									</a>
 								</td>

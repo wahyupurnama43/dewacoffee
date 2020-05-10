@@ -50,7 +50,7 @@
 <!-- detail modal -->
 <div class="row">
   <div class="col-md-4">
-    <div class="modal fade" id="detail-modal" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+    <div class="modal fade" id="detail-modal" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true" style="width: 140%; transform: translate(-13%,10px);">
       <div class="modal-dialog modal-dialog-detail modal- modal-dialog-centered modal-" role="document">
         <div class="modal-content ">
 

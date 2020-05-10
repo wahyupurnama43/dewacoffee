@@ -25,17 +25,19 @@
 					</thead>
 					<tbody class="text-center">
 						<?php $i=1;  ?>
-						<?php foreach ($data['jenis'] as $jenis): ?>
+						<?php foreach ($data['jenis'] as $jenis):
+						 	$id_jenis = Encripsi::encode('encrypt', $jenis['id_jenis']);
+						?>
 							<tr>
 								<td><?= $i++ ?></td>
 								<td><?= $jenis['nama_jenis'] ?></td>
 								<td><?= $jenis['kode_jenis'] ?></td>
 								<td><?= $jenis['keterangan'] ?></td>
 								<td class="table-actions">
-									<a href="" class="table-action table-action-primary edit_jenis" data-toggle="modal" data-target="#jenis" data-id="<?= $jenis['id_jenis'] ?>" data-toggle="tooltip" data-original-title="Edit Barang">
+									<a href="" class="table-action table-action-primary edit_jenis" data-toggle="modal" data-target="#jenis" data-id="<?= $id_jenis ?>" data-toggle="tooltip" data-original-title="Edit Barang">
 										<i class="fas fa-user-edit"></i>
 									</a>
-									<a  href="" class="table-action table-action-delete hapus  tombol-hapus" data-toggle="sweet-alert" data-sweet-alert="confirm" data-id="<?= $jenis['id_jenis'] ?>" data-ct="hapus_jenis" data-href="<?= BASE_URL ?>/jenis/" data-toggle="tooltip" data-original-title="Hapus Barang">
+									<a  href="" class="table-action table-action-delete tombol-hapus" data-toggle="sweet-alert" data-sweet-alert="confirm" data-id="<?= $id_jenis ?>" data-ct="hapus_jenis" data-href="<?= BASE_URL ?>/jenis/" data-toggle="tooltip" data-original-title="Hapus Barang">
 										<i class="fas fa-trash"></i>
 									</a>
 								</td>
