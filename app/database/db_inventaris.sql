@@ -46,7 +46,6 @@ INSERT INTO `auth` (`id_auth`, `username`, `password`, `nama`, `no_induk`, `tgl_
 (5, 'Wahyupurnama43', '$2y$10$50EdOgPZL82pBkoKT4E0l.weH0K4tALdU74Qx.HxaUcZeTa8cI/ra', 'Made Wahyu Purnama Putra', 27255, '2020-04-02', 3),
 (6, 'prihandana', '$2y$10$qDRMa.e08Qwwqt4.opCQCO5KsXFiAptvDH3L6TzL.WvY6Xcznihb2', 'I Gusti Putu Ngurah Prihandana', 12312, '2020-04-05', 3),
 (16, 'popipopi', '$2y$10$YP5qpIbO9FyUH.AD5ojTYuja6L7wcwsFcfqAdv2NXfLHNHroqYM2e', 'Laptop', 12312, '2020-04-25', 3),
-(17, 'trinity', '$2y$10$Kf0g5XRnjBN52Ha0uSPunuq8IxYxwJM8flcZRIKFkF4A.gdaa4F5u', 'Nyoman Trinity Laksi Maharani', 423423, '2020-04-25', 3),
 (19, 'Admin', '$2y$10$0xnz8EMZRgx7.v38TbThiewsZw61UNsujqVL1tTxiqDXlX1PffBPq', 'admin', 0, '2020-05-03', 1);
 
 -- --------------------------------------------------------

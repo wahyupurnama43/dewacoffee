@@ -1,19 +1,4 @@
-/*!
 
-=========================================================
-* INVENTARIS SKENSA - v1.1.0
-=========================================================
-
-* Product Page: https://skenteam.tk/inventaris_skensa/
-* Copyright 2020 SKENSATEAM 
-
-* Coded by Wahyu Purnama
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 "use strict";
 var Layout = function() {
         function e() {

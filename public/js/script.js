@@ -8,7 +8,7 @@ $(function(){
 
 	const  flashData = $('.flash-data').data('flashdata');
 	if (flashData) {
-		Swal.fire({
+		Swal.fire({ 
 			title: 'Inventaris Skensa',
 			text: flashData.pesan + flashData.aksi,
 			icon: flashData.tipe,
@@ -17,7 +17,6 @@ $(function(){
 	} 
 
 	$('.tombol-hapus').on('click', function(e){
-
 		e.preventDefault();
 		const href = $(this).data('href');
 		const id = $(this).data('id');
