@@ -1,7 +1,7 @@
 <?php
 
 class App {
-	protected $controller = 'Dashboard';
+	protected $controller = 'Home';
 	protected $method = 'index';
 	protected $params = [];
 
@@ -10,13 +10,15 @@ class App {
 
 		// controller
 		// mengecek apakah ada file di controller sesuai di url
-		if (file_exists('app/controllers/' . ucwords(strtolower($url[0])) . '.php')) {
+		if (isset($url[0]) && file_exists('app/controllers/' . ucwords(strtolower($url[0])) .'.php')) {
 			//apakah ada file home.php(dari url) di folder controllers maka timpa dia dengan controller baru
 			$this->controller = ucwords(strtolower($url[0]));
 			unset($url[0]);
 		}
 		require_once 'app/controllers/' . $this->controller . '.php';
 		$this->controller = new $this->controller;
+	
+		
 
 		// method
 		if (isset($url[1])) {
