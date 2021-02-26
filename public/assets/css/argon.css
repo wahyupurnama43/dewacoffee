@@ -7747,6 +7747,7 @@ a.close.disabled
         max-width: 500px;
         margin: 1.75rem auto;
     }
+    
     .modal-dialog-scrollable
     {
         max-height: calc(100% - 3.5rem);
@@ -17407,7 +17408,7 @@ button.bg-darker:focus
 
 .text-primary
 {
-    color: #5e72e4 !important;
+    color: var(--primary);
 }
 
 a.text-primary:hover,
@@ -21675,8 +21676,6 @@ textarea[resize='horizontal']
 .navbar-vertical .navbar-nav .nav-link[data-toggle='collapse'][aria-expanded='true']:after
 {
     transform: rotate(90deg); 
-
-    color: #5e72e4;
 }
 .navbar-vertical .navbar-nav .nav .nav-link
 {

@@ -12,6 +12,15 @@
     width: 50px;
 }
 
+.scrolled{
+    background: #fff;
+    box-shadow: 5px 4px 25px rgba(159, 159, 159, 0.25);
+    transition: background .5s; 
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
 .nav-color {
     font-style: normal;
     font-weight: 400;
@@ -28,10 +37,12 @@
     margin: 0 10px;
 }
 .nav-item a{
-    transition: all .5s ease-in-out;
+    display: inline-block;
+    transition: all 0.3s; 
 }
 .nav-item a:hover{
-    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1) ;
     color: #3c3434 !important;
     font-weight: 500;
 }
@@ -1150,11 +1161,14 @@ footer .about .unic p{
     color: #8d8a8d;
     margin-bottom: 30px;
 }
-
+.info-me{
+    display: flex;
+}
 .info-me ul{
     list-style: none;
     margin: 0;
     padding:0;
+    padding-right: 20px;
 }
 
 .info-me ul li.judul{
@@ -1500,11 +1514,8 @@ select.form-control:not([size]):not([multiple]) {
     .company .j-footer{
         margin-top: 30px;
     }
-   
 }
 
 @media (max-width: 1200px) { 
-    .info-me ul li.info{
-        font-size: .9em;
-    }
+
 }

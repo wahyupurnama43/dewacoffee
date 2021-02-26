@@ -3,12 +3,11 @@
 
 class Flasher
 {
-    public static function setFlash($pesan, $aksi, $tipe)
+    public static function setFlash($pesan,$tipe)
     {
         // if(isset($))
         $_SESSION['flash'] = [
             'pesan' => $pesan,
-            'aksi' => $aksi,
             'tipe' => $tipe
         ];
     }

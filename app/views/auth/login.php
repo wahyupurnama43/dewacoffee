@@ -23,7 +23,9 @@
     </head>
 
     <body>
-
+    <div class="row">
+        <div class="flash-data" data-flashdata="<?= Flasher::flash(true); ?>"></div>
+    </div>
     <!-- Main content -->
     <div class="main-content">
     <!-- Header -->
@@ -95,8 +97,19 @@
 <!-- Argon JS -->
     <script src="<?= BASEURL?>/assets/js/argon.js?v=1.1.0"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
         AOS.init();
+        
+        const  flashData = $('.flash-data').data('flashdata');
+        if (flashData) {
+            Swal.fire({
+                title: 'Dewa Coffee',
+                text: flashData.pesan,
+                icon: flashData.tipe,
+                type: flashData.tipe
+            })
+        }; 
     </script>
 </body>
 </html>
