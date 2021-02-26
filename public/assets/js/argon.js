@@ -1681,6 +1681,7 @@ var Dropzones = (function() {
                         }
                     });
     
+                    // ini ketika simpan form nya
                     this.on(((multiple) ? 'sendingmultiple' : 'sending'), function(file, xhr, formData) {
                         $($this.data('form-submit')).find('[type=submit]').prop('disabled', true);
                         // Masukin semua inputan dari FORM ke formdata nya Dropzone (nebeng)
@@ -1688,6 +1689,9 @@ var Dropzones = (function() {
                         $.each(data, function(key, el) {
                             formData.append(el.name, el.value);
                         });
+
+                        // disini bisa kasih sweet alert loading atau pemberitahuan sudah di submit form nya
+                        
                     });
                     
                     // ini kalo responsecode dari PHP nya 200
@@ -1695,15 +1699,21 @@ var Dropzones = (function() {
                         console.log(e);
                         console.log(response.message);
 
+                        // disini bisa kasih sweet alert pemberitahuan sudah berhasil di simpan datanya
+
                         // reload halaman kalo berhasil
                         if($this.data('redirect-when-success') === true)
                             window.location.href = $this.data('dropzone-url');
+
                     });
                     
                     // ini kalo responsecode dari PHP nya 400
                     this.on(((multiple) ? 'errormultiple' : 'error'), function(e) {
                         alert('terjadi error, cek log');
                         console.error(e);
+
+                        // disini bisa kasih sweet alert pemberitahuan sudah gagal di simpan datanya
+
                     });
                     
                     // ini kalo proses submit nya udah selesai

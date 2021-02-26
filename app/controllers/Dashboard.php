@@ -1,7 +1,7 @@
 <?php
 
 class Dashboard extends Controller {
-
+	private $post;
 	public function index() {
 		// if(isset($_SESSION) && $_SESSION['login'] == true){
 		// 	if(isset($_SESSION) && $_SESSION['admin'] == true){
@@ -24,6 +24,7 @@ class Dashboard extends Controller {
 
 	public function product()
 	{
+
 		if(	$_SERVER['REQUEST_METHOD'] == 'POST')
 		{
 			$responsecode = 200;
@@ -34,16 +35,14 @@ class Dashboard extends Controller {
 				$neto = $_POST['neto'] ?? '';
 				$price = $_POST['price'] ?? '';
 				$tipe_coffee = $_POST['tipe_coffee'] ?? '';
-
+				$images = [];
+				// var_dump($this->post);die;
 				if(isset($_FILES['file'])) {
-					$files = $this->serialize_files($_FILES['file']);
-					foreach ($files as $file) {
-						$error = $file['error'];
-						$size = $file['size'];
-						$name = $file['name'];
-						$type = $file['type'];
-						$tmp_name = $file['tmp_name'];
 
+					$files = $this->serialize_files($_FILES['file']);
+					var_dump($files);die;
+					foreach ($files as $file) {
+						$images[] = $this->handle_upload_image($file);
 						// do upload
 					}
 				}
@@ -61,19 +60,20 @@ class Dashboard extends Controller {
 			// ini buat handle AJAX-nya Dropzone
 			if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
 				header('Content-Type: application/json');
-				// if($responsecode == 200) {
-				// 	// jika berhasil
-				// 	echo json_encode([
-				// 		'status' => true,
-				// 		'message' => 'Berhasil'
-				// 	]);
-				// }else {
-				// 	// jika gagal
-				// 	echo json_encode([
-				// 		'status' => false,
-				// 		'message' => 'Gagal'
-				// 	]);
-				// }
+				if($responsecode == 200) {
+					// jika berhasil
+					echo json_encode([
+						'status' => true,
+						'message' => 'Berhasil',
+					]);
+
+				}else {
+					// jika gagal
+					echo json_encode([
+						'status' => false,
+						'message' => 'Gagal'
+					]);
+				}
 				exit;
 			}
 
@@ -96,6 +96,22 @@ class Dashboard extends Controller {
 		}
 
 		return $serialized;
+	}
+
+	public function handle_upload_image($file)
+	{
+		$error = $file['error'];
+		$size = $file['size'];
+		$name = $file['name'];
+		$type = $file['type'];
+		$tmp_name = $file['tmp_name']; 
+		$ext = pathinfo($name, PATHINFO_EXTENSION);
+
+		// https://www.malasngoding.com/membuat-upload-file-dengan-php-dan-mysql/
+		$newfilename = uniqid(rand()) . '.' . $ext;
+		move_uploaded_file($tmp_name, $newfilename);
+
+		return $newfilename;
 	}
 	
 }

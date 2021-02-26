@@ -62,7 +62,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?php echo BASE_URL ?>/dashboard/product" id="frmTarget" method="post" enctype="multipart/form-data">
+            <form action="<?php echo BASE_URL ?>/dashboard/product" id="frmTarget" method="post" enctype="multipart/form-data" onsubmit="return false">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-6">
@@ -103,12 +103,18 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <label class="form-control-label">Gambar</label>
-                            <div class="dropzone dropzone-multiple" data-toggle="dropzone" data-dropzone-multiple
-                                data-dropzone-url="<?=base_url('dashboard/product')?>" data-form-submit="#frmTarget" data-redirect-when-success="false">
+                            <div 
+                            class="dropzone dropzone-multiple" 
+                            data-toggle="dropzone" 
+                            data-dropzone-multiple
+                            data-dropzone-url="<?=base_url('dashboard/product')?>" 
+                            data-form-submit="#frmTarget" 
+                            data-redirect-when-success="true" >
+                            <!-- ubah data-redirect-when-succes menjadi true jika ingin me-reload halaman jika data berhasil disimpan -->
                                 <div class="fallback">
                                     <div class="custom-file">
-                                        <input type="file" name="gambar" class="custom-file-input"
-                                            id="customFileUploadMultiple" multiple>
+                                        <input type="file" name="file" class="custom-file-input"
+                                            id="customFileUploadMultiple" multiple required="">
                                         <label class="custom-file-label" for="customFileUploadMultiple">Choose
                                             file</label>
                                     </div>
