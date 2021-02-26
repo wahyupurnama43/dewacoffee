@@ -1,26 +1,4 @@
 
-/*!
-
-=========================================================
-* Argon Dashboard PRO - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-
-* Coded by www.creative-tim.com
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-
-
-
-//
-// Layout
-//
 
 'use strict';
 
@@ -1675,16 +1653,67 @@ var Dropzones = (function() {
 			previewTemplate: preview.html(),
 			maxFiles: (!multiple) ? 1 : null,
 			acceptedFiles: (!multiple) ? 'image/*' : null,
+            /* CUSTOM */
+            autoProcessQueue: ($this.data('form-submit') != undefined ? false : true),
+            uploadMultiple: (!multiple) ? false : true,
+            parallelUploads: 10, /* berapa kali user bisa submit form/gambarnya */
+            /* ENDCUSTOM */
 			init: function() {
+                var vm = this;
 				this.on("addedfile", function(file) {
 					if (!multiple && currentFile) {
 						this.removeFile(currentFile);
 					}
 					currentFile = file;
-				})
+				});
+
+                /* CUSTOM */
+                if($this.data('form-submit')){
+                    $($this.data('form-submit')).on('click', '[type=submit]' ,function (e) {
+                        e.preventDefault();
+
+                        // kalo ga ada gambar, submit form kaya biasa aja gausah lewat ajax
+                        if(vm.getQueuedFiles().length > 0) {
+                            // proses submit form via ajax
+                            vm.processQueue();
+                        }else {
+                            $($this.data('form-submit')).submit();
+                        }
+                    });
+    
+                    this.on(((multiple) ? 'sendingmultiple' : 'sending'), function(file, xhr, formData) {
+                        $($this.data('form-submit')).find('[type=submit]').prop('disabled', true);
+                        // Masukin semua inputan dari FORM ke formdata nya Dropzone (nebeng)
+                        var data = $($this.data('form-submit')).serializeArray();
+                        $.each(data, function(key, el) {
+                            formData.append(el.name, el.value);
+                        });
+                    });
+                    
+                    // ini kalo responsecode dari PHP nya 200
+                    this.on(((multiple) ? 'successmultiple' : 'success'), function(e, response) {
+                        console.log(e);
+                        console.log(response.message);
+
+                        // reload halaman kalo berhasil
+                        if($this.data('redirect-when-success') === true)
+                            window.location.href = $this.data('dropzone-url');
+                    });
+                    
+                    // ini kalo responsecode dari PHP nya 400
+                    this.on(((multiple) ? 'errormultiple' : 'error'), function(e) {
+                        alert('terjadi error, cek log');
+                        console.error(e);
+                    });
+                    
+                    // ini kalo proses submit nya udah selesai
+                    this.on(((multiple) ? 'completemultiple' : 'complete'), function() {
+                        $($this.data('form-submit')).find('[type=submit]').removeAttr('disabled');
+                    });
+                }
+                /* ENDCUSTOM */
 			}
 		}
-
 		// Clear preview html
 		preview.html('');
 

@@ -5,5 +5,7 @@
 	require_once 'core/Database.php';
 	require_once 'core/Flasher.php';
 	require_once 'core/Url.php';
+    require_once 'core/Helper.php';
+
 
 	

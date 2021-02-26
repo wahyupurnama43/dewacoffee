@@ -62,7 +62,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="<?php echo BASE_URL ?>/dashboard/product" id="frmTarget" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-6">
@@ -104,10 +104,10 @@
                         <div class="col-lg-12">
                             <label class="form-control-label">Gambar</label>
                             <div class="dropzone dropzone-multiple" data-toggle="dropzone" data-dropzone-multiple
-                                data-dropzone-url="http://">
+                                data-dropzone-url="<?=base_url('dashboard/product')?>" data-form-submit="#frmTarget" data-redirect-when-success="false">
                                 <div class="fallback">
                                     <div class="custom-file">
-                                        <input type="file" name="gambar[]" class="custom-file-input"
+                                        <input type="file" name="gambar" class="custom-file-input"
                                             id="customFileUploadMultiple" multiple>
                                         <label class="custom-file-label" for="customFileUploadMultiple">Choose
                                             file</label>
@@ -118,7 +118,7 @@
                                         <div class="row align-items-center">
                                             <div class="col-auto">
                                                 <div class="avatar">
-                                                    <img class="avatar-img rounded" src="..." alt="..."
+                                                    <img class="avatar-img rounded" src="" alt="..."
                                                         data-dz-thumbnail>
                                                 </div>
                                             </div>
@@ -148,9 +148,10 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="submit" name="tambah" class="btn btn-primary" value="Simpan Data">
+                    <button type="submit" name="tambah" id="tambah" class="btn btn-primary" >Simpan Data </button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
