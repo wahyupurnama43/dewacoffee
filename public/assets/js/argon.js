@@ -1691,26 +1691,42 @@ var Dropzones = (function() {
                         });
 
                         // disini bisa kasih sweet alert loading atau pemberitahuan sudah di submit form nya
-                        
                     });
                     
                     // ini kalo responsecode dari PHP nya 200
                     this.on(((multiple) ? 'successmultiple' : 'success'), function(e, response) {
-                        console.log(e);
-                        console.log(response.message);
+						// console.log(e);
+                        // Swal.fire({
+						// 	icon: 'success',
+						// 	title: 'success',
+						// 	text: 'Berhasil Menyimpan Data',
+						// 	showConfirmButton: false,
+						// })
+                        // // disini bisa kasih sweet alert pemberitahuan sudah berhasil di simpan datanya
 
-                        // disini bisa kasih sweet alert pemberitahuan sudah berhasil di simpan datanya
-
-                        // reload halaman kalo berhasil
-                        if($this.data('redirect-when-success') === true)
-                            window.location.href = $this.data('dropzone-url');
+                        // // reload halaman kalo berhasil
+						// setInterval(function(){
+                        //     if($this.data('redirect-when-success') === true)
+                        //     window.location.href = $this.data('dropzone-url');
+						// },1000);
+                        
 
                     });
                     
                     // ini kalo responsecode dari PHP nya 400
                     this.on(((multiple) ? 'errormultiple' : 'error'), function(e) {
-                        alert('terjadi error, cek log');
-                        console.error(e);
+                        // alert('terjadi error, cek log');
+                        // console.error(e);
+
+						Swal.fire({
+							icon: 'error',
+							title: 'Oops...',
+							text: 'Gagal Menyimpan Data',
+							showConfirmButton: false,
+						})
+						setInterval(function(){
+                            window.location.href = $this.data('dropzone-url');
+						},1000);
 
                         // disini bisa kasih sweet alert pemberitahuan sudah gagal di simpan datanya
 

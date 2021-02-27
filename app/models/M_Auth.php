@@ -35,6 +35,7 @@ class M_Auth
                             $_SESSION['login'] = 'true';
                             $_SESSION['admin'] = 'true';
                             $_SESSION['username'] = $data['username'];
+                            $_SESSION['id'] = $data['id'];
 
                             Flasher::setFlash('Selamat Datang '.$data['username'],'success');
                             header('Location: '.BASE_URL.'/dashboard');

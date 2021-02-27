@@ -6,6 +6,7 @@
 	require_once 'core/Flasher.php';
 	require_once 'core/Url.php';
     require_once 'core/Helper.php';
+    require_once 'core/Encripsi.php';
 
 
 	
