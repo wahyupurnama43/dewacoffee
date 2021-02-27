@@ -80,8 +80,9 @@ class M_Product
         
     }
 
-    public function update($data,$id,$img)
+    public function update($data,$ID,$img)
     {
+        $id = Encripsi::encode('decrypt',$ID);
         if(empty($img) || $img === null){
             $sql = "UPDATE product SET judul=:judul,deskripsi=:deskripsi,neto=:neto,tipe_coffee=:tipe_coffee,price=:price WHERE id=:id";
             $this->db->query($sql);
@@ -126,6 +127,7 @@ class M_Product
 		$this->db->bind('id',$id);
 		$this->db->execute();
 
-        header('Location: '.BASE_URL.'/dashboard/edit_product/');
+        echo json_encode(['success' => 'Sukses']);
+
     }
 }

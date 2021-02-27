@@ -126,7 +126,9 @@ class Dashboard extends Controller {
 					}
 					$this->model('M_Product')->update($_POST,$id,$images);
 				}elseif(!isset($_FILES['file'])){
-					$this->model('M_Product')->update($_POST,$ID,$images);
+					$this->model('M_Product')->update($_POST,$id,$images);
+					Flasher::setFlash('Data Berhasil Di Perbaharui','success');
+					header('Location: '.BASE_URL.'/edit_product/'.$ID);
 				}
 
 				// kalo ga mau pake trycatch gapapa, tapi kalo ada gagal, langsung aja $responsecode = 400
@@ -172,10 +174,10 @@ class Dashboard extends Controller {
 		$this->view('template/footer');
 	}
 
-	public function delete_img($id){
+	public function delete_img(){
+		$id = $_POST['id'];
 		$ID = Encripsi::encode('decrypt',$id);
 		$this->model('M_Product')->delete_img($ID);
-		
 	}
 	
 }

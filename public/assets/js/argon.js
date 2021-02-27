@@ -1696,19 +1696,19 @@ var Dropzones = (function() {
                     // ini kalo responsecode dari PHP nya 200
                     this.on(((multiple) ? 'successmultiple' : 'success'), function(e, response) {
 						// console.log(e);
-                        // Swal.fire({
-						// 	icon: 'success',
-						// 	title: 'success',
-						// 	text: 'Berhasil Menyimpan Data',
-						// 	showConfirmButton: false,
-						// })
-                        // // disini bisa kasih sweet alert pemberitahuan sudah berhasil di simpan datanya
+                        // disini bisa kasih sweet alert pemberitahuan sudah berhasil di simpan datanya
+                        Swal.fire({
+							icon: 'success',
+							title: 'success',
+							text: 'Berhasil Menyimpan Data',
+							showConfirmButton: false,
+						})
 
-                        // // reload halaman kalo berhasil
-						// setInterval(function(){
-                        //     if($this.data('redirect-when-success') === true)
-                        //     window.location.href = $this.data('dropzone-url');
-						// },1000);
+                        // reload halaman kalo berhasil
+						setInterval(function(){
+                            if($this.data('redirect-when-success') === true)
+                            window.location.href = $this.data('dropzone-url');
+						},1000);
                         
 
                     });

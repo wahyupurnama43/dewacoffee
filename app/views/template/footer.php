@@ -30,30 +30,28 @@ if (flashData) {
     })
 };
 </script>
-<!-- <script>
-    // Dropzones.init()
-    Dropzone.options.frmTarget = {
-        autoProcessQueue: false,
-        url: 'http://localhost/dewacoffee/dashboard/product1',
-        init: function () {
-            var myDropzone = this;
+<script>
+$(document).on('click', '.hps-btn', function() {
+    var id = $(this).attr('id');
+    let ID = $(this).attr('data-id-product');
+    $.ajax({
+        type: 'POST',
+        url: "http://localhost/dewacoffee/dashboard/delete_img",
+        data: {
+            id: id,
+            ID: ID,
 
-            // Update selector to match your button
-            $("#tambah").click(function (e) {
-                e.preventDefault();
-                myDropzone.processQueue();
-            });
-
-            this.on('sending', function(file, xhr, formData) {
-                // Append all form inputs to the formData Dropzone will POST
-                var data = $('#frmTarget').serializeArray();
-                $.each(data, function(key, el) {
-                    formData.append(el.name, el.value);
-                });
-            });
+        },
+        success: function() {
+            window.window.location.href = 'http://localhost/dewacoffee/dashboard/edit_product/' +
+                ID;
+        },
+        error: function(response) {
+            console.log(response.responseText);
         }
-    }
-</script> -->
+    });
+});
+</script>
 </body>
 
 </html>

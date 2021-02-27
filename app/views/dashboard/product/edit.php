@@ -56,8 +56,8 @@
                         <div class="col-lg-12">
                             <label class="form-control-label">Gambar</label>
                             <div class="dropzone dropzone-multiple" data-toggle="dropzone" data-dropzone-multiple
-                                data-dropzone-url="<?=base_url('dashboard/edit_product/'.$data['product']['id'])?>"
-                                data-form-submit="#frmTarget" data-redirect-when-success="false">
+                                data-dropzone-url="<?=base_url('dashboard/edit_product/'.$id)?>"
+                                data-form-submit="#frmTarget" data-redirect-when-success="true">
                                 <!-- ubah data-redirect-when-succes menjadi true jika ingin me-reload halaman jika data berhasil disimpan -->
                                 <div class="fallback">
                                     <div class="custom-file">
@@ -120,7 +120,7 @@
                 </div>
                 <div class=""></div>
                 <div class="">
-                    <a href="<?=BASE_URL?>/dashboard/delete_img/<?=$id_img ?>" class="btn btn-danger"
+                    <a id="<?php echo $id_img; ?>" data-id-product="<?= $id?>" class="btn btn-danger hps-btn"
                         style="margin-top: 30px;">Delete</a>
                 </div>
             </div>
