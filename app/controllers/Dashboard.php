@@ -174,10 +174,27 @@ class Dashboard extends Controller {
 		$this->view('template/footer');
 	}
 
+	// fungsin untuk delete img product
 	public function delete_img(){
 		$id = $_POST['id'];
 		$ID = Encripsi::encode('decrypt',$id);
 		$this->model('M_Product')->delete_img($ID);
+	}
+
+	// fungsi untuk delete product
+	
+	public function delete_product($id){
+		$ID = Encripsi::encode('decrypt',$id);
+		$return = $this->model('M_Product')->delete_product($ID);
+
+		if($return == true){
+			Flasher::setFlash('Data Berhasil Di Delete','success');
+			header('Location: '.BASE_URL.'/dashboard/product');
+		}else{
+			Flasher::setFlash('Data Gagal Di Delete','error');
+			header('Location: '.BASE_URL.'/dashboard/product');
+		}
+
 	}
 	
 }

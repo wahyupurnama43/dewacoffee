@@ -40,7 +40,6 @@ $(document).on('click', '.hps-btn', function() {
         data: {
             id: id,
             ID: ID,
-
         },
         success: function() {
             window.window.location.href = 'http://localhost/dewacoffee/dashboard/edit_product/' +

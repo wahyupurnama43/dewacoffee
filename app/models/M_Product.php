@@ -129,5 +129,21 @@ class M_Product
 
         echo json_encode(['success' => 'Sukses']);
 
+    } 
+    public function delete_product($id)
+    {
+        $gallery = $this->getByAllId('gallery', $id);
+        foreach ($gallery as $gll) {
+            unlink('C:/xampp/htdocs/dewacoffee/public/upload/'.$gll['gambar']);
+        }
+        
+        
+        $sql = "DELETE FROM product WHERE id=:id";
+		$this->db->query($sql);
+		$this->db->bind('id',$id);
+		$this->db->execute();
+        
     }
+
+    
 }
