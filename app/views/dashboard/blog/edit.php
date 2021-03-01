@@ -10,7 +10,7 @@
             </div>
             <br>
             <?php $id = Encripsi::encode('encrypt',$data['blog']['id']);?>
-            <form action="<?php echo BASE_URL ?>/dashboard/edit_blog/<?= $id ?>"  method="post" encrypt="multipart/form-data">
+            <form action="<?php echo BASE_URL ?>/dashboard/edit_blog/<?= $id ?>"  method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-12">
@@ -26,6 +26,18 @@
                             <div class="form-group">
                                 <label class="form-control-label" for="deskripsi">Deskripsi</label>
                                 <textarea name="deskripsi" id="des"><?= $data['blog']['deskripsi'] ?></textarea>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-lg-12">
+                             <div class="form-group">
+                                <label class="form-control-label">Pilih Banner</label>
+                                <div class="custom-file">  
+                                    <input type="file" class="custom-file-input" name="gambar">
+                                    <label class="custom-file-label">Select file</label>
+                                </div>
+                                <img src="<?= BASEURL ?>/upload/<?= $data['blog']['banner'] ?>" alt="" class="mt-4" width="100px">
                             </div>
                         </div>
                     </div>

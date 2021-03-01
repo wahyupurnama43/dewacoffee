@@ -110,7 +110,6 @@ class Dashboard extends Controller {
 		$ext = pathinfo($name, PATHINFO_EXTENSION);
 		$newfilename = uniqid(rand()) . '.' . $ext;
 		move_uploaded_file($tmp_name,  'public/upload/'.$newfilename);
-
 		return $newfilename;
 	}
 
@@ -251,7 +250,14 @@ class Dashboard extends Controller {
 	{
 		$ID = Encripsi::encode('decrypt',$id);
 		if (isset($_POST['submit'])) {
-			if ($this->model('M_Blog')->update($id) == true) {
+			if (isset($_FILES) && $_FILES['gambar']['error'] == 0 ) {
+				$gambar = $this->handle_upload_image($_FILES['gambar']);
+				if ($this->model('M_Blog')->update($id,$gambar) == true) {
+					Flasher::setFlash('Data Berhasil Di Update','success');
+					header('Location: '.BASE_URL.'/dashboard/blog/'.$id);
+				}
+			}
+			if ($this->model('M_Blog')->update($id,null) == true) {
 				Flasher::setFlash('Data Berhasil Di Update','success');
 				header('Location: '.BASE_URL.'/dashboard/blog/'.$id);
 			}
