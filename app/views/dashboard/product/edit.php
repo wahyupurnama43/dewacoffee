@@ -103,7 +103,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" name="tambah" id="tambah" class="btn btn-primary">Simpan Data </button>
+                    <button type="submit" name="tambah" id="tambah" class="btn btn-primary">Simpan Data</button>
                 </div>
             </form>
 
@@ -120,8 +120,11 @@
                 </div>
                 <div class=""></div>
                 <div class="">
-                    <a id="<?php echo $id_img; ?>" data-id-product="<?= $id?>" class="btn btn-danger hps-btn"
-                        style="margin-top: 30px;">Delete</a>
+                    <?php if ($gambar['status'] !== 'active'): ?>
+                        <a id="<?php echo $id_img; ?>" data-id-product="<?= $id?>" class="btn btn-success active-btn text-white" style="margin-top: 30px;"> Active </a>
+                        <a id="<?php echo $id_img; ?>" data-id-product="<?= $id?>" class="btn btn-danger hps-btn text-white"
+                            style="margin-top: 30px;">Delete</a>
+                    <?php endif ?>
                 </div>
             </div>
             <?php endforeach;?>

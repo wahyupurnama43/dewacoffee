@@ -51,7 +51,7 @@
             // selects the first image inside the images array (the collection of elements with the .listing-gallery-img class)
             const firstImage = images[0];
             // adds the 'selected' class to the first image of the array so it's not faded (see CSS)
-            firstImage.classList.add("selected");
+            // firstImage.classList.add("selected");
 
             // We use a JavaScript 'forloop' to iterate over the 'images' array
             images.forEach((image) => {

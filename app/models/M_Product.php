@@ -34,7 +34,7 @@ class M_Product
         return $this->db->single();
     }
 
-    // ambil data berdasarkan id 
+    // ambil data  berdasarkan id 
     public function getByAllId($table,$id,$by){
         $sql = "SELECT * FROM $table WHERE $by=:id";
         $this->db->query($sql);
@@ -42,6 +42,13 @@ class M_Product
         return $this->db->resultSet();
     }
 
+    public function getProductIJ($id)
+    {
+        $sql = "SELECT * FROM product  WHERE product.id=:id";
+        $this->db->query($sql);
+        $this->db->bind('id',$id);
+        return $this->db->single();
+    }
     
 
     // ambil data berdasarkan id 
@@ -68,14 +75,22 @@ class M_Product
         $this->db->execute();
 
         $product = $this->getData();
-
-        foreach ($img as $i) {
-            $sql2 = "INSERT INTO gallery (`gambar`,`id_product`) VALUES (:gambar,:id_product)";
-
-            $this->db->query($sql2);
-            $this->db->bind('gambar',$i);
-            $this->db->bind('id_product',$product['id']);
-            $this->db->execute();
+        foreach ($img as $key => $i) {
+            if ($key == 0) {
+                $sql2 = "INSERT INTO gallery (`gambar`,`id_product`,`status`) VALUES (:gambar,:id_product,:status)";
+                $this->db->query($sql2);
+                $this->db->bind('gambar',$i);
+                $this->db->bind('id_product',$product['id']);
+                $this->db->bind('status','active');
+                $this->db->execute();
+            }else{
+                $sql2 = "INSERT INTO gallery (`gambar`,`id_product`) VALUES (:gambar,:id_product)";
+                $this->db->query($sql2);
+                $this->db->bind('gambar',$i);
+                $this->db->bind('id_product',$product['id']);
+                $this->db->execute();
+            }
+           
         }
         
     }
@@ -132,18 +147,35 @@ class M_Product
     } 
     public function delete_product($id)
     {
-        $gallery = $this->getByAllId('gallery', $id);
+        $gallery = $this->getByAllId('gallery', $id,'id_product');
         foreach ($gallery as $gll) {
             unlink('C:/xampp/htdocs/dewacoffee/public/upload/'.$gll['gambar']);
         }
-        
-        
         $sql = "DELETE FROM product WHERE id=:id";
 		$this->db->query($sql);
 		$this->db->bind('id',$id);
 		$this->db->execute();
-        
+        return true;
     }
 
+    public function active_img($id,$ID)
+    {
+        $gallery = $this->getByAllId('gallery', $id ,'id_product');
+        foreach ($gallery as $gll) {
+            if ($gll['status'] == 'active') {
+                $sql = "UPDATE gallery SET status=:status WHERE id=:id";
+                $this->db->query($sql);
+                $this->db->bind('id',$gll['id']);
+                $this->db->bind('status','disable');
+                $this->db->execute();
+            }
+        }
+        $sql = "UPDATE gallery SET status=:status WHERE id=:id";
+        $this->db->query($sql);
+        $this->db->bind('id',$ID);
+        $this->db->bind('status','active');
+        $this->db->execute();
+        echo json_encode(['status' => 'sukses']);
+    }
     
 }

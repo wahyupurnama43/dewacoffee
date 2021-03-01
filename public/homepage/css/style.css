@@ -145,7 +145,8 @@
 .wrapper-1 .container-1 .bottom .left .details {
     padding: 10px 20px;
     float: left;
-    width: calc(70% - 40px);
+    /*width: calc(70% - 40px);*/
+    margin-top: 10px;
 }
 .wrapper-1 .container-1 .bottom .left .buy {
     float: right;
@@ -1101,7 +1102,6 @@ footer .about .unic p{
 }
 
 .listing-gallery-img-sm {
-    height: 200px;
     overflow: hidden;
 }
 .isting-gallery-img-lg img{

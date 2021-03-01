@@ -1,6 +1,7 @@
 <?php
 
 class Dashboard extends Controller {
+	// fungsi untutk home dashboard
 	public function index() {
 		if(isset($_SESSION) && $_SESSION['login'] == true){
 			if(isset($_SESSION) && $_SESSION['admin'] == true){
@@ -27,6 +28,7 @@ class Dashboard extends Controller {
 		// $this->view('template/footer');
 	}
 
+	//fungsi untuk dashboaard product
 	public function product()
 	{
 		if(	$_SERVER['REQUEST_METHOD'] == 'POST')
@@ -84,6 +86,7 @@ class Dashboard extends Controller {
 		
 	}
 
+	// fungsi untuk memecah gambar 
 	public function serialize_files(array $files)
 	{
 		$serialized = [];
@@ -96,6 +99,7 @@ class Dashboard extends Controller {
 		return $serialized;
 	}
 
+	// fungsi untuk upload gambar
 	public function handle_upload_image($file)
 	{
 		$error = $file['error'];
@@ -104,15 +108,14 @@ class Dashboard extends Controller {
 		$type = $file['type'];
 		$tmp_name = $file['tmp_name']; 
 		$ext = pathinfo($name, PATHINFO_EXTENSION);
-
 		$newfilename = uniqid(rand()) . '.' . $ext;
 		move_uploaded_file($tmp_name,  'public/upload/'.$newfilename);
 
 		return $newfilename;
 	}
 
+	// fungsi untuk page edit product
 	public function edit_product($id){
-
 		if(	$_SERVER['REQUEST_METHOD'] == 'POST')
 		{
 			$responsecode = 200;
@@ -190,11 +193,83 @@ class Dashboard extends Controller {
 		if($return == true){
 			Flasher::setFlash('Data Berhasil Di Delete','success');
 			header('Location: '.BASE_URL.'/dashboard/product');
-		}else{
-			Flasher::setFlash('Data Gagal Di Delete','error');
-			header('Location: '.BASE_URL.'/dashboard/product');
 		}
-
 	}
-	
+
+	//function untuk active img
+	public function active_img()
+	{
+	    $id = $_POST['ID'];
+	    $id_img = $_POST['id'];
+	    $ID = Encripsi::encode('decrypt',$id);
+	    $img = Encripsi::encode('decrypt',$id_img);
+		$this->model('M_Product')->active_img($ID,$img);
+	}
+
+	/*
+	|--------------------------------------------------------------------------
+	| PAGE BLOG
+	|--------------------------------------------------------------------------
+	|
+	| UNTUK LOAD PAGE BLOG DI DASHBOARD ADMIN
+	| 
+	|--------------------------------------------------------------------------
+	*/
+
+	// fungsi untuk Blog dashboard
+	public function blog()
+	{
+		if (isset($_POST['submit'])) {
+			$gambar = $this->handle_upload_image($_FILES['gambar']);
+			$result = $this->model('M_Blog')->upload($gambar);
+			if ($result == true) {
+				Flasher::setFlash('Data Blog Behasil Di Tambah','success');
+				header('Location: '.BASE_URL.'/dashboard/blog');
+			}
+		}else{
+			$data['header'] = 'Blog';
+			$data['link_header'] ='dashboard/blog';
+			$data['page'] = 'Home';
+			$data['blog'] = $this->model('M_Blog')->ambilAllData('Blog');
+			$this->view('template/header',$data);
+			$this->view('dashboard/blog/index',$data);
+			$this->view('template/footer');
+		}
+	}
+	public function delete_blog($id)
+	{
+		$ID = Encripsi::encode('decrypt',$id);
+		$return = $this->model('M_Blog')->delete_blog($ID);
+
+		if($return == true){
+			Flasher::setFlash('Data Berhasil Di Delete','success');
+			header('Location: '.BASE_URL.'/dashboard/blog');
+		}
+	}
+
+	public function edit_blog($id)
+	{
+		$ID = Encripsi::encode('decrypt',$id);
+		if (isset($_POST['submit'])) {
+			if ($this->model('M_Blog')->update($id) == true) {
+				Flasher::setFlash('Data Berhasil Di Update','success');
+				header('Location: '.BASE_URL.'/dashboard/blog/'.$id);
+			}
+		}else{
+			$data['header'] = 'Blog';
+			$data['link_header'] ='dashboard/blog';
+			$data['page'] = 'Edit';
+			$data['blog'] = $this->model('M_Blog')->ambilDataBy($ID,'id','blog','single');
+			$data['tags'] = $this->model('M_Blog')->ambilDataBy($ID,'id_blog','tags','resultSet');
+			$this->view('template/header',$data);
+			$this->view('dashboard/blog/edit',$data);
+			$this->view('template/footer');
+		}
+	}
+
+	public function delete_tags()
+	{
+		$id = $_POST['id'];
+		$this->model('M_Blog')->delete_tags($id);
+	}
 }

@@ -1,6 +1,6 @@
 
     <div class="site-wrap">
-            <div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('<?= BASEURL ?>/assets/img/kopiarang/kopiarang2.jpg');"  data-aos="fade-down" data-aos-delay="300">
+            <div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('<?= BASEURL ?>/assets/img/news/news-1.jpg');"  data-aos="fade-down" data-aos-delay="300">
                 <div class="container">
                     <div class="row same-height justify-content-center">
                         <div class="col-md-12 col-lg-10">

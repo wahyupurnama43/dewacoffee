@@ -19,5 +19,7 @@ class Flasher
             if ($ret_obj) return htmlspecialchars(json_encode($data), ENT_QUOTES,  'UTF-8');
             return $data['aksi'];
         }
+
+      
     }
 }

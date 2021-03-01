@@ -1708,7 +1708,7 @@ var Dropzones = (function() {
 						setInterval(function(){
                             if($this.data('redirect-when-success') === true)
                             window.location.href = $this.data('dropzone-url');
-						},1000);
+						},800);
                         
 
                     });
@@ -1726,7 +1726,7 @@ var Dropzones = (function() {
 						})
 						setInterval(function(){
                             window.location.href = $this.data('dropzone-url');
-						},1000);
+						},800);
 
                         // disini bisa kasih sweet alert pemberitahuan sudah gagal di simpan datanya
 
