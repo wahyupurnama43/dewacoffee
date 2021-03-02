@@ -4,8 +4,9 @@ class Blog extends Controller
 {
     public function index()
     {
+        $data['blog'] = $this->model('M_Home')->getBlogData();
         $this->view('template/homepage/header');
-        $this->view('blog/index');
+        $this->view('blog/index',$data);
         $this->view('template/homepage/footer');
     }
 

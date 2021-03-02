@@ -118,10 +118,14 @@
                             <div class="collapse" id="navbar-dashboards">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="<?= BASE_URL ?>/dashboard/banner-home" class="nav-link  <?= (Url::checkAll() == 'dashboard/banner-home' || Url::checkAll() == 'dashboard/banner-product') ? 'active' : '' ?>">Banner Home</a>
+                                        <a href="<?= BASE_URL ?>/dashboard/banner-home" class="nav-link  <?= (Url::checkAll() == 'dashboard/banner-home') ? 'active' : '' ?>">Banner Home</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="<?= BASE_URL ?>/dashboard/banner-product" class="nav-link">Banner
+                                        <a href="<?= BASE_URL ?>/dashboard/banner-product" class="nav-link class="nav-link  <?= (Url::checkAll() == 'dashboard/banner-product') ? 'active' : '' ?>">Banner
+                                            Product</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?= BASE_URL ?>/dashboard/banner-blog" class="nav-link class="nav-link  <?= (Url::checkAll() == 'dashboard/banner-blog') ? 'active' : '' ?>">Banner
                                             Product</a>
                                     </li>
                                 </ul>

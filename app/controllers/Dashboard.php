@@ -20,12 +20,7 @@ class Dashboard extends Controller {
 			Flasher::setFlash('login terlebih dahulu','error');
 			header('Location: '.BASE_URL.'/auth');
 		}
-		// $data['header'] = 'Dashboard';
-		// $data['link_header'] = 'dashboard';
-		// $data['page'] = 'Home';
-		// $this->view('template/header',$data);
-		// $this->view('dashboard/index');
-		// $this->view('template/footer');
+		
 	}
 
 	//fungsi untuk dashboaard product
@@ -323,13 +318,11 @@ class Dashboard extends Controller {
 		}
 	}
 
-	
-
 	public function edit_contact($id)
 	{
 		$ID = Encripsi::encode('decrypt',$id);
 		if (isset($_POST['submit'])) {
-			$data = $this->model('M_Contact')->upload();
+			$data = $this->model('M_Contact')->update($ID);
 			if ($data == true) {
 				Flasher::setFlash('Data Berhasil Di Tambah','success');
 				header('Location: '.BASE_URL.'/dashboard/contact/');
@@ -337,14 +330,87 @@ class Dashboard extends Controller {
 				Flasher::setFlash('Data Gagal Di Hapus','error');
 				header('Location: '.BASE_URL.'/dashboard/contact/');
 			}
+		}else{
+			$data['header'] = 'Contact';
+			$data['link_header'] ='dashboard/contact';
+			$data['page'] = 'edit';
+			$data['contact'] = $this->model('M_Contact')->getAllDataById('page_contact',$ID);
+			$this->view('template/header',$data);
+			$this->view('dashboard/contact/edit',$data);
+			$this->view('template/footer');
+			}
+	}
+
+	/*
+	|--------------------------------------------------------------------------
+	| PAGE ABOUT
+	|--------------------------------------------------------------------------
+	|
+	| UNTUK LOAD PAGE ABOUT DI DASHBOARD ADMIN
+	| 
+	|--------------------------------------------------------------------------
+	*/
+
+	public function about()
+	{
+	 	if (isset($_POST['submit'])) {
+	 		$gambar = $this->handle_upload_image($_FILES['gambar']);
+			$data = $this->model('M_About')->upload($gambar);
+			if ($data == true) {
+				Flasher::setFlash('Data Berhasil Di Tambah','success');
+				header('Location: '.BASE_URL.'/dashboard/about/');
+			}else{
+				Flasher::setFlash('Data Gagal Di Hapus','error');
+				header('Location: '.BASE_URL.'/dashboard/about/');
+			}
+		}
+		$data['header'] = 'About';
+		$data['link_header'] ='dashboard/about';
+		$data['page'] = 'home';
+		$data['about'] = $this->model('M_About')->getAll();
+		$this->view('template/header',$data);
+		$this->view('dashboard/about/index',$data);
+		$this->view('template/footer');   
+	}
+
+	public function edit_about($id)
+	{
+		$ID = Encripsi::encode('decrypt',$id);
+    	if (isset($_POST['submit'])) {
+    		if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] > 0) {
+				$data = $this->model('M_About')->update($ID,null);
+    		}else{
+    			$gambar = $this->handle_upload_image($_FILES['gambar']);
+    			$data = $this->model('M_About')->update($ID,$gambar);
+    		}
+			if ($data == true) {
+				Flasher::setFlash('Data Berhasil Di Update','success');
+				header('Location: '.BASE_URL.'/dashboard/about/');
+			}else{
+				Flasher::setFlash('Data Gagal Di Hapus','error');
+				header('Location: '.BASE_URL.'/dashboard/about/');
+			}
+		}else{
+			$data['header'] = 'About';
+			$data['link_header'] ='dashboard/about';
+			$data['page'] = 'Edit';
+			$data['about'] = $this->model('M_About')->getById($ID);
+			$this->view('template/header',$data);
+			$this->view('dashboard/about/edit',$data);
+			$this->view('template/footer'); 
 		}
 
-		$data['header'] = 'Contact';
-		$data['link_header'] ='dashboard/contact';
-		$data['page'] = 'edit';
-		$data['contact'] = $this->model('M_Contact')->getAllDataById('page_contact',$ID);
-		$this->view('template/header',$data);
-		$this->view('dashboard/contact/edit',$data);
-		$this->view('template/footer');
+	}
+	public function delete_about($id)
+	{
+		$ID = Encripsi::encode('decrypt',$id);
+		$data = $this->model('M_About')->delete_about($ID);
+		if ($data == true) {
+			Flasher::setFlash('Data Berhasil Di Hapus','success');
+			header('Location: '.BASE_URL.'/dashboard/about/');
+		}else{
+			Flasher::setFlash('Data Gagal Di Hapus','error');
+			header('Location: '.BASE_URL.'/dashboard/about/');
+		}
 	}
 }

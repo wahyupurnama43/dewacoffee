@@ -3,14 +3,14 @@
         <div class="card">
             <!-- Card header -->
             <div class="card-header d-flex justify-content-between">
-                <h3 class="mb-0">Blog</h3>
+                <h3 class="mb-0">About Us</h3>
                 <div class=""></div>
                 <div class="">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addProduct">
-                        <span class="btn-inner--text ">Tambah Blog </span>
+                    <!-- <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addProduct">
+                        <span class="btn-inner--text ">Tambah Contact us </span>
                         <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
-                    </button>
+                    </button> -->
 
                 </div>
             </div>
@@ -19,36 +19,37 @@
                     <thead class="thead-light">
                         <tr>
                             <th>id</th>
-                            <th>Judul</th>
-                            <th>User</th>
-                            <th>Upload</th>
+                            <th>Company</th>
+                            <th width="20px">Deskripsi</th>
+                            <th>Banner</th>
                             <th>Action</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         <?php $i=1 ?>
-                        <?php foreach ($data['blog'] as $blog): ?>
+                        <?php foreach ($data['about'] as $a): ?>
+                            <?php $id = Encripsi::encode('encrypt',$a['id']) ?>
                             <tr>
-                                <td><?= $i++  ?></td>
-                                <td><?= $blog['judul'] ?> </td>
-                                <td><?= $blog['username'] ?></td>
-                                <td><?= $blog['created_at'] ?></td>
-                                <?php $id = Encripsi::encode('encrypt',$blog['id']) ?>
+                                <td> <?= $i++ ?> </td>
+                                <td> <?= $a['company'] ?> </td>
+                                <td> <?= substr($a['deskripsi'],0,90) ?> </td>
+                                <td > <img src=" <?= BASEURL ?>/upload/<?= $a['banner'] ?>  " width="50px"alt=""></td>
                                 <td>
-                                    <a href="<?= BASE_URL?>/dashboard/edit_blog/<?= $id?>"
+                                     <a href="<?= BASE_URL?>/dashboard/edit_about/<?= $id?>"
                                         class="btn btn-success btn-sm">
                                         <i class="far fa-edit"></i>
                                     </a>
-                                    <a href="http://localhost/dewacoffee/dashboard/delete_blog/<?= $id ?>" class="btn btn-danger btn-sm " data-url-page="">
+                                   <!--  <a href="<?= BASE_URL?>/dashboard/delete_about/<?= $id ?>" class="btn btn-danger btn-sm " data-url-page="">
                                         <i class="far fa-trash-alt"></i>
-                                    </a>
+                                    </a> -->
                                 </td>
                             </tr>
                         <?php endforeach ?>
+
                     </tbody>
                 </table>
-            </div>
+            </div> 
         </div>
     </div>
 </div>
@@ -65,50 +66,45 @@
                 </button>
             </div>
 
-            <form action="<?php echo BASE_URL ?>/dashboard/blog"  method="POST" enctype="multipart/form-data" >
+            <form action="<?php echo BASE_URL ?>/dashboard/about" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label class="form-control-label" for="judul">Judul Blog</label>
-                                <input type="text" class="form-control" id="judul" name="judul"
-                                    placeholder="Judul Blog">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label class="form-control-label" for="deskripsi">Deskripsi</label>
-                                <textarea name="deskripsi" id="des"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                         <div class="col-lg-12">
-                            <div class="form-group">
-                                 <label class="form-control-label" for="tags_blog" >Tags</label>
-                                 <br>
-                                <input type="text" class="form-control" id="tags_blog"  data-toggle="tags" name="tags[]" value="Contoh" />
-                            </div>
-                        </div>
-                    </div>  
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <label class="form-control-label">Pilih Banner</label>
-                            <div class="custom-file">  
-                                <input type="file" class="custom-file-input" name="gambar">
-                                <label class="custom-file-label">Select file</label>
+                                <label class="form-control-label" for="address">Nama Usaha</label>
+                                <input type="text" class="form-control" id="nama_logo" name="nama_logo"
+                                    placeholder="Nama Usaha" required>
                             </div>
                         </div>
                     </div>
 
+                    <div class="row">
+                         <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="Deskripsi">Deskripsi Usaha</label>
+                                <textarea name="Deskripsi" class="form-control" rows="5" required=""></textarea>
+                            </div>
+                        </div>
+                       
+                    </div>
+
+                    <div class="row">
+                         <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="Deskripsi">Banner</label>
+                                 <div class="custom-file">  
+                                    <input type="file" class="custom-file-input" name="gambar">
+                                    <label class="custom-file-label">Select file</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" name="submit" class="btn btn-primary">Simpan Data </button>
+                    <button type="submit" name="submit" id="tambah" class="btn btn-primary">Simpan Data</button>
                 </div>
             </form>
-          
+
         </div>
     </div>
 </div>
