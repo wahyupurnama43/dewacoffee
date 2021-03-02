@@ -14,4 +14,11 @@ class M_Home
         $this->db->query($sql);
         return $this->db->resultSet();
     }
+
+    public function getBlogData()
+    {
+        $sql = "SELECT * FROM blog";
+        $this->db->query($sql);
+        return $this->db->resultSet();
+    }
 }

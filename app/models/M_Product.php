@@ -90,7 +90,6 @@ class M_Product
                 $this->db->bind('id_product',$product['id']);
                 $this->db->execute();
             }
-           
         }
         
     }

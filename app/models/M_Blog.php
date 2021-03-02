@@ -31,7 +31,7 @@ class M_Blog
     public function upload($gambar)
     {
         $judul =  htmlspecialchars($_POST['judul'],ENT_QUOTES);
-        $deskripsi =  htmlspecialchars($_POST['deskripsi'],ENT_QUOTES);
+        $deskripsi =  $_POST['deskripsi'];
         $tags =  $_POST['tags'][0];
         $id_user = $_SESSION['id'];
         $tag = explode(',',$tags);
@@ -75,7 +75,7 @@ class M_Blog
     {
         $ID = Encripsi::encode('decrypt',$id);
         $judul =  htmlspecialchars($_POST['judul'],ENT_QUOTES);
-        $deskripsi =  htmlspecialchars($_POST['deskripsi'],ENT_QUOTES);
+        $deskripsi =  $_POST['deskripsi'];
         $tags =  $_POST['tags'][0];
         $id_user = $_SESSION['id'];
         $tag = explode(',',$tags);
@@ -99,41 +99,20 @@ class M_Blog
             $this->db->bind('id_user',$id_user);
             $this->db->execute();
         }
-      
+    
 
-        // masukkin data ke tags
-        $allTag = $this->ambilDataBy($ID,'id_blog','tags','resultSet');
-           
-        foreach ($allTag as $altag) {
-            var_dump($altag);die;
-            // foreach ($tag as $t) {
-            //     if($altag['tag'] === $t){
-            //         var_dump('ada');die;
-            //         $sql2 = "UPDATE tags SET tag=:tag WHERE id_blog=$ID && id=:id";
-            //         $this->db->query($sql2);
-            //         $this->db->bind('tag',$t);
-            //         $this->db->bind('id',$altag['id']);
-            //         $data = $this->db->execute();
-            //         if ($data == null) {
-            //             Flasher::setFlash('Tag yang anda masukkan sudah ada','error');
-            //             header('Location: '. BASE_URL .'/dashboard/edit_blog/'.$id);
-            //         }
-            //     }else if($t === '' || $t === null)
-            //     {
-            //         var_dump('kosong');die;
-            //         return true;
-            //     }else{
-            //         var_dump('ada');die;
-            //         $sql3 = "INSERT INTO tags (`tag`,`id_blog`) VALUES (:tag,:id_blog)";
-            //         $this->db->query($sql3);
-            //         $this->db->bind('tag',$t);
-            //         $this->db->bind('id_blog',$ID);
-            //         $this->db->execute();
-            //     }
-            // }
-         }
-
-        return true;
+        if (isset($tags) && $tags !== '') {
+            foreach ($tag as $t) {
+                $sql3 = "INSERT INTO tags (`tag`,`id_blog`) VALUES (:tag,:id_blog)";
+                $this->db->query($sql3);
+                $this->db->bind('tag', $t);
+                $this->db->bind('id_blog', $ID);
+                $this->db->execute();
+            }
+            return true;
+        }else{
+            return true;
+        }
     }
 
     public function delete_tags($id)

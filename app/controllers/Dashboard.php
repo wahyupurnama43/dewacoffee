@@ -278,4 +278,73 @@ class Dashboard extends Controller {
 		$id = $_POST['id'];
 		$this->model('M_Blog')->delete_tags($id);
 	}
+
+
+	/*
+	|--------------------------------------------------------------------------
+	| PAGE CONTACT US
+	|--------------------------------------------------------------------------
+	|
+	| UNTUK LOAD PAGE CONTACT US DI DASHBOARD ADMIN
+	| 
+	|--------------------------------------------------------------------------
+	*/
+
+	public function contact()
+	{
+		if (isset($_POST['submit'])) {
+			$data = $this->model('M_Contact')->upload();
+			if ($data == true) {
+				Flasher::setFlash('Data Berhasil Di Tambah','success');
+				header('Location: '.BASE_URL.'/dashboard/contact/');
+			}else{
+				Flasher::setFlash('Data Gagal Di Hapus','error');
+				header('Location: '.BASE_URL.'/dashboard/contact/');
+			}
+		}
+		$data['header'] = 'Contact';
+		$data['link_header'] ='dashboard/contact';
+		$data['page'] = 'home';
+		$data['contact'] = $this->model('M_Contact')->getAllData('page_contact');
+		$this->view('template/header',$data);
+		$this->view('dashboard/contact/index',$data);
+		$this->view('template/footer');
+	}
+	public function delete_contact($id)
+	{
+		$ID = Encripsi::encode('decrypt',$id);
+		$data = $this->model('M_Contact')->delete_contact($ID);
+		if ($data == true) {
+			Flasher::setFlash('Data Berhasil Di Hapus','success');
+			header('Location: '.BASE_URL.'/dashboard/contact/');
+		}else{
+			Flasher::setFlash('Data Gagal Di Hapus','error');
+			header('Location: '.BASE_URL.'/dashboard/contact/');
+		}
+	}
+
+	
+
+	public function edit_contact($id)
+	{
+		$ID = Encripsi::encode('decrypt',$id);
+		if (isset($_POST['submit'])) {
+			$data = $this->model('M_Contact')->upload();
+			if ($data == true) {
+				Flasher::setFlash('Data Berhasil Di Tambah','success');
+				header('Location: '.BASE_URL.'/dashboard/contact/');
+			}else{
+				Flasher::setFlash('Data Gagal Di Hapus','error');
+				header('Location: '.BASE_URL.'/dashboard/contact/');
+			}
+		}
+
+		$data['header'] = 'Contact';
+		$data['link_header'] ='dashboard/contact';
+		$data['page'] = 'edit';
+		$data['contact'] = $this->model('M_Contact')->getAllDataById('page_contact',$ID);
+		$this->view('template/header',$data);
+		$this->view('dashboard/contact/edit',$data);
+		$this->view('template/footer');
+	}
 }
