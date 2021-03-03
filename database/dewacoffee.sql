@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 03, 2021 at 09:50 AM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.2
+-- Waktu pembuatan: 04 Mar 2021 pada 00.03
+-- Versi server: 10.3.16-MariaDB
+-- Versi PHP: 7.3.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `auth`
+-- Struktur dari tabel `auth`
 --
 
 CREATE TABLE `auth` (
@@ -36,7 +36,7 @@ CREATE TABLE `auth` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `auth`
+-- Dumping data untuk tabel `auth`
 --
 
 INSERT INTO `auth` (`id`, `username`, `email`, `password`, `level`) VALUES
@@ -45,7 +45,7 @@ INSERT INTO `auth` (`id`, `username`, `email`, `password`, `level`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `blog`
+-- Struktur dari tabel `blog`
 --
 
 CREATE TABLE `blog` (
@@ -58,7 +58,7 @@ CREATE TABLE `blog` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `blog`
+-- Dumping data untuk tabel `blog`
 --
 
 INSERT INTO `blog` (`id`, `judul`, `deskripsi`, `id_user`, `banner`, `created_at`) VALUES
@@ -67,7 +67,7 @@ INSERT INTO `blog` (`id`, `judul`, `deskripsi`, `id_user`, `banner`, `created_at
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contact`
+-- Struktur dari tabel `contact`
 --
 
 CREATE TABLE `contact` (
@@ -79,7 +79,7 @@ CREATE TABLE `contact` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `contact`
+-- Dumping data untuk tabel `contact`
 --
 
 INSERT INTO `contact` (`id`, `nama`, `email`, `message`, `created_at`) VALUES
@@ -88,7 +88,7 @@ INSERT INTO `contact` (`id`, `nama`, `email`, `message`, `created_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gallery`
+-- Struktur dari tabel `gallery`
 --
 
 CREATE TABLE `gallery` (
@@ -100,7 +100,7 @@ CREATE TABLE `gallery` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `gallery`
+-- Dumping data untuk tabel `gallery`
 --
 
 INSERT INTO `gallery` (`id`, `gambar`, `status`, `id_product`, `created_at`) VALUES
@@ -120,7 +120,7 @@ INSERT INTO `gallery` (`id`, `gambar`, `status`, `id_product`, `created_at`) VAL
 -- --------------------------------------------------------
 
 --
--- Table structure for table `page_about`
+-- Struktur dari tabel `page_about`
 --
 
 CREATE TABLE `page_about` (
@@ -131,7 +131,7 @@ CREATE TABLE `page_about` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `page_about`
+-- Dumping data untuk tabel `page_about`
 --
 
 INSERT INTO `page_about` (`id`, `company`, `deskripsi`, `banner`) VALUES
@@ -140,26 +140,27 @@ INSERT INTO `page_about` (`id`, `company`, `deskripsi`, `banner`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `page_blog`
+-- Struktur dari tabel `page_blog`
 --
 
 CREATE TABLE `page_blog` (
   `id` int(11) NOT NULL,
   `judul` varchar(100) NOT NULL,
-  `deskripsi` text NOT NULL
+  `deskripsi` text NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `page_blog`
+-- Dumping data untuk tabel `page_blog`
 --
 
-INSERT INTO `page_blog` (`id`, `judul`, `deskripsi`) VALUES
-(1, 'asdasd', 'asdasd');
+INSERT INTO `page_blog` (`id`, `judul`, `deskripsi`, `created_at`) VALUES
+(8, 'About Coffee', 'About Coffee', '2021-03-03 21:05:26');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `page_contact`
+-- Struktur dari tabel `page_contact`
 --
 
 CREATE TABLE `page_contact` (
@@ -171,7 +172,7 @@ CREATE TABLE `page_contact` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `page_contact`
+-- Dumping data untuk tabel `page_contact`
 --
 
 INSERT INTO `page_contact` (`id`, `address`, `email`, `phone`, `maps`) VALUES
@@ -180,7 +181,7 @@ INSERT INTO `page_contact` (`id`, `address`, `email`, `phone`, `maps`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `page_home`
+-- Struktur dari tabel `page_home`
 --
 
 CREATE TABLE `page_home` (
@@ -191,7 +192,7 @@ CREATE TABLE `page_home` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `page_home`
+-- Dumping data untuk tabel `page_home`
 --
 
 INSERT INTO `page_home` (`id`, `judul`, `deskripsi`, `banner`) VALUES
@@ -200,7 +201,7 @@ INSERT INTO `page_home` (`id`, `judul`, `deskripsi`, `banner`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `page_product`
+-- Struktur dari tabel `page_product`
 --
 
 CREATE TABLE `page_product` (
@@ -209,7 +210,7 @@ CREATE TABLE `page_product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `page_product`
+-- Dumping data untuk tabel `page_product`
 --
 
 INSERT INTO `page_product` (`id`, `banner`) VALUES
@@ -218,7 +219,7 @@ INSERT INTO `page_product` (`id`, `banner`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product`
+-- Struktur dari tabel `product`
 --
 
 CREATE TABLE `product` (
@@ -233,7 +234,7 @@ CREATE TABLE `product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `product`
+-- Dumping data untuk tabel `product`
 --
 
 INSERT INTO `product` (`id`, `judul`, `deskripsi`, `neto`, `tipe_coffee`, `price`, `id_auth`, `created_at`) VALUES
@@ -243,7 +244,7 @@ INSERT INTO `product` (`id`, `judul`, `deskripsi`, `neto`, `tipe_coffee`, `price
 -- --------------------------------------------------------
 
 --
--- Table structure for table `review`
+-- Struktur dari tabel `review`
 --
 
 CREATE TABLE `review` (
@@ -254,7 +255,7 @@ CREATE TABLE `review` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `review`
+-- Dumping data untuk tabel `review`
 --
 
 INSERT INTO `review` (`id`, `photo`, `nama`, `review`) VALUES
@@ -264,7 +265,7 @@ INSERT INTO `review` (`id`, `photo`, `nama`, `review`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `slider_blog`
+-- Struktur dari tabel `slider_blog`
 --
 
 CREATE TABLE `slider_blog` (
@@ -273,10 +274,19 @@ CREATE TABLE `slider_blog` (
   `slider` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `slider_blog`
+--
+
+INSERT INTO `slider_blog` (`id`, `id_page_blog`, `slider`) VALUES
+(15, 8, '540640743603fb549a8c90.jpg'),
+(16, 8, '436395698603fb549a9460.png'),
+(17, 8, '1483145101603fb549aa7e9.jpg');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tags`
+-- Struktur dari tabel `tags`
 --
 
 CREATE TABLE `tags` (
@@ -287,7 +297,7 @@ CREATE TABLE `tags` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tags`
+-- Dumping data untuk tabel `tags`
 --
 
 INSERT INTO `tags` (`id`, `tag`, `id_blog`, `created_at`) VALUES
@@ -299,162 +309,162 @@ INSERT INTO `tags` (`id`, `tag`, `id_blog`, `created_at`) VALUES
 --
 
 --
--- Indexes for table `auth`
+-- Indeks untuk tabel `auth`
 --
 ALTER TABLE `auth`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `blog`
+-- Indeks untuk tabel `blog`
 --
 ALTER TABLE `blog`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `contact`
+-- Indeks untuk tabel `contact`
 --
 ALTER TABLE `contact`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `gallery`
+-- Indeks untuk tabel `gallery`
 --
 ALTER TABLE `gallery`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `page_about`
+-- Indeks untuk tabel `page_about`
 --
 ALTER TABLE `page_about`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `page_blog`
+-- Indeks untuk tabel `page_blog`
 --
 ALTER TABLE `page_blog`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `page_contact`
+-- Indeks untuk tabel `page_contact`
 --
 ALTER TABLE `page_contact`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `page_home`
+-- Indeks untuk tabel `page_home`
 --
 ALTER TABLE `page_home`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `page_product`
+-- Indeks untuk tabel `page_product`
 --
 ALTER TABLE `page_product`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `product`
+-- Indeks untuk tabel `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_user` (`id_auth`);
 
 --
--- Indexes for table `review`
+-- Indeks untuk tabel `review`
 --
 ALTER TABLE `review`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `slider_blog`
+-- Indeks untuk tabel `slider_blog`
 --
 ALTER TABLE `slider_blog`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tags`
+-- Indeks untuk tabel `tags`
 --
 ALTER TABLE `tags`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `auth`
+-- AUTO_INCREMENT untuk tabel `auth`
 --
 ALTER TABLE `auth`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `blog`
+-- AUTO_INCREMENT untuk tabel `blog`
 --
 ALTER TABLE `blog`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `contact`
+-- AUTO_INCREMENT untuk tabel `contact`
 --
 ALTER TABLE `contact`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `gallery`
+-- AUTO_INCREMENT untuk tabel `gallery`
 --
 ALTER TABLE `gallery`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
--- AUTO_INCREMENT for table `page_about`
+-- AUTO_INCREMENT untuk tabel `page_about`
 --
 ALTER TABLE `page_about`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `page_blog`
+-- AUTO_INCREMENT untuk tabel `page_blog`
 --
 ALTER TABLE `page_blog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `page_contact`
+-- AUTO_INCREMENT untuk tabel `page_contact`
 --
 ALTER TABLE `page_contact`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `page_home`
+-- AUTO_INCREMENT untuk tabel `page_home`
 --
 ALTER TABLE `page_home`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `page_product`
+-- AUTO_INCREMENT untuk tabel `page_product`
 --
 ALTER TABLE `page_product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `product`
+-- AUTO_INCREMENT untuk tabel `product`
 --
 ALTER TABLE `product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
--- AUTO_INCREMENT for table `review`
+-- AUTO_INCREMENT untuk tabel `review`
 --
 ALTER TABLE `review`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `slider_blog`
+-- AUTO_INCREMENT untuk tabel `slider_blog`
 --
 ALTER TABLE `slider_blog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `tags`
+-- AUTO_INCREMENT untuk tabel `tags`
 --
 ALTER TABLE `tags`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
