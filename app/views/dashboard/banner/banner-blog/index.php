@@ -7,10 +7,10 @@
                 <div class=""></div>
                 <div class="">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addProduct">
+<!--                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addProduct">
                         <span class="btn-inner--text ">Tambah Banner Blog</span>
                         <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
-                    </button>
+                    </button> -->
 
                 </div>
             </div>
@@ -28,22 +28,28 @@
 
                     <tbody>
                         <?php $i=1 ?>
-                        <?php foreach ($data['blog'] as $blog): ?> -->
+                        <?php foreach ($data['blog'] as $blog): ?> 
                         <?php $id = Encripsi::encode('encrypt',$blog['id']);?>
                         <tr>
                             <td><?= $i++ ?></td>
                             <td><?= $blog['judul'] ?> </td>
-                            <td><?= $blog['deskripsi'] ?></td>
-                            <td><?= $blog['gambar'] ?></td>
+                            <td ><?= substr( $blog['deskripsi'], 0,100) ?></td>
                             <td>
-                                <a href="<?= BASE_URL?>/dashboard/edit_product/<?= $id?>"
+                                <?php foreach ($data['gallery'] as $g): ?>
+                                    <?php if ($g['id_page_blog'] === $blog['id'] ) :?>
+                                        <img src="<?= BASEURL ?>/upload/<?= $g['slider'] ?>" alt="" width="50px" class="mb-2"> <br>
+                                    <?php endif; ?>
+                                <?php endforeach ?>
+                            </td>
+                            <td>
+                                <a href="<?= BASE_URL?>/dashboard/edit_banner_blog/<?= $id?>"
                                     class="btn btn-success btn-sm">
                                     <i class="far fa-edit"></i>
                                 </a>
-                                <a href="<?= BASE_URL?>/dashboard/delete_product/<?= $id?>"
+                             <!--    <a href="<?= BASE_URL?>/dashboard/delete_banner_blog/<?= $id?>"
                                     class="btn btn-danger btn-sm">
                                     <i class="far fa-trash-alt"></i>
-                                </a>
+                                </a> -->
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -71,15 +77,15 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label class="form-control-label" for="product">Nama Banner Blog</label>
-                                <input type="text" class="form-control" id="product" name="judul"
+                                <label class="form-control-label">Nama Banner Blog</label>
+                                <input type="text" class="form-control"  name="judul"
                                     placeholder="Nama Banner Blog">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label class="form-control-label" for="tipeCoffee">Deskripsi</label>
-                                <input type="text" class="form-control" id="tipeCoffee" placeholder="Deskripsi"
+                                <label class="form-control-label" >Deskripsi</label>
+                                <input type="text" class="form-control" placeholder="Deskripsi"
                                     name="deskripsi">
                             </div>
                         </div>
@@ -89,7 +95,7 @@
                             <label class="form-control-label">Gambar Slider </label>
                             <div class="dropzone dropzone-multiple" data-toggle="dropzone" data-dropzone-multiple
                                 data-dropzone-url="<?=base_url('dashboard/banner_blog')?>" data-form-submit="#frmTarget"
-                                data-redirect-when-success="false">
+                                data-redirect-when-success="true">
                                 <!-- ubah data-redirect-when-succes menjadi true jika ingin me-reload halaman jika data berhasil disimpan -->
                                 <div class="fallback">
                                     <div class="custom-file">

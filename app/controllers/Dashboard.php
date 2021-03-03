@@ -1144,6 +1144,7 @@ class Dashboard extends Controller
                 $data['link_header'] = 'dashboard/banner_blog';
                 $data['page'] = 'Home';
                 $data['blog'] = $this->model('M_PageBlog')->getAll();
+                $data['gallery'] = $this->model('M_PageBlog')->getGambar();
                 $this->view('template/header', $data);
                 $this->view('dashboard/banner/banner-blog/index',$data);
                 $this->view('template/footer');
@@ -1161,4 +1162,113 @@ class Dashboard extends Controller
         }
     }
     
+    public function delete_banner_blog($id)
+    {
+        $ID = Encripsi::encode('decrypt', $id);
+        $data = $this->model('M_PageBlog')->delete($ID);
+        if ($data == true)
+        {
+            Flasher::setFlash('Data Berhasil Di Hapus', 'success');
+            header('Location: ' . BASE_URL . '/dashboard/banner_blog/');
+        }
+        else
+        {
+            Flasher::setFlash('Data Gagal Di Hapus', 'error');
+            header('Location: ' . BASE_URL . '/dashboard/banner_blog/');
+        }
+    }
+
+    public function edit_banner_blog($id)
+    {
+        $ID = Encripsi::encode('decrypt', $id);
+        if ($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            $responsecode = 200;
+            try
+            {
+                $images = [];
+                if (isset($_FILES['file']) && count($_FILES['file']['name']) <= 5)
+                {
+                        $files = $this->serialize_files($_FILES['file']);
+                        foreach ($files as $file)
+                        {
+                            $images[] = $this->handle_upload_image($file);
+                            // do upload
+                        }
+                        $this->model('M_PageBlog')
+                        ->update($_POST,$id, $images);
+                }  elseif (!isset($_FILES['file']))
+                {
+                    $this->model('M_PageBlog')
+                        ->update($_POST,$id, $images);
+                    Flasher::setFlash('Data Berhasil Di Perbaharui', 'success');
+                    header('Location: ' . BASE_URL . '/edit_product/' . $ID);
+                }else{
+                    $responsecode = 400;
+                }
+
+                // kalo ga mau pake trycatch gapapa, tapi kalo ada gagal, langsung aja $responsecode = 400
+                
+            }
+            catch(Exception $e)
+            {
+                $responsecode = 400;
+            }
+
+            http_response_code($responsecode);
+            // kalo mau var_dump juga bisa, langsung aja var_dump()
+            // var_dump('test');
+            // ini kalo submit tapi ada gambar nya, nnti bisa kirim pesan ke javacript lewat sini, tinggal echo aja,
+            // ini buat handle AJAX-nya Dropzone
+            if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
+            {
+                header('Content-Type: application/json');
+                if ($responsecode == 200)
+                {
+                    // jika berhasil
+                    echo json_encode(['status' => true, 'message' => 'Berhasil', ]);
+
+                }
+                else
+                {
+                    // jika gagal
+                    echo json_encode(['status' => false, 'message' => 'Gagal']);
+                }
+                exit;
+            }
+        }
+
+        if (isset($_SESSION) && $_SESSION['login'] == true)
+        {
+            if (isset($_SESSION) && $_SESSION['admin'] == true)
+            {
+                $data['header'] = 'Banner';
+                $data['link_header'] = 'dashboard/banner_blog';
+                $data['page'] = 'Home';
+                $data['blog'] = $this->model('M_PageBlog')->getDataBy($ID);
+                $data['gambar'] = $this->model('M_PageBlog')->getGambar();
+                $this->view('template/header', $data);
+                $this->view('dashboard/banner/banner-blog/edit',$data);
+                $this->view('template/footer');
+            }
+            else
+            {
+                Flasher::setFlash('login terlebih dahulu', 'error');
+                header('Location: ' . BASE_URL . '/auth');
+            }
+        }
+        else
+        {
+            Flasher::setFlash('login terlebih dahulu', 'error');
+            header('Location: ' . BASE_URL . '/auth');
+        }
+        
+    }
+
+    public function delete_img_blog()
+    {
+        $id = $_POST['id'];
+        $ID = Encripsi::encode('decrypt', $id);
+        $this->model('M_PageBlog')->delete_img_blog($ID);
+    }
 }
