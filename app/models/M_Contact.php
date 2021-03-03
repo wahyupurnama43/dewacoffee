@@ -14,6 +14,12 @@ class M_Contact
         $this->db->query($sql);
         return $this->db->resultSet();
     }
+    public function getAllDataDesc($table)
+    {
+        $sql = "SELECT * FROM $table ORDER BY created_at DESC";
+        $this->db->query($sql);
+        return $this->db->resultSet();
+    }
 
     public function getAllDataById($table,$id)
     {
@@ -47,23 +53,7 @@ class M_Contact
         return true;
     }
 
-    // public function active_contact($id)
-    // {
-    //     $address = htmlspecialchars($_POST['address'],ENT_QUOTES);
-    //     $email = htmlspecialchars($_POST['email'],ENT_QUOTES);
-    //     $phone = htmlspecialchars($_POST['phone'],ENT_QUOTES);
-    //     $maps = $_POST['maps'];
-
-    //     $sql ="UPDATE `page_contact` SET `address`=:alamat,`email`=:email,`phone`=:phone,`maps`=:maps WHERE id=:id";
-    //     $this->db->query($sql);
-    //     $this->db->bind('address',$address);
-    //     $this->db->bind('email',$email);
-    //     $this->db->bind('phone',$phone);
-    //     $this->db->bind('maps',$maps);
-    //     $this->db->bind('id',$id);
-    //     $this->db->execute();
-    //     return true;
-    // }
+   
 
     public function update($id)
     {
@@ -79,6 +69,30 @@ class M_Contact
         $this->db->bind('phone',$phone);
         $this->db->bind('maps',$maps);
         $this->db->bind('id',$id);
+        $this->db->execute();
+        return true;
+    }
+
+    public function sendMessage()
+    {
+        $nama = htmlspecialchars($_POST['nama'],ENT_QUOTES);
+        $email = htmlspecialchars($_POST['email'],ENT_QUOTES);
+        $message = htmlspecialchars($_POST['message'],ENT_QUOTES);
+
+        $sql = "INSERT INTO `contact`(`nama`, `email`, `message`) VALUES (:nama,:email,:message)";
+        $this->db->query($sql);
+        $this->db->bind('nama', $nama);
+        $this->db->bind('email', $email);
+        $this->db->bind('message', $message);
+        $this->db->execute();
+        return true;
+        
+    }
+
+    public function delete_message($id)
+    {
+        $sql ="DELETE FROM `contact` WHERE id=$id";
+        $this->db->query($sql);
         $this->db->execute();
         return true;
     }

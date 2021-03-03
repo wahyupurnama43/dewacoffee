@@ -29,27 +29,27 @@
                     <tbody>
                         <?php $i=1 ?>
                         <?php foreach ($data['about'] as $a): ?>
-                            <?php $id = Encripsi::encode('encrypt',$a['id']) ?>
-                            <tr>
-                                <td> <?= $i++ ?> </td>
-                                <td> <?= $a['company'] ?> </td>
-                                <td> <?= substr($a['deskripsi'],0,90) ?> </td>
-                                <td > <img src=" <?= BASEURL ?>/upload/<?= $a['banner'] ?>  " width="50px"alt=""></td>
-                                <td>
-                                     <a href="<?= BASE_URL?>/dashboard/edit_about/<?= $id?>"
-                                        class="btn btn-success btn-sm">
-                                        <i class="far fa-edit"></i>
-                                    </a>
-                                   <!--  <a href="<?= BASE_URL?>/dashboard/delete_about/<?= $id ?>" class="btn btn-danger btn-sm " data-url-page="">
-                                        <i class="far fa-trash-alt"></i>
-                                    </a> -->
-                                </td>
-                            </tr>
-                        <?php endforeach ?>
+                        <?php $id = Encripsi::encode('encrypt',$a['id']) ?>
+                        <tr>
+                            <td> <?= $i++ ?> </td>
+                            <td> <?= $a['company'] ?> </td>
+                            <td> <?= substr($a['deskripsi'],0,90) ?> </td>
+                            <td> <img src=" <?= BASEURL ?>/upload/<?= $a['banner'] ?>  " width="50px" alt=""></td>
+                            <td>
+                                <a href="<?= BASE_URL?>/dashboard/edit_about/<?= $id?>" class="btn btn-success btn-sm">
+                                    <i class="far fa-edit"></i>
+                                </a>
+                                <!-- <a href="<?= BASE_URL?>/dashboard/delete_about/<?= $id ?>"
+                                    class="btn btn-danger btn-sm " data-url-page="">
+                                    <i class="far fa-trash-alt"></i>
+                                </a> -->
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
 
                     </tbody>
                 </table>
-            </div> 
+            </div>
         </div>
     </div>
 </div>
@@ -60,7 +60,7 @@
     <div class="modal-dialog m-w-d modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title" id="exampleModalLabel">Tambah Blog Artikel</h1>
+                <h1 class="modal-title" id="exampleModalLabel">Tambah About</h1>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -79,20 +79,20 @@
                     </div>
 
                     <div class="row">
-                         <div class="col-lg-12">
+                        <div class="col-lg-12">
                             <div class="form-group">
                                 <label class="form-control-label" for="Deskripsi">Deskripsi Usaha</label>
                                 <textarea name="Deskripsi" class="form-control" rows="5" required=""></textarea>
                             </div>
                         </div>
-                       
+
                     </div>
 
                     <div class="row">
-                         <div class="col-lg-12">
+                        <div class="col-lg-12">
                             <div class="form-group">
                                 <label class="form-control-label" for="Deskripsi">Banner</label>
-                                 <div class="custom-file">  
+                                <div class="custom-file">
                                     <input type="file" class="custom-file-input" name="gambar">
                                     <label class="custom-file-label">Select file</label>
                                 </div>

@@ -24,7 +24,9 @@
 </head>
 
 <body>
-
+    <div class="row">
+        <div class="flash-data" data-flashdata="<?= Flasher::flash(true); ?>"></div>
+    </div>
     <nav class="navbar navbar-expand-lg navbar-light">
         <!--  Show this only on mobile to medium screens  -->
         <a class="navbar-brand d-lg-none logo-img" href="#">

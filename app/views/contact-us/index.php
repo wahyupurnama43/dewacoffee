@@ -2,7 +2,7 @@
         <div class="row">
             <div class="col-lg-5 col-md-6 col-sm-12">
                 <div class="maps " data-aos="zoom-in" data-aos-delay="300">
-                  <?= $data['contact'][0]['maps'] ?>
+                    <?= $data['contact'][0]['maps'] ?>
                 </div>
             </div>
             <div class="col-lg-7 col-md-6 col-sm-12">
@@ -38,24 +38,22 @@
 
                 <div class="send-message">
                     <div class="judul" data-aos="zoom-in-down" data-aos-delay="800">Send Message</div>
-                    <form>
+                    <form action="<?= BASE_URL?>/contact" method="POST">
                         <div class="form-group" data-aos="zoom-in-down" data-aos-delay="900">
-                            <input type="text" class="form-control" id="inputNama" />
-                            <label for="inputNama">Nama</label>
+                            <input type="text" class="form-control" id="inputNama" name="nama" placeholder="Nama" />
                             <div class="line"></div>
                         </div>
                         <div class="form-group" data-aos="zoom-in-down" data-aos-delay="1000">
-                            <input type="email" class="form-control" id="inputEmail4" />
-                            <label for="inputEmail4">Email</label>
+                            <input type="email" class="form-control" id="inputEmail4" name="email"
+                                placeholder="Email" />
                             <div class="line"></div>
                         </div>
                         <div class="form-group" data-aos="zoom-in-down" data-aos-delay="1100">
-                            <textarea class="form-control" rows="2"></textarea>
-                            <label>Message</label>
+                            <textarea class="form-control" rows="2" name="message" placeholder="Message"></textarea>
                             <div class="line"></div>
                         </div>
                         <div class="tombol text-right" data-aos="zoom-in-down" data-aos-delay="1200">
-                            <button class="btn btn-coffee ">Send Message</button>
+                            <button type="submit" name="submit" class="btn btn-coffee ">Send Message</button>
                         </div>
                     </form>
                 </div>

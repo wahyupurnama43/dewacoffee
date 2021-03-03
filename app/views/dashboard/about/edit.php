@@ -10,7 +10,8 @@
             </div>
             <br>
             <?php $id = Encripsi::encode('encrypt',$data['about']['id']) ?>
-            <form action="<?php echo BASE_URL ?>/dashboard/edit_about/<?= $id ?>" method="POST" enctype="multipart/form-data">
+            <form action="<?php echo BASE_URL ?>/dashboard/edit_about/<?= $id ?>" method="POST"
+                enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-12">
@@ -23,27 +24,28 @@
                     </div>
 
                     <div class="row">
-                         <div class="col-lg-12">
+                        <div class="col-lg-12">
                             <div class="form-group">
                                 <label class="form-control-label" for="Deskripsi">Deskripsi Usaha</label>
-                                <textarea name="Deskripsi" class="form-control" rows="5" required=""><?= $data['about']['deskripsi'] ?></textarea>
+                                <textarea name="Deskripsi" class="form-control" rows="5"
+                                    required=""><?= $data['about']['deskripsi'] ?></textarea>
                             </div>
                         </div>
-                       
+
                     </div>
 
                     <div class="row">
-                         <div class="col-lg-12">
+                        <div class="col-lg-12">
                             <div class="form-group">
                                 <label class="form-control-label" for="Deskripsi">Banner</label>
-                                 <div class="custom-file">  
+                                <div class="custom-file">
                                     <input type="file" class="custom-file-input" name="gambar">
                                     <label class="custom-file-label">Select file</label>
                                 </div>
                             </div>
                         </div>
-                         <div class="col-lg-12">
-                            <img src=" <?= BASEURL ?>/upload/<?= $data['about']['banner'] ?>  " width="100px"alt="">
+                        <div class="col-lg-12">
+                            <img src=" <?= BASEURL ?>/upload/<?= $data['about']['banner'] ?>  " width="100px" alt="">
                         </div>
                     </div>
                 </div>

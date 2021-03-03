@@ -29,7 +29,7 @@
                     </div>
                     <div class="deskripsi" data-aos="fade-left" data-aos-delay="400">
                         <p>
-                            <?php echo $data['product']['judul'] ?>
+                            <?php echo $data['product']['deskripsi'] ?>
                         </p>
                     </div>
                     <div class="price-product" data-aos="fade-left" data-aos-delay="500">

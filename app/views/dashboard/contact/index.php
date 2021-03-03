@@ -7,7 +7,7 @@
                 <div class=""></div>
                 <div class="">
                     <!-- Button trigger modal -->
-                   <!--  <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addProduct">
+                    <!-- <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addProduct">
                         <span class="btn-inner--text ">Tambah Contact us </span>
                         <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
                     </button> -->
@@ -41,7 +41,7 @@
                                     class="btn btn-success btn-sm">
                                     <i class="far fa-edit"></i>
                                 </a>
-                             <!--    <a href="http://localhost/dewacoffee/dashboard/delete_contact/<?= $id ?>"
+                                <!-- <a href="http://localhost/dewacoffee/dashboard/delete_contact/<?= $id ?>"
                                     class="btn btn-danger btn-sm ">
                                     <i class="far fa-trash-alt"></i>
                                 </a> -->
@@ -81,7 +81,8 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="form-control-label" for="email">Email</label>
-                                <input required type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                <input required type="email" class="form-control" id="email" name="email"
+                                    placeholder="Email">
                             </div>
                         </div>
                     </div>
@@ -90,16 +91,18 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label class="form-control-label" for="phone">Phone</label>
-                                <input required type="number" class="form-control" id="phone" name="phone" placeholder="Phone">
+                                <input required type="number" class="form-control" id="phone" name="phone"
+                                    placeholder="Phone">
                             </div>
                         </div>
-                       
+
                     </div>
                     <div class="row">
-                         <div class="col-lg-12">
+                        <div class="col-lg-12">
                             <div class="form-group">
                                 <label class="form-control-label" for="maps">Maps</label>
-                                <input required type="text" class="form-control" id="maps" name="maps" placeholder="Maps">
+                                <input required type="text" class="form-control" id="maps" name="maps"
+                                    placeholder="Maps">
                             </div>
                         </div>
                     </div>

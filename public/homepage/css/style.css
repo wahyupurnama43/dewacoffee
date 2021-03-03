@@ -1366,6 +1366,9 @@ select.form-control:not([size]):not([multiple]) {
   .send-message .tombol {
     text-align: center !important;
   }
+  .img-banner img {
+    width: 100% !important;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1377,6 +1380,12 @@ select.form-control:not([size]):not([multiple]) {
   .banner {
     display: flex;
     flex-direction: column-reverse;
+  }
+  .img-banner {
+    text-align: center;
+  }
+  .img-banner img {
+    width: 60%;
   }
   .text-banner {
     text-align: center;

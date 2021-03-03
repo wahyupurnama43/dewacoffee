@@ -75,58 +75,85 @@
                     <!-- Nav items -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link <?= (Url::checkAll() == 'dashboard') ? 'active' : '' ?>" href="<?= BASE_URL ?>/dashboard">
+                            <a class="nav-link <?= (Url::checkAll() == 'dashboard') ? 'active' : '' ?>"
+                                href="<?= BASE_URL ?>/dashboard">
                                 <i class="ni ni-shop text-primary"></i>
                                 <span class="nav-link-text">Dashboards</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link <?= (Url::checkAll() == 'dashboard/product') ? 'active' : '' ?>" href="<?= BASE_URL ?>/dashboard/product">
+                            <a class="nav-link <?= (Url::checkAll() == 'dashboard/product') ? 'active' : '' ?>"
+                                href="<?= BASE_URL ?>/dashboard/product">
                                 <i class="ni ni-archive-2 text-red"></i>
                                 <span class="nav-link-text">Product</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link <?= (Url::checkAll() == 'dashboard/blog') ? 'active' : '' ?>" href="<?= BASE_URL ?>/dashboard/blog">
+                            <a class="nav-link <?= (Url::checkAll() == 'dashboard/blog') ? 'active' : '' ?>"
+                                href="<?= BASE_URL ?>/dashboard/blog">
                                 <i class="ni ni-books text-orange"></i>
                                 <span class="nav-link-text">Blog</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link <?= (Url::checkAll() == 'dashboard/contact') ? 'active' : '' ?>" href="<?= BASE_URL ?>/dashboard/contact">
+                            <a class="nav-link <?= (Url::checkAll() == 'dashboard/contact') ? 'active' : '' ?>"
+                                href="<?= BASE_URL ?>/dashboard/contact">
                                 <i class="ni ni-circle-08 text-info"></i>
                                 <span class="nav-link-text">Contact Us</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link <?= (Url::checkAll() == 'dashboard/about') ? 'active' : '' ?>" href="<?= BASE_URL ?>/dashboard/about">
+                            <a class="nav-link <?= (Url::checkAll() == 'dashboard/about') ? 'active' : '' ?>"
+                                href="<?= BASE_URL ?>/dashboard/about">
                                 <i class="ni ni-badge text-primary"></i>
                                 <span class="nav-link-text">About us</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link " href="#navbar-dashboards" data-toggle="collapse" role="button"
-                                aria-expanded="true" aria-controls="navbar-dashboards">
+                            <a class="nav-link <?= (Url::checkAll() == 'dashboard/about') ? 'active' : '' ?>"
+                                href="<?= BASE_URL ?>/dashboard/message">
+                                <i class="far fa-envelope text-warning"></i>
+                                <span class="nav-link-text">Message</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link <?= (Url::checkAll() == 'dashboard/about') ? 'active' : '' ?>"
+                                href="<?= BASE_URL ?>/dashboard/review">
+                                <i class="far fa-comments text-info"></i>
+                                <span class="nav-link-text">Review</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link  <?= (Url::checkAll() == 'dashboard/banner_home' || Url::checkAll() == 'dashboard/banner_product' || Url::checkAll() == 'dashboard/banner_blog') ? 'active' : '' ?> "
+                                href="#navbar-dashboards" data-toggle="collapse" role="button" aria-expanded="true"
+                                aria-controls="navbar-dashboards">
                                 <i class="ni ni-album-2 text-green"></i>
                                 <span class="nav-link-text">Banner</span>
                             </a>
                             <div class="collapse" id="navbar-dashboards">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="<?= BASE_URL ?>/dashboard/banner-home" class="nav-link  <?= (Url::checkAll() == 'dashboard/banner-home') ? 'active' : '' ?>">Banner Home</a>
+                                        <a href="<?= BASE_URL ?>/dashboard/banner_home"
+                                            class="nav-link  <?= (Url::checkAll() == 'dashboard/banner_home') ? 'active' : '' ?>">Banner
+                                            Home</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="<?= BASE_URL ?>/dashboard/banner-product" class="nav-link class="nav-link  <?= (Url::checkAll() == 'dashboard/banner-product') ? 'active' : '' ?>">Banner
+                                        <a href="<?= BASE_URL ?>/dashboard/banner_product" class="nav-link class="
+                                            nav-link
+                                            <?= (Url::checkAll() == 'dashboard/banner_product') ? 'active' : '' ?>">Banner
                                             Product</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="<?= BASE_URL ?>/dashboard/banner-blog" class="nav-link class="nav-link  <?= (Url::checkAll() == 'dashboard/banner-blog') ? 'active' : '' ?>">Banner
-                                            Product</a>
+                                        <a href="<?= BASE_URL ?>/dashboard/banner_blog" class="nav-link class=" nav-link
+                                            <?= (Url::checkAll() == 'dashboard/banner-blog') ? 'active' : '' ?>">Banner
+                                            Blog</a>
                                     </li>
                                 </ul>
                             </div>

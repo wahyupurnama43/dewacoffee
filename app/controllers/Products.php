@@ -5,8 +5,10 @@ class Products extends Controller
 {
     public function index()
     {
+        $data['product'] = $this->model('M_Product')->getProductData();
+        $data['banner'] = $this->model('M_Product')->getBanner();
         $this->view('template/homepage/header');
-        $this->view('products/index');
+        $this->view('products/index',$data);
         $this->view('template/homepage/footer');
     }
     

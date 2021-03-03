@@ -1656,7 +1656,7 @@ var Dropzones = (function() {
             /* CUSTOM */
             autoProcessQueue: ($this.data('form-submit') != undefined ? false : true),
             uploadMultiple: (!multiple) ? false : true,
-            parallelUploads: 10, /* berapa kali user bisa submit form/gambarnya */
+            parallelUploads: 6, /* berapa kali user bisa submit form/gambarnya */
             /* ENDCUSTOM */
 			init: function() {
                 var vm = this;

@@ -16,6 +16,12 @@ class M_Product
         $this->db->query($sql);
         return $this->db->single();
     }
+    public function getProductData()
+    {
+        $sql = "SELECT p.*, g.* FROM product p INNER JOIN gallery g ON g.id_product = p.id WHERE g.status = 'active'";
+        $this->db->query($sql);
+        return $this->db->resultSet();
+    }
 
      // ambil data semuad di product
     public function getAll()
@@ -64,33 +70,40 @@ class M_Product
     {
         $id = $_SESSION['id'];
         $sql = "INSERT INTO product (`judul`, `deskripsi`, `neto`, `tipe_coffee`, `price`, `id_auth`) VALUES (:judul,:deskripsi,:neto,:tipe_coffee,:price,:id)";
+        $judul = htmlspecialchars($data['judul'],ENT_QUOTES);
+        $tipe_coffee = htmlspecialchars($data['tipe_coffee'],ENT_QUOTES);
 
         $this->db->query($sql);
-        $this->db->bind('judul', $data['judul']);
+        $this->db->bind('judul', $judul);
         $this->db->bind('deskripsi', $data['deskripsi']);
         $this->db->bind('neto', $data['neto']);
-        $this->db->bind('tipe_coffee', $data['tipe_coffee']);
+        $this->db->bind('tipe_coffee', $tipe_coffee);
         $this->db->bind('price', $data['price']);
         $this->db->bind('id', $id);
         $this->db->execute();
 
         $product = $this->getData();
-        foreach ($img as $key => $i) {
-            if ($key == 0) {
-                $sql2 = "INSERT INTO gallery (`gambar`,`id_product`,`status`) VALUES (:gambar,:id_product,:status)";
-                $this->db->query($sql2);
-                $this->db->bind('gambar',$i);
-                $this->db->bind('id_product',$product['id']);
-                $this->db->bind('status','active');
-                $this->db->execute();
-            }else{
-                $sql2 = "INSERT INTO gallery (`gambar`,`id_product`) VALUES (:gambar,:id_product)";
-                $this->db->query($sql2);
-                $this->db->bind('gambar',$i);
-                $this->db->bind('id_product',$product['id']);
-                $this->db->execute();
+        if(count($img) <= 5){
+            foreach ($img as $key => $i) {
+                if ($key == 0) {
+                    $sql2 = "INSERT INTO gallery (`gambar`,`id_product`,`status`) VALUES (:gambar,:id_product,:status)";
+                    $this->db->query($sql2);
+                    $this->db->bind('gambar',$i);
+                    $this->db->bind('id_product',$product['id']);
+                    $this->db->bind('status','active');
+                    $this->db->execute();
+                }else{
+                    $sql2 = "INSERT INTO gallery (`gambar`,`id_product`) VALUES (:gambar,:id_product)";
+                    $this->db->query($sql2);
+                    $this->db->bind('gambar',$i);
+                    $this->db->bind('id_product',$product['id']);
+                    $this->db->execute();
+                }
             }
+        }else{
+            return false;
         }
+
         
     }
 
@@ -177,4 +190,44 @@ class M_Product
         echo json_encode(['status' => 'sukses']);
     }
     
+
+    // banner product
+    public function getBanner()
+    {
+        $sql = "SELECT * FROM page_product";
+        $this->db->query($sql);
+        return $this->db->resultSet();
+    }
+
+    public function uploadBanner($img)
+    {
+        $sql = "INSERT INTO `page_product` (`banner`) VALUES (:banner)";
+        $this->db->query($sql);
+        $this->db->bind('banner', $img);
+        $this->db->execute();
+        return true;
+    }
+
+    public function delete_banner($id)
+    {
+        $product = $this->getBySingleId('page_product', $id);
+        unlink('C:/xampp/htdocs/dewacoffee/public/upload/'.$product['banner']);
+        $sql ="DELETE FROM `page_product` WHERE id=$id";
+        $this->db->query($sql);
+        $this->db->execute();
+        return true;
+    }
+
+    public function updateBanner($id,$img)
+    {
+        $product = $this->getBySingleId('page_product', $id);
+        unlink('C:/xampp/htdocs/dewacoffee/public/upload/'.$product['banner']);
+        $sql = "UPDATE `page_product` SET `banner`=:banner WHERE id=$id";
+        $this->db->query($sql);
+        $this->db->bind('banner', $img);
+        $this->db->execute();
+        return true;
+    }
+
+
 }
