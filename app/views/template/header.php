@@ -204,13 +204,10 @@
                                 <div class="dropdown-header noti-title">
                                     <h6 class="text-overflow m-0">Welcome!</h6>
                                 </div>
-                                <a href="#!" class="dropdown-item">
+                                <?php $id = Encripsi::encode('encrypt',$_SESSION['id']) ?>
+                                <a href="<?= BASE_URL ?>/dashboard/setting/<?= $id ?>" class="dropdown-item">
                                     <i class="ni ni-single-02"></i>
                                     <span>My profile</span>
-                                </a>
-                                <a href="#!" class="dropdown-item">
-                                    <i class="ni ni-settings-gear-65"></i>
-                                    <span>Settings</span>
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a href="<?= BASE_URL?>/auth/logout" class="dropdown-item">

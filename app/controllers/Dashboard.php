@@ -1274,4 +1274,57 @@ class Dashboard extends Controller
         $ID = Encripsi::encode('decrypt', $id);
         $this->model('M_PageBlog')->delete_img_blog($ID);
     }
+
+     /*
+    |--------------------------------------------------------------------------
+    | PAGE Setting
+    |--------------------------------------------------------------------------
+    |
+    | UNTUK LOAD PAGE MESSAGE DI DASHBOARD ADMIN
+    |
+    |--------------------------------------------------------------------------
+    */
+
+    public function setting($ID)
+    {
+        
+        $id = Encripsi::encode('decrypt',$ID);
+        if (isset($_POST['submit']))
+        {
+            $data = $this->model('M_Auth')->update($id);
+            if ($data == true)
+            {
+                Flasher::setFlash('Data Berhasil Di Update', 'success');
+                header('Location: ' . BASE_URL . '/dashboard/setting/'.$ID);
+            }
+            else
+            {
+                Flasher::setFlash('Username dan Password Anda Salah','error');
+                header('Location: ' . BASE_URL . '/dashboard/setting/'.$ID);
+            }
+
+        }
+        else
+        {
+            if (isset($_SESSION) && $_SESSION['login'] == true) {
+                if (isset($_SESSION) && $_SESSION['admin'] == true) {
+                    $data['header'] = 'Setting';
+                    $data['link_header'] = 'dashboard/setting';
+                    $data['page'] = 'Home';
+                    $data['auth'] = $this->model('M_Auth')->getUserById($id);
+                    $this->view('template/header', $data);
+                    $this->view('dashboard/setting/index', $data);
+                    $this->view('template/footer');
+                } else {
+                    Flasher::setFlash('login terlebih dahulu', 'error');
+                    header('Location: ' . BASE_URL . '/auth');
+                }
+            } else {
+                Flasher::setFlash('login terlebih dahulu', 'error');
+                header('Location: ' . BASE_URL . '/auth');
+            }
+        }
+    }
+
+ 
 }
