@@ -51,8 +51,14 @@ class Dashboard extends Controller
                             $images[] = $this->handle_upload_image($file);
                             // do upload
                         }
-                        $this->model('M_Product')
-                        ->upload($_POST, $images);
+                        foreach($images as $i){
+                            if($i === false){
+                                $responsecode = 400;
+                            }else{
+                                $this->model('M_Product')
+                                ->upload($_POST, $images);
+                            }
+                        }
                 }else{
                     $responsecode = 400;
                 }
@@ -140,8 +146,16 @@ class Dashboard extends Controller
         $tmp_name = $file['tmp_name'];
         $ext = pathinfo($name, PATHINFO_EXTENSION);
         $newfilename = uniqid(rand()) . '.' . $ext;
-        move_uploaded_file($tmp_name, 'public/upload/' . $newfilename);
-        return $newfilename;
+        $ekstensi_diperbolehkan = array('png','jpg','jpeg');
+
+        if (in_array($ext, $ekstensi_diperbolehkan) == true) {
+            move_uploaded_file($tmp_name, 'public/upload/' . $newfilename);
+            return $newfilename;
+        }else{
+            return false;
+        }
+
+        
     }
 
     // fungsi untuk page edit product
@@ -161,8 +175,14 @@ class Dashboard extends Controller
                     {
                         $images[] = $this->handle_upload_image($file);
                     }
-                    $this->model('M_Product')
+                    foreach ($images as $i) {
+                        if ($i === false) {
+                            $responsecode = 400;
+                        } else {
+                            $this->model('M_Product')
                         ->update($_POST, $id, $images);
+                        }
+                    }
                 }
                 elseif (!isset($_FILES['file']))
                 {
@@ -286,8 +306,13 @@ class Dashboard extends Controller
         if (isset($_POST['submit']))
         {
             $gambar = $this->handle_upload_image($_FILES['gambar']);
-            $result = $this->model('M_Blog')
+            if($gambar == false){
+                Flasher::setFlash('Masukkan jpg, jpeg,png', 'error');
+                header('Location: ' . BASE_URL . '/dashboard/blog/');
+            }else{
+                $result = $this->model('M_Blog')
                 ->upload($gambar);
+            }
             if ($result == true)
             {
                 Flasher::setFlash('Data Blog Behasil Di Tambah', 'success');
@@ -345,18 +370,21 @@ class Dashboard extends Controller
             if (isset($_FILES) && $_FILES['gambar']['error'] == 0)
             {
                 $gambar = $this->handle_upload_image($_FILES['gambar']);
-                if ($this->model('M_Blog')
-                    ->update($id, $gambar) == true)
+                if($gambar == false){
+                    Flasher::setFlash('Masukkan jpg, jpeg,png', 'error');
+                    header('Location: ' . BASE_URL . '/dashboard/blog/');
+                }else{
+                    if ($this->model('M_Blog')->update($id, $gambar) == true) {
+                        Flasher::setFlash('Data Berhasil Di Update', 'success');
+                        header('Location: ' . BASE_URL . '/dashboard/blog/' . $id);
+                    }
+                }
+            }else{
+                if ($this->model('M_Blog')->update($id, null) == true)
                 {
                     Flasher::setFlash('Data Berhasil Di Update', 'success');
                     header('Location: ' . BASE_URL . '/dashboard/blog/' . $id);
                 }
-            }
-            if ($this->model('M_Blog')
-                ->update($id, null) == true)
-            {
-                Flasher::setFlash('Data Berhasil Di Update', 'success');
-                header('Location: ' . BASE_URL . '/dashboard/blog/' . $id);
             }
         }
         else
@@ -591,8 +619,14 @@ class Dashboard extends Controller
             else
             {
                 $gambar = $this->handle_upload_image($_FILES['gambar']);
-                $data = $this->model('M_About')
+                if($gambar == false){
+                    Flasher::setFlash('Masukkan jpg, jpeg,png', 'error');
+                    header('Location: ' . BASE_URL . '/dashboard/about/');
+                }else{
+                    $data = $this->model('M_About')
                     ->update($ID, $gambar);
+                }
+
             }
             if ($data == true)
             {
@@ -601,7 +635,7 @@ class Dashboard extends Controller
             }
             else
             {
-                Flasher::setFlash('Data Gagal Di Hapus', 'error');
+                Flasher::setFlash('Data Gagal Di Update', 'error');
                 header('Location: ' . BASE_URL . '/dashboard/about/');
             }
         }
@@ -667,8 +701,13 @@ class Dashboard extends Controller
         if (isset($_POST['submit']))
         {
             $gambar = $this->handle_upload_image($_FILES['gambar']);
-            $data = $this->model('M_Home')
+            if($gambar == false){
+                Flasher::setFlash('Data Gagal Di Update', 'error');
+                header('Location: ' . BASE_URL . '/dashboard/banner_home/');
+            }else{
+                $data = $this->model('M_Home')
                 ->upload($gambar);
+            }
             if ($data == true)
             {
                 Flasher::setFlash('Data Berhasil Di Tambah', 'success');
@@ -676,7 +715,7 @@ class Dashboard extends Controller
             }
             else
             {
-                Flasher::setFlash('Data Gagal Di Hapus', 'error');
+                Flasher::setFlash('Data Gagal Di Tambah', 'error');
                 header('Location: ' . BASE_URL . '/dashboard/banner_home/');
             }
         }
@@ -722,8 +761,14 @@ class Dashboard extends Controller
             else
             {
                 $gambar = $this->handle_upload_image($_FILES['gambar']);
-                $data = $this->model('M_Home')
+                if($gambar == false){
+                    Flasher::setFlash('Data Gagal Di Update', 'error');
+                    header('Location: ' . BASE_URL . '/dashboard/banner_home/');
+                }else{
+                    $data = $this->model('M_Home')
                     ->update($ID, $gambar);
+                }
+
             }
             if ($data == true)
             {
@@ -800,7 +845,12 @@ class Dashboard extends Controller
         if (isset($_POST['submit']))
         {
             $gambar = $this->handle_upload_image($_FILES['gambar']);
-            $data = $this->model('M_Product')->uploadBanner($gambar);
+            if($gambar == false){
+                Flasher::setFlash('Data Gagal Di Tambah', 'error');
+                header('Location: ' . BASE_URL . '/dashboard/banner_product/');
+            }else{
+                $data = $this->model('M_Product')->uploadBanner($gambar);
+            }
             if ($data == true)
             {
                 Flasher::setFlash('Data Berhasil Di Tambah', 'success');
@@ -808,7 +858,7 @@ class Dashboard extends Controller
             }
             else
             {
-                Flasher::setFlash('Data Gagal Di Hapus', 'error');
+                Flasher::setFlash('Data Gagal Di Tambah', 'error');
                 header('Location: ' . BASE_URL . '/dashboard/banner_product/');
             }
         }
@@ -864,7 +914,12 @@ class Dashboard extends Controller
         if (isset($_POST['submit']))
         {
             $gambar = $this->handle_upload_image($_FILES['gambar']);
-            $data = $this->model('M_Product')->updateBanner($ID,$gambar);
+            if($gambar == false){
+                Flasher::setFlash('Data Gagal Di Update', 'error');
+                header('Location: ' . BASE_URL . '/dashboard/banner_product/');
+            }else{
+                $data = $this->model('M_Product')->updateBanner($ID, $gambar);
+            }   
             if ($data == true)
             {
                 Flasher::setFlash('Data Berhasil Di Tambah', 'success');
@@ -975,7 +1030,12 @@ class Dashboard extends Controller
         {
             if(isset($_FILES['gambar']) && $_FILES['gambar']['error'] <= 0 ){
                 $gambar = $this->handle_upload_image($_FILES['gambar']);
-                $data = $this->model('M_Review')->upload($gambar);
+                if($gambar == false){
+                    Flasher::setFlash('Data Gagal Di Tambah', 'error');
+                    header('Location: ' . BASE_URL . '/dashboard/review/');
+                }else{
+                    $data = $this->model('M_Review')->upload($gambar);
+                }
                 if ($data == true)
                 {
                     Flasher::setFlash('Data Berhasil Di Tambah', 'success');
@@ -983,7 +1043,7 @@ class Dashboard extends Controller
                 }
                 else
                 {
-                    Flasher::setFlash('Data Gagal Di Hapus', 'error');
+                    Flasher::setFlash('Data Gagal Di Tambah', 'error');
                     header('Location: ' . BASE_URL . '/dashboard/review/');
                 }
             }else{
@@ -1038,18 +1098,23 @@ class Dashboard extends Controller
         {
             if(isset($_FILES['gambar']) && $_FILES['gambar']['error'] <= 0 ){
                 $gambar = $this->handle_upload_image($_FILES['gambar']);
-                $data = $this->model('M_Review')->update($ID,$gambar);
+                if($gambar == false){
+                    Flasher::setFlash('Data Gagal Di Tambah', 'error');
+                    header('Location: ' . BASE_URL . '/dashboard/review/');
+                }else{
+                    $data = $this->model('M_Review')->update($ID, $gambar);
+                }
             }else{
                 $data = $this->model('M_Review')->update($ID,null);
             }
             if ($data == true)
             {
-                Flasher::setFlash('Data Berhasil Di Tambah', 'success');
+                Flasher::setFlash('Data Berhasil Di Edit', 'success');
                 header('Location: ' . BASE_URL . '/dashboard/review/');
             }
             else
             {
-                Flasher::setFlash('Data Gagal Di Hapus', 'error');
+                Flasher::setFlash('Data Gagal Di Edit', 'error');
                 header('Location: ' . BASE_URL . '/dashboard/review/');
             }
         }
@@ -1102,8 +1167,12 @@ class Dashboard extends Controller
                             $images[] = $this->handle_upload_image($file);
                             // do upload
                         }
-                        $this->model('M_PageBlog')
+                        if($images !== true){
+                            $responsecode = 400;
+                        }else{
+                            $this->model('M_PageBlog')
                         ->upload($_POST, $images);
+                        }
                 }else{
                     $responsecode = 400;
                 }
@@ -1198,8 +1267,12 @@ class Dashboard extends Controller
                             $images[] = $this->handle_upload_image($file);
                             // do upload
                         }
-                        $this->model('M_PageBlog')
-                        ->update($_POST,$id, $images);
+                        if($images !== true){
+                            $responsecode = 400;
+                        }else{
+                            $this->model('M_PageBlog')
+                        ->update($_POST, $id, $images);
+                        }
                 }  elseif (!isset($_FILES['file']))
                 {
                     $this->model('M_PageBlog')
@@ -1275,7 +1348,7 @@ class Dashboard extends Controller
         $this->model('M_PageBlog')->delete_img_blog($ID);
     }
 
-     /*
+    /*
     |--------------------------------------------------------------------------
     | PAGE Setting
     |--------------------------------------------------------------------------
