@@ -21,7 +21,7 @@
                                 </div>
                                 <?php $id = Encripsi::encode('encrypt',$product['id_product']) ?>
                                 <a href="<?= BASE_URL?>/products/detail/<?php echo $id ?>">
-                                    <div class="buy"><i class="material-icons">add_shopping_cart</i></div>
+                                    <div class="buy"><i class="material-icons">visibility</i></div>
                                 </a>
                             </div>
                         </div>

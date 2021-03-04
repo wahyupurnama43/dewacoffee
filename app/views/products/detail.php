@@ -36,7 +36,8 @@
                         Price : Rp <?php echo $data['product']['price'] ?>
                     </div>
                     <div class="button-buy" data-aos="fade-left" data-aos-delay="600">
-                        <a href="https://wa.link/tjtv2k" class="btn btn-coffee">Buy</a>
+                        <a href="https://api.whatsapp.com/send?phone=6287810202578&text=Hai%20Dewa%20coffee%20saya%20ingin%20membeli%20<?= $data['product']['judul'] ?> %20"
+                            class="btn btn-coffee">Buy</a>
                     </div>
                 </div>
             </div>

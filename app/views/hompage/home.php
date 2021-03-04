@@ -16,7 +16,8 @@
             </div>
         </div>
         <div class="col-lg-6 col-md-12 col-sm-12 img-banner">
-            <img src="<?= BASEURL ?>/assets/img/banner.png" alt="" data-aos="fade-left" data-aos-delay="500" />
+            <img src="<?= BASEURL ?>/upload/<?= $data['banner'][0]['banner'] ?>" alt="" data-aos="fade-left"
+                data-aos-delay="500" />
         </div>
     </div>
 
@@ -40,7 +41,7 @@
                             </div>
                             <?php $id = Encripsi::encode('encrypt',$product['id_product']) ?>
                             <a href="<?= BASE_URL?>/products/detail/<?php echo $id ?>">
-                                <div class="buy"><i class="material-icons">add_shopping_cart</i></div>
+                                <div class="buy"><i class="material-icons">visibility</i></div>
                             </a>
                         </div>
                     </div>
