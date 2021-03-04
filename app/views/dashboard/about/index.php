@@ -40,7 +40,7 @@
                                     <i class="far fa-edit"></i>
                                 </a>
                                 <!-- <a href="<?= BASE_URL?>/dashboard/delete_about/<?= $id ?>"
-                                    class="btn btn-danger btn-sm " data-url-page="">
+                                    class="btn btn-danger btn-sm " data-url-page="" >
                                     <i class="far fa-trash-alt"></i>
                                 </a> -->
                             </td>

@@ -102,7 +102,7 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label class="form-control-label" for="deskripsi">Deskripsi</label>
-                                <textarea class="form-control" id="deskripsi" rows="3" name="deskripsi"></textarea>
+                                <textarea class="form-control" id="deskripsi" rows="9" name="deskripsi"></textarea>
                             </div>
                         </div>
                     </div>

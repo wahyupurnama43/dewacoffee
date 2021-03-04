@@ -115,7 +115,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link <?= (Url::checkAll() == 'dashboard/about') ? 'active' : '' ?>"
+                            <a class="nav-link <?= (Url::checkAll() == 'dashboard/message') ? 'active' : '' ?>"
                                 href="<?= BASE_URL ?>/dashboard/message">
                                 <i class="far fa-envelope text-warning"></i>
                                 <span class="nav-link-text">Message</span>
@@ -123,7 +123,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link <?= (Url::checkAll() == 'dashboard/about') ? 'active' : '' ?>"
+                            <a class="nav-link <?= (Url::checkAll() == 'dashboard/review') ? 'active' : '' ?>"
                                 href="<?= BASE_URL ?>/dashboard/review">
                                 <i class="far fa-comments text-info"></i>
                                 <span class="nav-link-text">Review</span>
@@ -145,13 +145,13 @@
                                             Home</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="<?= BASE_URL ?>/dashboard/banner_product" class="nav-link class="
-                                            nav-link
+                                        <a href="<?= BASE_URL ?>/dashboard/banner_product"
+                                            class="nav-link 
                                             <?= (Url::checkAll() == 'dashboard/banner_product') ? 'active' : '' ?>">Banner
                                             Product</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="<?= BASE_URL ?>/dashboard/banner_blog" class="nav-link class=" nav-link
+                                        <a href="<?= BASE_URL ?>/dashboard/banner_blog" class="nav-link 
                                             <?= (Url::checkAll() == 'dashboard/banner-blog') ? 'active' : '' ?>">Banner
                                             Blog</a>
                                     </li>

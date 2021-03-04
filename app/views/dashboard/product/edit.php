@@ -47,7 +47,7 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label class="form-control-label" for="deskripsi">Deskripsi</label>
-                                <textarea class="form-control" id="deskripsi" rows="3"
+                                <textarea class="form-control" id="deskripsi" rows="9"
                                     name="deskripsi"><?= $data['product']['deskripsi'] ?></textarea>
                             </div>
                         </div>
@@ -121,9 +121,10 @@
                 <div class=""></div>
                 <div class="">
                     <?php if ($gambar['status'] !== 'active'): ?>
-                        <a id="<?php echo $id_img; ?>" data-id-product="<?= $id?>" class="btn btn-success active-btn text-white" style="margin-top: 30px;"> Active </a>
-                        <a id="<?php echo $id_img; ?>" data-id-product="<?= $id?>" class="btn btn-danger hps-btn text-white"
-                            style="margin-top: 30px;">Delete</a>
+                    <a id="<?php echo $id_img; ?>" data-id-product="<?= $id?>"
+                        class="btn btn-success active-btn text-white" style="margin-top: 30px;"> Active </a>
+                    <a id="<?php echo $id_img; ?>" data-id-product="<?= $id?>" class="btn btn-danger hps-btn text-white"
+                        style="margin-top: 30px;">Delete</a>
                     <?php endif ?>
                 </div>
             </div>

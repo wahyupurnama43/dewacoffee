@@ -7,7 +7,12 @@ class M_Home
     public function __construct(){
         $this->db = new Database();
     }
-
+    public function count($table)
+    {
+        $sql = "SELECT count(*) as count FROM $table";
+        $this->db->query($sql);
+        return $this->db->resultSet();
+    }
     public function getProductData()
     {
         $sql = "SELECT p.*, g.* FROM product p INNER JOIN gallery g ON g.id_product = p.id WHERE g.status = 'active'";
@@ -26,6 +31,12 @@ class M_Home
         $this->db->query($sql);
         return $this->db->resultSet();
     }
+    public function getTags($id)
+    {
+        $sql = "SELECT * FROM tags WHERE id_blog = $id";
+        $this->db->query($sql);
+        return $this->db->resultSet();
+    }
 
     public function getAll()
     {
@@ -38,10 +49,29 @@ class M_Home
         $this->db->query($sql);
         $this->db->bind('id',$id);
         return $this->db->single();
+    } 
+    public function getDetailsBlog($id){
+        $sql = "SELECT * FROM blog INNER JOIN auth ON blog.id_user = auth.id WHERE blog.id=:id";
+        $this->db->query($sql);
+        $this->db->bind('id',$id);
+        return $this->db->single();
     }
     public function getReview()
     {
         $sql = "SELECT * FROM review";
+        $this->db->query($sql);
+        return $this->db->resultSet();        
+    }
+
+    public function slider()
+    {
+        $sql = "SELECT * FROM slider_blog";
+        $this->db->query($sql);
+        return $this->db->resultSet();        
+    }
+    public function page_blog()
+    {
+        $sql = "SELECT * FROM page_blog";
         $this->db->query($sql);
         return $this->db->resultSet();        
     }

@@ -77,7 +77,7 @@
         <?php endforeach ?>
     </div>
     <div class="m-auto pt-3 text-center pb-3" data-aos="zoom-in-down" data-aos-delay="800">
-        <a href="#" class="btn btn-coffee">More Product &nbsp;.&nbsp;.&nbsp;.</a>
+        <a href="<?= BASE_URL ?>/products" class="btn btn-coffee">More Product &nbsp;.&nbsp;.&nbsp;.</a>
     </div>
 
     <section id="testim" class="testim mt-5" data-aos="zoom-in-down" data-aos-delay="500">
@@ -111,8 +111,9 @@
                     $m = date('M',strtotime($b['created_at']));
                     $d = date('d',strtotime($b['created_at']));
                 ?>
+        <?php $id = Encripsi::encode('encrypt',$b['id']) ?>
         <div class="col-lg-4 col-md-6 col-sm-12 mt-4" data-aos="zoom-in-down" data-aos-delay="500">
-            <a href="details_blog.html">
+            <a href="<?= BASE_URL ?>/blog/details/<?= $id?>">
                 <div class="post-module">
                     <!-- Thumbnail-->
                     <div class="thumbnail">

@@ -29,22 +29,22 @@
                     <tbody>
                         <?php $i=1 ?>
                         <?php foreach ($data['blog'] as $blog): ?>
-                            <tr>
-                                <td><?= $i++  ?></td>
-                                <td><?= $blog['judul'] ?> </td>
-                                <td><?= $blog['username'] ?></td>
-                                <td><?= $blog['created_at'] ?></td>
-                                <?php $id = Encripsi::encode('encrypt',$blog['id']) ?>
-                                <td>
-                                    <a href="<?= BASE_URL?>/dashboard/edit_blog/<?= $id?>"
-                                        class="btn btn-success btn-sm">
-                                        <i class="far fa-edit"></i>
-                                    </a>
-                                    <a href="http://localhost/dewacoffee/dashboard/delete_blog/<?= $id ?>" class="btn btn-danger btn-sm " data-url-page="">
-                                        <i class="far fa-trash-alt"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td><?= $i++  ?></td>
+                            <td><?= $blog['judul'] ?> </td>
+                            <td><?= $blog['username'] ?></td>
+                            <td><?= $blog['created_at'] ?></td>
+                            <?php $id = Encripsi::encode('encrypt',$blog['id']) ?>
+                            <td>
+                                <a href="<?= BASE_URL?>/dashboard/edit_blog/<?= $id?>" class="btn btn-success btn-sm">
+                                    <i class="far fa-edit"></i>
+                                </a>
+                                <a href="<?= BASE_URL?>/dashboard/delete_blog/<?= $id ?>"
+                                    class="btn btn-danger btn-sm ">
+                                    <i class="far fa-trash-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
                         <?php endforeach ?>
                     </tbody>
                 </table>
@@ -65,7 +65,7 @@
                 </button>
             </div>
 
-            <form action="<?php echo BASE_URL ?>/dashboard/blog"  method="POST" enctype="multipart/form-data" >
+            <form action="<?php echo BASE_URL ?>/dashboard/blog" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-12">
@@ -85,18 +85,19 @@
                         </div>
                     </div>
                     <div class="row">
-                         <div class="col-lg-12">
+                        <div class="col-lg-12">
                             <div class="form-group">
-                                 <label class="form-control-label" for="tags_blog" >Tags</label>
-                                 <br>
-                                <input type="text" class="form-control" id="tags_blog"  data-toggle="tags" name="tags[]" value="Contoh" />
+                                <label class="form-control-label" for="tags_blog">Tags</label>
+                                <br>
+                                <input type="text" class="form-control" id="tags_blog" data-toggle="tags" name="tags[]"
+                                    value="Contoh" />
                             </div>
                         </div>
-                    </div>  
+                    </div>
                     <div class="row">
                         <div class="col-lg-12">
                             <label class="form-control-label">Pilih Banner</label>
-                            <div class="custom-file">  
+                            <div class="custom-file">
                                 <input type="file" class="custom-file-input" name="gambar">
                                 <label class="custom-file-label">Select file</label>
                             </div>
@@ -108,7 +109,7 @@
                     <button type="submit" name="submit" class="btn btn-primary">Simpan Data </button>
                 </div>
             </form>
-          
+
         </div>
     </div>
 </div>

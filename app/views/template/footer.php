@@ -19,7 +19,8 @@
 
 <!-- sweeralert2 -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script src="https://cdn.tiny.cloud/1/5kcl3iu5k6wdcylov090mv7tajkluyz153f8wg5497p1zz4y/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/5kcl3iu5k6wdcylov090mv7tajkluyz153f8wg5497p1zz4y/tinymce/5/tinymce.min.js"
+    referrerpolicy="origin"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
 AOS.init();
@@ -33,7 +34,7 @@ if (flashData) {
     })
 };
 tinymce.init({
-    selector:'textarea#des',
+    selector: 'textarea#des',
 });
 </script>
 
@@ -88,6 +89,7 @@ $(document).on('click', '.hps-data', function() {
             id: id,
         },
         success: function() {
+
             Swal.fire({
                 title: 'Dewa Coffee',
                 text: "Data Berhasil Di Hapus",
@@ -95,16 +97,15 @@ $(document).on('click', '.hps-data', function() {
                 type: 'success',
                 showConfirmButton: false,
             })
-            setInterval(function(){
+            setInterval(function() {
                 window.location.href = urlReturn;
-            },500);
+            }, 500);
         },
         error: function(response) {
             console.log(response.responseText);
         }
     });
 });
-
 </script>
 </body>
 

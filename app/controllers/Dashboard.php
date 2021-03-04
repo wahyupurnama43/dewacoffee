@@ -12,8 +12,11 @@ class Dashboard extends Controller
                 $data['header'] = 'Dashboard';
                 $data['link_header'] = 'dashboard';
                 $data['page'] = 'Home';
+                $data['count_blog'] = $this->model('M_Home')->count('blog');
+                $data['count_product'] = $this->model('M_Home')->count('product');
+                $data['count_contact'] = $this->model('M_Home')->count('contact');
                 $this->view('template/header', $data);
-                $this->view('dashboard/index');
+                $this->view('dashboard/index',$data);
                 $this->view('template/footer');
             }
             else

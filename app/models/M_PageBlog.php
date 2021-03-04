@@ -83,10 +83,10 @@ class M_PageBlog
 
     public function update($data,$id,$img)
     {
-        $ID = Encripsi::encode('decrypt', $id);
-          $sql = "UPDATE `page_blog` SET `judul`=:judul,`deskripsi`=:deskripsi WHERE id=$ID";
+            $ID = Encripsi::encode('decrypt', $id);
             $judul = htmlspecialchars($data['judul'],ENT_QUOTES);
             $deskripsi = htmlspecialchars($data['deskripsi'],ENT_QUOTES);
+            $sql = "UPDATE `page_blog` SET `judul`=:judul,`deskripsi`=:deskripsi WHERE id=$ID";
             $this->db->query($sql);
             $this->db->bind('judul', $judul);
             $this->db->bind('deskripsi', $deskripsi);
@@ -109,7 +109,8 @@ class M_PageBlog
         }
 
     }
-     public function delete_img_blog($id)
+    
+    public function delete_img_blog($id)
     {
         $blog = $this->getById($id);
         unlink('C:/xampp/htdocs/dewacoffee/public/upload/'.$blog['slider']);
