@@ -84,8 +84,10 @@
                                 <ul>
                                     <?php $delay = 300; ?>
                                     <?php foreach($data['blog'] as $bg): ?>
+                                    <?php $id = Encripsi::encode('encrypt',$bg['id']) ?>
                                     <li>
-                                        <a href="" data-aos="fade-up" data-aos-delay="<?= $delay += 100 ?>">
+                                        <a href="<?= BASE_URL ?>/blog/details/<?=$id?>" data-aos="fade-up"
+                                            data-aos-delay="<?= $delay += 100 ?>">
                                             <img src="<?= BASEURL ?>/upload/<?= $bg['banner']?>" alt="Image placeholder"
                                                 class="mr-4" />
                                             <div class="text">
