@@ -1671,7 +1671,6 @@ var Dropzones = (function() {
                 if($this.data('form-submit')){
                     $($this.data('form-submit')).on('click', '[type=submit]' ,function (e) {
                         e.preventDefault();
-
                         // kalo ga ada gambar, submit form kaya biasa aja gausah lewat ajax
                         if(vm.getQueuedFiles().length > 0) {
                             // proses submit form via ajax

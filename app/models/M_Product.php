@@ -65,6 +65,7 @@ class M_Product
         $this->db->bind('id',$id);
         return $this->db->resultSet();
     }
+    
     // untuk upload ke database
     public function upload($data, $img)
     {
@@ -103,7 +104,6 @@ class M_Product
         }else{
             return false;
         }
-
         
     }
 
@@ -167,6 +167,12 @@ class M_Product
 		$this->db->query($sql);
 		$this->db->bind('id',$id);
 		$this->db->execute();
+
+        $sql = "DELETE FROM gallery WHERE id_product=:id";
+		$this->db->query($sql);
+		$this->db->bind('id',$id);
+		$this->db->execute();
+        
         return true;
     }
 

@@ -7,10 +7,10 @@
                 <div class=""></div>
                 <div class="">
                     <!-- Button trigger modal -->
-<!--                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addProduct">
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addProduct">
                         <span class="btn-inner--text ">Tambah Banner Blog</span>
                         <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
-                    </button> -->
+                    </button>
 
                 </div>
             </div>
@@ -28,17 +28,18 @@
 
                     <tbody>
                         <?php $i=1 ?>
-                        <?php foreach ($data['blog'] as $blog): ?> 
+                        <?php foreach ($data['blog'] as $blog): ?>
                         <?php $id = Encripsi::encode('encrypt',$blog['id']);?>
                         <tr>
                             <td><?= $i++ ?></td>
                             <td><?= $blog['judul'] ?> </td>
-                            <td ><?= substr( $blog['deskripsi'], 0,100) ?></td>
+                            <td><?= substr( $blog['deskripsi'], 0,100) ?></td>
                             <td>
                                 <?php foreach ($data['gallery'] as $g): ?>
-                                    <?php if ($g['id_page_blog'] === $blog['id'] ) :?>
-                                        <img src="<?= BASEURL ?>/upload/<?= $g['slider'] ?>" alt="" width="50px" class="mb-2"> <br>
-                                    <?php endif; ?>
+                                <?php if ($g['id_page_blog'] === $blog['id'] ) :?>
+                                <img src="<?= BASEURL ?>/upload/<?= $g['slider'] ?>" alt="" width="50px" class="mb-2">
+                                <br>
+                                <?php endif; ?>
                                 <?php endforeach ?>
                             </td>
                             <td>
@@ -46,10 +47,10 @@
                                     class="btn btn-success btn-sm">
                                     <i class="far fa-edit"></i>
                                 </a>
-                             <!--    <a href="<?= BASE_URL?>/dashboard/delete_banner_blog/<?= $id?>"
+                                <a href="<?= BASE_URL?>/dashboard/delete_banner_blog/<?= $id?>"
                                     class="btn btn-danger btn-sm">
                                     <i class="far fa-trash-alt"></i>
-                                </a> -->
+                                </a>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -78,15 +79,13 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="form-control-label">Nama Banner Blog</label>
-                                <input type="text" class="form-control"  name="judul"
-                                    placeholder="Nama Banner Blog">
+                                <input type="text" class="form-control" name="judul" placeholder="Nama Banner Blog">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label class="form-control-label" >Deskripsi</label>
-                                <input type="text" class="form-control" placeholder="Deskripsi"
-                                    name="deskripsi">
+                                <label class="form-control-label">Deskripsi</label>
+                                <input type="text" class="form-control" placeholder="Deskripsi" name="deskripsi">
                             </div>
                         </div>
                     </div>

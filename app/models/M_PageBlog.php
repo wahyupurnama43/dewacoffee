@@ -28,6 +28,14 @@ class M_PageBlog
         $this->db->query($sql);
         return $this->db->resultSet();        
     }
+
+    public function getGambarById($id)
+    {
+        $sql = "SELECT * FROM slider_blog WHERE id_page_blog = $id";
+        $this->db->query($sql);
+        return $this->db->resultSet();        
+    }
+    
     public function getById($id)
     {
          $sql = "SELECT * FROM slider_blog WHERE id=$id";
@@ -69,7 +77,9 @@ class M_PageBlog
     public function delete($id)
     {
         $about = $this->getById($id);
-        unlink('C:/xampp/htdocs/dewacoffee/public/upload/'.$about['slider']);
+        foreach ($about as $ab) {
+            unlink('C:/xampp/htdocs/dewacoffee/public/upload/'.$ab['slider']);
+        }
 
         $sql ="DELETE FROM `slider_blog` WHERE id_page_blog=$id";
         $this->db->query($sql);

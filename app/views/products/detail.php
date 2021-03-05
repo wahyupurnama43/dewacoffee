@@ -37,7 +37,7 @@
                     </div>
                     <div class="button-buy" data-aos="fade-left" data-aos-delay="600">
                         <a href="https://api.whatsapp.com/send?phone=6287810202578&text=Hai%20Dewa%20coffee%20saya%20ingin%20membeli%20<?= $data['product']['judul'] ?> %20"
-                            class="btn btn-coffee">Buy</a>
+                            class="btn btn-coffee" target="blank">Buy</a>
                     </div>
                 </div>
             </div>

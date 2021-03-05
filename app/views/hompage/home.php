@@ -11,7 +11,8 @@
                     coffee that has the best
                     taste.
                 </p>
-                <a href="products.html" class="btn btn-coffee" data-aos="fade-right" data-aos-delay="500">Show
+                <a href="<?= BASE_URL ?>/products" class="btn btn-coffee" data-aos="fade-right"
+                    data-aos-delay="500">Show
                     Product</a>
             </div>
         </div>
@@ -140,4 +141,8 @@
         </div>
         <?php endforeach;?>
     </div>
+</div>
+
+<div class="m-auto pt-3 text-center pb-3" data-aos="zoom-in-down" data-aos-delay="800">
+    <a href="<?= BASE_URL ?>/blog" class="btn btn-coffee">More Blog &nbsp;.&nbsp;.&nbsp;.</a>
 </div>

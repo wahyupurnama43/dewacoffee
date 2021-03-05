@@ -19,6 +19,12 @@ class M_Home
         $this->db->query($sql);
         return $this->db->resultSet();
     }
+    public function getProductLimits()
+    {
+        $sql = "SELECT p.*, g.* FROM product p INNER JOIN gallery g ON g.id_product = p.id WHERE g.status = 'active' LIMIT 6";
+        $this->db->query($sql);
+        return $this->db->resultSet();
+    }
     public function getById($id)
     {
          $sql = "SELECT * FROM page_home WHERE id=$id";
@@ -28,6 +34,12 @@ class M_Home
     public function getBlogData()
     {
         $sql = "SELECT * FROM blog";
+        $this->db->query($sql);
+        return $this->db->resultSet();
+    }
+    public function getBlogLimits()
+    {
+        $sql = "SELECT * FROM blog LIMIT 3";
         $this->db->query($sql);
         return $this->db->resultSet();
     }

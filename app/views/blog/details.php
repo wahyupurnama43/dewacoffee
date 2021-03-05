@@ -8,8 +8,8 @@
                     <div class="post-entry text-center">
                         <h1 class="mb-4"><a href=""><?= $data['details']['judul'] ?>.</a></h1>
                         <div class="post-meta align-items-center text-center">
-                            <figure class="author-figure mb-0 mr-3 d-inline-block"><img
-                                    src="<?= BASEURL ?>/assets/img/user/user-3.jpg" alt="Image" class="img-fluid" />
+                            <figure class="author-figure mb-0 mr-3 d-inline-block">
+                                <img src="<?= BASEURL ?>/assets/img/theme/team-4.jpg" alt="Image" class="img-fluid" />
                             </figure>
                             <span class="d-inline-block mt-1"><?= $data['details']['username'] ?></span>
                             <span>&nbsp;-&nbsp; <?= date('F d , Y', strtotime($data['details']['created_at'])) ?></span>
@@ -39,28 +39,24 @@
                             </p>
                         </div>
 
-                        <div class="pt-5">
+                        <!-- <div class="pt-5">
                             <h3 class="mb-5" data-aos="zoom-in" data-aos-delay="300">1 Comments</h3>
                             <ul class="comment-list" data-aos="fade-right" data-aos-delay="400">
                                 <li class="comment">
                                     <div class="vcard">
-                                        <img src="<?= BASEURL ?>/assets/img/user/user-3.jpg" alt="Image placeholder" />
+                                        <img src="<?= BASEURL ?>/assets/img/theme/team-4.jpg" alt="Image placeholder" />
                                     </div>
                                     <div class="comment-body">
                                         <h3>Jean Doe</h3>
                                         <div class="meta">January 9, 2018 at 2:21pm</div>
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem
-                                            laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe
-                                            enim sapiente iste iure! Quam
-                                            voluptas earum impedit necessitatibus, nihil?
+                                            
                                         </p>
                                         <p><a href="#" class="reply rounded">Reply</a></p>
                                     </div>
                                 </li>
                             </ul>
-                            <!-- END comment-list -->
-                        </div>
+                        </div> -->
                     </div>
 
                     <!-- END main-content -->
@@ -69,7 +65,7 @@
                         <!-- END sidebar-box -->
                         <div class="sidebar-box">
                             <div class="bio text-center">
-                                <img src="<?= BASEURL ?>/assets/img/user/user-3.jpg" alt="Image Placeholder"
+                                <img src="<?= BASEURL ?>/assets/img/theme/team-4.jpg" alt="Image Placeholder"
                                     class="img-user mb-5" data-aos="zoom-in" data-aos-delay="300" />
                                 <div class="bio-body">
                                     <h2 data-aos="zoom-in" data-aos-delay="400"><?= $data['details']['username'] ?></h2>

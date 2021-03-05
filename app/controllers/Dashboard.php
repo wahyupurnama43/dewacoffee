@@ -5,8 +5,10 @@ class Dashboard extends Controller
     // fungsi untutk home dashboard
     public function index()
     {
+        // cek jika ada session
         if (isset($_SESSION) && $_SESSION['login'] == true)
         {
+            // cek jika ada session admin true
             if (isset($_SESSION) && $_SESSION['admin'] == true)
             {
                 $data['header'] = 'Dashboard';
@@ -21,13 +23,14 @@ class Dashboard extends Controller
             }
             else
             {
+                // jika akun kita bukan admin
                 Flasher::setFlash('login terlebih dahulu', 'error');
                 header('Location: ' . BASE_URL . '/auth');
             }
-
         }
         else
         {
+            // jika akun kita tidak ada session
             Flasher::setFlash('login terlebih dahulu', 'error');
             header('Location: ' . BASE_URL . '/auth');
         }
@@ -37,53 +40,59 @@ class Dashboard extends Controller
     //fungsi untuk dashboaard product
     public function product()
     {
+        // jika ada product method post 
         if ($_SERVER['REQUEST_METHOD'] == 'POST')
         {
+            // ksk response 200 untuk menghasilkan true
             $responsecode = 200;
             try
             {
-                $images = [];
+                $images = []; // menampung data images
+                // jika ada files dan files nya itu tidak lebih dari 5
                 if (isset($_FILES['file']) && count($_FILES['file']['name']) <= 5)
                 {
+                        // kita pecah gambar dlu karena kita upload multiple data
                         $files = $this->serialize_files($_FILES['file']);
+                        // foreach data dari $files
                         foreach ($files as $file)
                         {
+                            //lalu kita upload gambar tersbut dan masukkan ke variable $images[]
                             $images[] = $this->handle_upload_image($file);
-                            // do upload
+                            
                         }
-                        foreach($images as $i){
-                            if($i === false){
-                                $responsecode = 400;
-                            }else{
-                                $this->model('M_Product')
-                                ->upload($_POST, $images);
-                            }
+                        // lalu kita cek data di images ada yang false gak 
+                        if(in_array(false,$images)){
+                            $responsecode = 400; //mengembalikan false
+                        }else{
+                            // lalu lakukan upload data ke database
+                            $this->model('M_Product')->upload($_POST, $images);
                         }
                 }else{
+                    // jika tidak ada gambar dan gambar lebih dari 5
                     $responsecode = 400;
                 }
-
-                // kalo ga mau pake trycatch gapapa, tapi kalo ada gagal, langsung aja $responsecode = 400
-                
             }
             catch(Exception $e)
             {
                 $responsecode = 400;
             }
 
-            http_response_code($responsecode);
+            http_response_code($responsecode); //untuk menyetel atau mengembalikan kode status respons
             // kalo mau var_dump juga bisa, langsung aja var_dump()
             // var_dump('test');
             // ini kalo submit tapi ada gambar nya, nnti bisa kirim pesan ke javacript lewat sini, tinggal echo aja,
             // ini buat handle AJAX-nya Dropzone
+
+            // deteksi request dari ajax
             if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
             {
+                
+                //untuk mengirimkan ke browser ni json
                 header('Content-Type: application/json');
                 if ($responsecode == 200)
                 {
                     // jika berhasil
                     echo json_encode(['status' => true, 'message' => 'Berhasil', ]);
-
                 }
                 else
                 {
@@ -125,6 +134,7 @@ class Dashboard extends Controller
     // fungsi untuk memecah gambar
     public function serialize_files(array $files)
     {
+        // Menyiapkan variable array untuk menampung data
         $serialized = [];
         foreach ($files as $key => $values)
         {
@@ -148,14 +158,16 @@ class Dashboard extends Controller
         $newfilename = uniqid(rand()) . '.' . $ext;
         $ekstensi_diperbolehkan = array('png','jpg','jpeg');
 
+        // jika data yang di masukkan itu benar jpg png jpeg
         if (in_array($ext, $ekstensi_diperbolehkan) == true) {
+            // pindahkan dari local server ke folder local public upload
             move_uploaded_file($tmp_name, 'public/upload/' . $newfilename);
+            //dan return nama filenya
             return $newfilename;
         }else{
+            // jika tidak benar dia return false
             return false;
         }
-
-        
     }
 
     // fungsi untuk page edit product
@@ -167,6 +179,7 @@ class Dashboard extends Controller
             try
             {
                 $images = [];
+                // merubah $id yng di kirimin menjadi decrypt
                 $ID = Encripsi::encode('decrypt', $id);
                 if (isset($_FILES['file']) && count($_FILES['file']['name']) <= 5)
                 {
@@ -175,16 +188,13 @@ class Dashboard extends Controller
                     {
                         $images[] = $this->handle_upload_image($file);
                     }
-                    foreach ($images as $i) {
-                        if ($i === false) {
-                            $responsecode = 400;
-                        } else {
-                            $this->model('M_Product')
-                        ->update($_POST, $id, $images);
-                        }
+                    if(in_array(false,$images)){
+                        $responsecode = 400;
+                    }else{
+                        $this->model('M_Product')->update($_POST, $id, $images);
                     }
                 }
-                elseif (!isset($_FILES['file']))
+                elseif (!isset($_FILES['file'])) // jika tidak ada gambar
                 {
                     $this->model('M_Product')
                         ->update($_POST, $id, $images);
@@ -193,7 +203,6 @@ class Dashboard extends Controller
                 }else{
                     $responsecode = 400;
                 }
-
                 // kalo ga mau pake trycatch gapapa, tapi kalo ada gagal, langsung aja $responsecode = 400
                 
             }
@@ -246,14 +255,12 @@ class Dashboard extends Controller
                 Flasher::setFlash('login terlebih dahulu', 'error');
                 header('Location: ' . BASE_URL . '/auth');
             }
-
         }
         else
         {
             Flasher::setFlash('login terlebih dahulu', 'error');
             header('Location: ' . BASE_URL . '/auth');
         }
-
     }
 
     // fungsin untuk delete img product
@@ -269,9 +276,7 @@ class Dashboard extends Controller
     public function delete_product($id)
     {
         $ID = Encripsi::encode('decrypt', $id);
-        $return = $this->model('M_Product')
-            ->delete_product($ID);
-
+        $return = $this->model('M_Product')->delete_product($ID);
         if ($return == true)
         {
             Flasher::setFlash('Data Berhasil Di Delete', 'success');
@@ -1167,7 +1172,7 @@ class Dashboard extends Controller
                             $images[] = $this->handle_upload_image($file);
                             // do upload
                         }
-                        if($images !== true){
+                        if(in_array(false,$images)){
                             $responsecode = 400;
                         }else{
                             $this->model('M_PageBlog')
@@ -1267,7 +1272,7 @@ class Dashboard extends Controller
                             $images[] = $this->handle_upload_image($file);
                             // do upload
                         }
-                        if($images !== true){
+                        if(in_array(false,$images)){
                             $responsecode = 400;
                         }else{
                             $this->model('M_PageBlog')
@@ -1322,7 +1327,7 @@ class Dashboard extends Controller
                 $data['link_header'] = 'dashboard/banner_blog';
                 $data['page'] = 'Home';
                 $data['blog'] = $this->model('M_PageBlog')->getDataBy($ID);
-                $data['gambar'] = $this->model('M_PageBlog')->getGambar();
+                $data['gambar'] = $this->model('M_PageBlog')->getGambarById($ID);
                 $this->view('template/header', $data);
                 $this->view('dashboard/banner/banner-blog/edit',$data);
                 $this->view('template/footer');
@@ -1398,6 +1403,4 @@ class Dashboard extends Controller
             }
         }
     }
-
- 
 }
