@@ -75,26 +75,26 @@
                             <div class="form-group">
                                 <label class="form-control-label" for="product">Nama Produk</label>
                                 <input type="text" class="form-control" id="product" name="judul"
-                                    placeholder="Nama Product">
+                                    placeholder="Nama Product" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="form-control-label" for="tipeCoffee">Tipe Kopi</label>
                                 <input type="text" class="form-control" id="tipeCoffee" placeholder="Tipe Kopi"
-                                    name="tipe_coffee">
+                                    name="tipe_coffee" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="form-control-label" for="price">Price</label>
-                                <input type="number" class="form-control" id="price" placeholder="Price" name="price">
+                                <input type="number" class="form-control" id="price" placeholder="Price" name="price" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="form-control-label" for="neto">Neto</label>
-                                <input type="number" class="form-control" id="neto" placeholder="Neto" name="neto">
+                                <input type="number" class="form-control" id="neto" placeholder="Neto" name="neto" required>
                             </div>
                         </div>
                     </div>

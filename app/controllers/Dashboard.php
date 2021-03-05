@@ -58,15 +58,15 @@ class Dashboard extends Controller
                         {
                             //lalu kita upload gambar tersbut dan masukkan ke variable $images[]
                             $images[] = $this->handle_upload_image($file);
-                            
+                                // lalu kita cek data di images ada yang false gak 
                         }
-                        // lalu kita cek data di images ada yang false gak 
                         if(in_array(false,$images)){
                             $responsecode = 400; //mengembalikan false
                         }else{
                             // lalu lakukan upload data ke database
                             $this->model('M_Product')->upload($_POST, $images);
                         }
+                       
                 }else{
                     // jika tidak ada gambar dan gambar lebih dari 5
                     $responsecode = 400;
@@ -160,10 +160,14 @@ class Dashboard extends Controller
 
         // jika data yang di masukkan itu benar jpg png jpeg
         if (in_array($ext, $ekstensi_diperbolehkan) == true) {
-            // pindahkan dari local server ke folder local public upload
-            move_uploaded_file($tmp_name, 'public/upload/' . $newfilename);
-            //dan return nama filenya
-            return $newfilename;
+            if($file['size'] > 0 && $file['size'] !== 0){
+                // pindahkan dari local server ke folder local public upload
+                move_uploaded_file($tmp_name, 'public/upload/' . $newfilename);
+                //dan return nama filenya
+                return $newfilename;
+            }else{
+                return false;
+            }
         }else{
             // jika tidak benar dia return false
             return false;
