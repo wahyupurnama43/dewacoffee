@@ -3,7 +3,7 @@
         <div class="card">
             <!-- Card header -->
             <div class="card-header d-flex justify-content-between">
-                <h3 class="mb-0">About Us</h3>
+                <h3 class="mb-0">Review</h3>
                 <div class=""></div>
                 <div class="">
                     <!-- Button trigger modal -->
@@ -43,7 +43,7 @@
                                     <i class="far fa-edit"></i>
                                 </a>
                                 <a href="<?= BASE_URL?>/dashboard/delete_review/<?= $id ?>"
-                                    class="btn btn-danger btn-sm ">
+                                    class="btn btn-danger btn-sm " onclick="return confirm('Yakin Di Hapus')">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
                             </td>

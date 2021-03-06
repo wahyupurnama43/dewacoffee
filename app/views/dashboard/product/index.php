@@ -43,7 +43,7 @@
                                     <i class="far fa-edit"></i>
                                 </a>
                                 <a href="<?= BASE_URL?>/dashboard/delete_product/<?= $id?>"
-                                    class="btn btn-danger btn-sm">
+                                    class="btn btn-danger btn-sm" onclick="return confirm('Yakin Di Hapus')">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
                             </td>
@@ -88,13 +88,15 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="form-control-label" for="price">Price</label>
-                                <input type="number" class="form-control" id="price" placeholder="Price" name="price" required>
+                                <input type="number" class="form-control" id="price" placeholder="Price" name="price"
+                                    required>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="form-control-label" for="neto">Neto</label>
-                                <input type="number" class="form-control" id="neto" placeholder="Neto" name="neto" required>
+                                <input type="number" class="form-control" id="neto" placeholder="Neto" name="neto"
+                                    required>
                             </div>
                         </div>
                     </div>

@@ -7,10 +7,10 @@
                 <div class=""></div>
                 <div class="">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addProduct">
+                    <!-- <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addProduct">
                         <span class="btn-inner--text ">Tambah Banner Blog</span>
                         <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
-                    </button>
+                    </button> -->
 
                 </div>
             </div>
@@ -47,10 +47,10 @@
                                     class="btn btn-success btn-sm">
                                     <i class="far fa-edit"></i>
                                 </a>
-                                <a href="<?= BASE_URL?>/dashboard/delete_banner_blog/<?= $id?>"
+                                <!-- <a href="<?= BASE_URL?>/dashboard/delete_banner_blog/<?= $id?>"
                                     class="btn btn-danger btn-sm">
                                     <i class="far fa-trash-alt"></i>
-                                </a>
+                                </a> -->
                             </td>
                         </tr>
                         <?php endforeach; ?>

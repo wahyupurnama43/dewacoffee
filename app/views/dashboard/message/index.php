@@ -35,7 +35,7 @@
                             <?php $id = Encripsi::encode('encrypt',$contact['id']); ?>
                             <td>
                                 <a href="<?= BASE_URL?>/dashboard/delete_message/<?= $id ?>"
-                                    class="btn btn-danger btn-sm ">
+                                    class="btn btn-danger btn-sm " onclick="return confirm('Yakin Di Hapus')">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
                             </td>

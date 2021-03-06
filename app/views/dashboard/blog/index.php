@@ -39,8 +39,8 @@
                                 <a href="<?= BASE_URL?>/dashboard/edit_blog/<?= $id?>" class="btn btn-success btn-sm">
                                     <i class="far fa-edit"></i>
                                 </a>
-                                <a href="<?= BASE_URL?>/dashboard/delete_blog/<?= $id ?>"
-                                    class="btn btn-danger btn-sm ">
+                                <a href="<?= BASE_URL?>/dashboard/delete_blog/<?= $id ?>" class="btn btn-danger btn-sm "
+                                    onclick="return confirm('Yakin Di Hapus')">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
                             </td>
