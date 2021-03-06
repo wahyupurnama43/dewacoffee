@@ -6,10 +6,7 @@
                     <?= $data['banner'][0]['judul'] ?>
                 </h1>
                 <p data-aos="fade-right" data-aos-delay="400">
-                    Dewa coffee "coffee specialist" is an online coffee shop that sells various types of coffee in
-                    Indonesia. The coffee that we sell comes from farmers and coffee who have full dedication to produce
-                    coffee that has the best
-                    taste.
+                    <?= $data['banner'][0]['deskripsi'] ?>
                 </p>
                 <a href="<?= BASE_URL ?>/products" class="btn btn-coffee" data-aos="fade-right"
                     data-aos-delay="500">Show
