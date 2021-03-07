@@ -17,10 +17,7 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label class="form-control-label" for="Deskripsi">Banner</label>
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" name="gambar">
-                                    <label class="custom-file-label">Select file</label>
-                                </div>
+                                <input type="file" class="form-control" name="gambar">
                             </div>
                         </div>
                         <div class="col-lg-12">

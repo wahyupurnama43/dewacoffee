@@ -97,10 +97,9 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <label class="form-control-label">Pilih Banner</label>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" name="gambar">
-                                <label class="custom-file-label">Select file</label>
-                            </div>
+                             <div class="form-group">
+                                    <input type="file" class="form-control" name="gambar">
+                                </div>
                         </div>
                     </div>
 

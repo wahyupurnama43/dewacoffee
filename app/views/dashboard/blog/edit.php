@@ -34,11 +34,8 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label class="form-control-label">Pilih Banner</label>
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" name="gambar">
-                                    <label class="custom-file-label">Select file</label>
-                                </div>
-                                <img src="<?= BASEURL ?>/upload/<?= $data['blog']['banner'] ?>" alt="" class="mt-4"
+                                <input type="file" class="form-control" name="gambar">
+                                <img src="<?= BASEURL ?>/upload/<?= $data['blog']['banner'] ?>" alt="" class="mt-3"
                                     width="100px">
                             </div>
                         </div>
