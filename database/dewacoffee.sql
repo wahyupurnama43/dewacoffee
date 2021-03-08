@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Mar 2021 pada 16.14
--- Versi server: 10.4.6-MariaDB
--- Versi PHP: 7.3.9
+-- Generation Time: Mar 08, 2021 at 10:51 AM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `auth`
+-- Table structure for table `auth`
 --
 
 CREATE TABLE `auth` (
@@ -37,7 +37,7 @@ CREATE TABLE `auth` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `auth`
+-- Dumping data for table `auth`
 --
 
 INSERT INTO `auth` (`id`, `username`, `email`, `password`, `level`) VALUES
@@ -46,7 +46,7 @@ INSERT INTO `auth` (`id`, `username`, `email`, `password`, `level`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `blog`
+-- Table structure for table `blog`
 --
 
 CREATE TABLE `blog` (
@@ -59,7 +59,7 @@ CREATE TABLE `blog` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `blog`
+-- Dumping data for table `blog`
 --
 
 INSERT INTO `blog` (`id`, `judul`, `deskripsi`, `id_user`, `banner`, `created_at`) VALUES
@@ -70,7 +70,7 @@ INSERT INTO `blog` (`id`, `judul`, `deskripsi`, `id_user`, `banner`, `created_at
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `contact`
+-- Table structure for table `contact`
 --
 
 CREATE TABLE `contact` (
@@ -82,18 +82,19 @@ CREATE TABLE `contact` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `contact`
+-- Dumping data for table `contact`
 --
 
 INSERT INTO `contact` (`id`, `nama`, `email`, `message`, `created_at`) VALUES
 (7, 'Made Wahyu Purnama Putra ', 'wahyu@gmail.com', 'kopi mu enak sekali yuks kerja sama aja', '2021-03-03 14:28:52'),
 (11, 'ads', 'admin@admin.com', 'sdasdasd', '2021-03-05 14:07:07'),
-(12, 'angga ', 'tes@gmail.com', 'yuks kerja sama sama cafe ku', '2021-03-05 19:24:24');
+(12, 'angga ', 'tes@gmail.com', 'yuks kerja sama sama cafe ku', '2021-03-05 19:24:24'),
+(13, 'I Gusti Putu Ngurah Prihandana', 'prihandana27@gmail.com', 'aku suka banget coffee kamu', '2021-03-08 17:44:23');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `gallery`
+-- Table structure for table `gallery`
 --
 
 CREATE TABLE `gallery` (
@@ -105,7 +106,7 @@ CREATE TABLE `gallery` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `gallery`
+-- Dumping data for table `gallery`
 --
 
 INSERT INTO `gallery` (`id`, `gambar`, `status`, `id_product`, `created_at`) VALUES
@@ -116,13 +117,12 @@ INSERT INTO `gallery` (`id`, `gambar`, `status`, `id_product`, `created_at`) VAL
 (213, '6407801326041c2bc084c8.jpg', 'active', 61, '2021-03-05 13:33:48'),
 (214, '15187807676041c2bc0872b.jpg', 'disable', 61, '2021-03-05 13:33:48'),
 (222, '1786173196041ca14cbf76.jpg', 'active', 95, '2021-03-05 14:05:08'),
-(223, '4641722896041ca14cc233.jpg', 'disable', 95, '2021-03-05 14:05:08'),
-(238, '201735126060422a253001b.jpg', 'active', 107, '2021-03-05 20:55:01');
+(223, '4641722896041ca14cc233.jpg', 'disable', 95, '2021-03-05 14:05:08');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `page_about`
+-- Table structure for table `page_about`
 --
 
 CREATE TABLE `page_about` (
@@ -133,16 +133,16 @@ CREATE TABLE `page_about` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `page_about`
+-- Dumping data for table `page_about`
 --
 
 INSERT INTO `page_about` (`id`, `company`, `deskripsi`, `banner`) VALUES
-(1, 'Dewa Coffee', 'Kopi Dewa \"spesialis kopi\" adalah sebuah kedai kopi online yang menjual berbagai jenis kopi di Indonesia. Kopi yang kami sangrai dan jual berasal dari para petani dan pemanggang kopi yang berdedikasi penuh untuk memanggang kopi, menghasilkan kopi dengan rasa terbaik.\r\n<br>\r\n<br>\r\nKopi dewa bekerja sama dengan petani kopi lokal Bali untuk memenuhi keinginan Anda akan rasa kopi yang berbeda. Kami percaya dan menjamin setiap kopi yang ada di Dewa Coffee langsung dari para petani kopi di Bali yang juga memiliki dedikasi dan semangat tinggi dalam dunia kopi.\r\n\r\n<br>\r\n<br>\r\nDewa Coffee akan selalu berkomitmen untuk menjadi kedai kopi online terpercaya dengan terus berinovasi dan meningkatkan kualitas terbaik. Kini Anda bisa menikmati belanja kopi online dengan harga terjangkau, mudah, aman dan nyaman. Pilih kopi Anda dengan “spesialis kopi” Kopitem. Karena dengan kopitem kopi menjadi mudah.', '17517626446041c6c51429b.jpg');
+(1, 'Dewa Coffee', 'Kopi Dewa \"spesialis kopi\" adalah sebuah kedai kopi online yang menjual berbagai jenis kopi di Indonesia. Kopi yang kami sangrai dan jual berasal dari para petani dan pemanggang kopi yang berdedikasi penuh untuk memanggang kopi, menghasilkan kopi dengan rasa terbaik.\r\n<br>\r\n<br>\r\nKopi dewa bekerja sama dengan petani kopi lokal Bali untuk memenuhi keinginan Anda akan rasa kopi yang berbeda. Kami percaya dan menjamin setiap kopi yang ada di Dewa Coffee langsung dari para petani kopi di Bali yang juga memiliki dedikasi dan semangat tinggi dalam dunia kopi.\r\n\r\n<br>\r\n<br>\r\nDewa Coffee akan selalu berkomitmen untuk menjadi kedai kopi online terpercaya dengan terus berinovasi dan meningkatkan kualitas terbaik. Kini Anda bisa menikmati belanja kopi online dengan harga terjangkau, mudah, aman dan nyaman. Pilih kopi Anda dengan \"spesialis kopi\"  Kopitem. Karena dengan kopitem kopi menjadi mudah.', '10429042276045f21728c50.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `page_blog`
+-- Table structure for table `page_blog`
 --
 
 CREATE TABLE `page_blog` (
@@ -153,7 +153,7 @@ CREATE TABLE `page_blog` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `page_blog`
+-- Dumping data for table `page_blog`
 --
 
 INSERT INTO `page_blog` (`id`, `judul`, `deskripsi`, `created_at`) VALUES
@@ -162,7 +162,7 @@ INSERT INTO `page_blog` (`id`, `judul`, `deskripsi`, `created_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `page_contact`
+-- Table structure for table `page_contact`
 --
 
 CREATE TABLE `page_contact` (
@@ -174,7 +174,7 @@ CREATE TABLE `page_contact` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `page_contact`
+-- Dumping data for table `page_contact`
 --
 
 INSERT INTO `page_contact` (`id`, `address`, `email`, `phone`, `maps`) VALUES
@@ -183,7 +183,7 @@ INSERT INTO `page_contact` (`id`, `address`, `email`, `phone`, `maps`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `page_home`
+-- Table structure for table `page_home`
 --
 
 CREATE TABLE `page_home` (
@@ -194,16 +194,16 @@ CREATE TABLE `page_home` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `page_home`
+-- Dumping data for table `page_home`
 --
 
 INSERT INTO `page_home` (`id`, `judul`, `deskripsi`, `banner`) VALUES
-(1, 'Inspired By The Best Coffee Of Indonesia  ', 'Dewa coffee \"coffee specialist\" is an online coffee shop that sells various types of coffee in Indonesia. The coffee that we sell comes from farmers and coffee who have full dedication to produce coffee that has the best taste.', '130024583460422a84bc553.png');
+(1, 'Terinspirasi Oleh Kopi Terbaik Indonesia', 'Kopi Dewa adalah sebuah kedai kopi online yang menjual berbagai jenis kopi di Indonesia. Kopi yang kami jual berasal dari petani dan kopi yang memiliki dedikasi penuh untuk menghasilkan kopi yang memiliki cita rasa terbaik.', '2310739266045f17200b82.png');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `page_product`
+-- Table structure for table `page_product`
 --
 
 CREATE TABLE `page_product` (
@@ -212,7 +212,7 @@ CREATE TABLE `page_product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `page_product`
+-- Dumping data for table `page_product`
 --
 
 INSERT INTO `page_product` (`id`, `banner`) VALUES
@@ -221,7 +221,7 @@ INSERT INTO `page_product` (`id`, `banner`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `product`
+-- Table structure for table `product`
 --
 
 CREATE TABLE `product` (
@@ -236,20 +236,19 @@ CREATE TABLE `product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `product`
+-- Dumping data for table `product`
 --
 
 INSERT INTO `product` (`id`, `judul`, `deskripsi`, `neto`, `tipe_coffee`, `price`, `id_auth`, `created_at`) VALUES
 (59, 'Kopi arabika kintamani', 'Kopi Arabika Kintamani adalah kopi arabika yang dipanen dan diproses secara full washed process sehingga menghasilkan biji kopi arabika terbaik yang kemudian diroasting dengan profile omni roast (cocok untuk manual brew/filter dan espresso/mesin).\r\n<br><br>\r\nRegion : Kintamani ~ Bali\r\n<br>\r\nProcess : Full washed process\r\n<br>\r\nVariety : Mix\r\n<br>\r\nAltitude : 1400 – 1600 MDPL\r\n<br>\r\nNotes : Fruity, Dried Fruit, Spicy, Medium acidity', 200, 'Arabika', 20000, 1, '2021-03-04 09:19:46'),
 (60, 'Kopi Arabika Aceh Gayo', 'Kopi Arabika Aceh Gayo adalah kopi arabika yang dipanen dan diproses secara full washed process sehingga menghasilkan biji kopi arabika aceh gayo terbaik yang kemudian diroasting dengan profile omni roast (cocok untuk manual brew/filter dan espresso/mesin).\r\n<br><br>\r\nRegion : Aceh Tengah\r\n<br>\r\nProcess : Full washed process\r\n<br>\r\nVariety : Mix\r\n<br>\r\nAltitude : 1400 – 1600 MDPL\r\n<br>\r\nNotes : Fruity, Dried Fruit, Spicy, Medium acidity', 200, 'Arabika', 90000, 1, '2021-03-04 09:24:40'),
 (61, 'Kopi Robusta Singaraja', 'Kopi Robusta Singaraja adalah kopi robusta yang di blend dari origin arabika balipupuan yang dipanen dan diproses secara full washed process sehingga menghasilkan blend kopi terbaik yang kemudian diroasting dengan profile medium (cocok untuk espresso/mesin based).\r\n<br><br>\r\nRegion : Bali\r\n<br>\r\nProcess : Full washed process\r\n<br>\r\nVariety : Mix\r\n<br>\r\nAltitude : 1100 MDPL\r\n<br>\r\nNotes : Cacao nips, roasted nut, strong body with long aftertaste', 200, 'Robusta', 50000, 1, '2021-03-04 09:28:00'),
-(95, 'Kopi Arabika Arang', 'Kopi Arabika Arang adalah kopi arabika yang dipanen dan diproses secara full washed process sehingga menghasilkan biji kopi arabika arang terbaik yang kemudian diroasting dengan profile omni roast (cocok untuk manual brew/filter dan espresso/mesin).\r\n\r\nRegion:  Sumatra Utara\r\nProcess: Full washed process\r\nVariety: Mix\r\nAltitude: 1400 ï¿½ 1800 MDPL\r\nNotes: Round Mouthfeel, Chocolate, Spices, Sweet Earthy, Long Finish.\r\n\r\nStock kopi yang kami produksi selalu dalam keadaan fresh dikarenakan kopi yang dijual tidak melebihi 45 hari dari tanggal roasting.\r\n\r\nKamu bisa membeli kopi dalam bentuk bubuk ataupun biji. Jika membeli dalam bentuk bubuk, mohon sertakan profil gilingan kamu (halus, medium, kasar) di kolom catatan.', 200, 'Arabika', 70000, 1, '2021-03-05 14:05:08'),
-(107, '1', '1', 1, '1', 1, 1, '2021-03-05 20:55:01');
+(95, 'Kopi Arabika Arang', 'Kopi Arabika Arang adalah kopi arabika yang dipanen dan diproses secara full washed process sehingga menghasilkan biji kopi arabika arang terbaik yang kemudian diroasting dengan profile omni roast (cocok untuk manual brew/filter dan espresso/mesin).\r\n\r\nRegion:  Sumatra Utara\r\nProcess: Full washed process\r\nVariety: Mix\r\nAltitude: 1400 ï¿½ 1800 MDPL\r\nNotes: Round Mouthfeel, Chocolate, Spices, Sweet Earthy, Long Finish.\r\n\r\nStock kopi yang kami produksi selalu dalam keadaan fresh dikarenakan kopi yang dijual tidak melebihi 45 hari dari tanggal roasting.\r\n\r\nKamu bisa membeli kopi dalam bentuk bubuk ataupun biji. Jika membeli dalam bentuk bubuk, mohon sertakan profil gilingan kamu (halus, medium, kasar) di kolom catatan.', 200, 'Arabika', 70000, 1, '2021-03-05 14:05:08');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `review`
+-- Table structure for table `review`
 --
 
 CREATE TABLE `review` (
@@ -260,7 +259,7 @@ CREATE TABLE `review` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `review`
+-- Dumping data for table `review`
 --
 
 INSERT INTO `review` (`id`, `photo`, `nama`, `review`) VALUES
@@ -271,7 +270,7 @@ INSERT INTO `review` (`id`, `photo`, `nama`, `review`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `slider_blog`
+-- Table structure for table `slider_blog`
 --
 
 CREATE TABLE `slider_blog` (
@@ -281,7 +280,7 @@ CREATE TABLE `slider_blog` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `slider_blog`
+-- Dumping data for table `slider_blog`
 --
 
 INSERT INTO `slider_blog` (`id`, `id_page_blog`, `slider`) VALUES
@@ -292,7 +291,7 @@ INSERT INTO `slider_blog` (`id`, `id_page_blog`, `slider`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tags`
+-- Table structure for table `tags`
 --
 
 CREATE TABLE `tags` (
@@ -303,7 +302,7 @@ CREATE TABLE `tags` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `tags`
+-- Dumping data for table `tags`
 --
 
 INSERT INTO `tags` (`id`, `tag`, `id_blog`, `created_at`) VALUES
@@ -323,165 +322,165 @@ INSERT INTO `tags` (`id`, `tag`, `id_blog`, `created_at`) VALUES
 --
 
 --
--- Indeks untuk tabel `auth`
+-- Indexes for table `auth`
 --
 ALTER TABLE `auth`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `blog`
+-- Indexes for table `blog`
 --
 ALTER TABLE `blog`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `contact`
+-- Indexes for table `contact`
 --
 ALTER TABLE `contact`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `gallery`
+-- Indexes for table `gallery`
 --
 ALTER TABLE `gallery`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `page_about`
+-- Indexes for table `page_about`
 --
 ALTER TABLE `page_about`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `page_blog`
+-- Indexes for table `page_blog`
 --
 ALTER TABLE `page_blog`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `page_contact`
+-- Indexes for table `page_contact`
 --
 ALTER TABLE `page_contact`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `page_home`
+-- Indexes for table `page_home`
 --
 ALTER TABLE `page_home`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `page_product`
+-- Indexes for table `page_product`
 --
 ALTER TABLE `page_product`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `product`
+-- Indexes for table `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_user` (`id_auth`);
 
 --
--- Indeks untuk tabel `review`
+-- Indexes for table `review`
 --
 ALTER TABLE `review`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `slider_blog`
+-- Indexes for table `slider_blog`
 --
 ALTER TABLE `slider_blog`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tags`
+-- Indexes for table `tags`
 --
 ALTER TABLE `tags`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `auth`
+-- AUTO_INCREMENT for table `auth`
 --
 ALTER TABLE `auth`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `blog`
+-- AUTO_INCREMENT for table `blog`
 --
 ALTER TABLE `blog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT untuk tabel `contact`
+-- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT untuk tabel `gallery`
+-- AUTO_INCREMENT for table `gallery`
 --
 ALTER TABLE `gallery`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=239;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=240;
 
 --
--- AUTO_INCREMENT untuk tabel `page_about`
+-- AUTO_INCREMENT for table `page_about`
 --
 ALTER TABLE `page_about`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `page_blog`
+-- AUTO_INCREMENT for table `page_blog`
 --
 ALTER TABLE `page_blog`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT untuk tabel `page_contact`
+-- AUTO_INCREMENT for table `page_contact`
 --
 ALTER TABLE `page_contact`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT untuk tabel `page_home`
+-- AUTO_INCREMENT for table `page_home`
 --
 ALTER TABLE `page_home`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `page_product`
+-- AUTO_INCREMENT for table `page_product`
 --
 ALTER TABLE `page_product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `product`
+-- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
--- AUTO_INCREMENT untuk tabel `review`
+-- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT untuk tabel `slider_blog`
+-- AUTO_INCREMENT for table `slider_blog`
 --
 ALTER TABLE `slider_blog`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
--- AUTO_INCREMENT untuk tabel `tags`
+-- AUTO_INCREMENT for table `tags`
 --
 ALTER TABLE `tags`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
